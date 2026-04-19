@@ -6,4 +6,6 @@ Siempre he sido cauteloso al adoptar nuevas tecnologías y poco dado a compartir
 
 ### **El punto de inflexión: Supabase.**
 
-Pruebo la conexion con git
+En un proyecto decidi usar supabase para ahorrar un poco pues con la version free me bastaba, pero bien quieries complejas de SQL no son mi especialidad soy mas de ORM, y necesitaba crear unas funciones RPC para crear las queries avanzadas y como buen dev en pleno 2026 opte por que una IA me las hiciera, eso me llevo a poner el MCP de supabase a mi proyecto.
+
+Eso me hizo preguntarme... que tanto le puedo pedir a la IA y de pronto estaba pidiendole a la IA refactors, aplicacion de estandares al codigo, y dado que pago Github Copilot tambien me dije, y si optimizo procesos con el CLI mientras avanzo en otras cosas, y fue como una bola de nieve que no paraba de crecer.
