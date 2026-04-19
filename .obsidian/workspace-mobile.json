@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "test.md",
+                "file": "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "test"
+              "title": "Sobre ser arquitecto usando IA"
             }
           }
         ]
@@ -168,8 +168,37 @@
   },
   "active": "93d780cd604a2bee",
   "lastOpenFiles": [
-    "/test.md",
     "test.md",
-    "Welcome.md"
+    "copilot/copilot-custom-prompts/Summarize.md",
+    "copilot/copilot-custom-prompts/Make longer.md",
+    "copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "copilot/copilot-custom-prompts/Simplify.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot/copilot-custom-prompts/Remove URLs.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts/Generate glossary.md",
+    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
+    "copilot/copilot-custom-prompts/Explain like I am 5.md",
+    "copilot/copilot-custom-prompts/Emojify.md",
+    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
+    "copilot/copilot-custom-prompts/Clip Web Page.md",
+    "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
+    "/copilot/copilot-custom-prompts/Summarize.md",
+    "/copilot/copilot-custom-prompts/Make longer.md",
+    "/copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "/copilot/copilot-custom-prompts/Simplify.md",
+    "/copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "/copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "/copilot/copilot-custom-prompts/Remove URLs.md",
+    "/copilot/copilot-custom-prompts/Make shorter.md",
+    "/copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts",
+    "copilot",
+    "LinkedIn Posts",
+    "/copilot/copilot-custom-prompts",
+    "/copilot",
+    "/LinkedIn Posts"
   ]
 }
