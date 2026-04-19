@@ -1,5 +1,5 @@
 {
-  "userId": "1d36acfc-4d42-4421-98ea-e3efbe410178",
+  "userId": "d6ca9cc6-b88b-47b3-8288-ff6bb498f476",
   "isPlusUser": false,
   "plusLicenseKey": "",
   "openAIApiKey": "",
@@ -102,8 +102,8 @@
       "enabled": true,
       "isBuiltIn": true,
       "capabilities": [
-        "reasoning",
-        "vision"
+        "vision",
+        "reasoning"
       ]
     },
     {
@@ -132,8 +132,8 @@
       "enabled": false,
       "isBuiltIn": true,
       "capabilities": [
-        "reasoning",
-        "vision"
+        "vision",
+        "reasoning"
       ]
     },
     {
@@ -142,8 +142,8 @@
       "enabled": false,
       "isBuiltIn": true,
       "capabilities": [
-        "reasoning",
-        "vision"
+        "vision",
+        "reasoning"
       ]
     },
     {
@@ -229,8 +229,8 @@
       "enabled": false,
       "isBuiltIn": true,
       "capabilities": [
-        "reasoning",
-        "vision"
+        "vision",
+        "reasoning"
       ]
     },
     {
@@ -239,8 +239,8 @@
       "enabled": false,
       "isBuiltIn": true,
       "capabilities": [
-        "reasoning",
-        "vision"
+        "vision",
+        "reasoning"
       ]
     },
     {
@@ -249,8 +249,8 @@
       "enabled": false,
       "isBuiltIn": true,
       "capabilities": [
-        "reasoning",
-        "vision"
+        "vision",
+        "reasoning"
       ]
     },
     {
@@ -446,7 +446,6 @@
   "enableRecentConversations": true,
   "maxRecentConversations": 30,
   "enableSavedMemory": true,
-  "quickCommandModelKey": "gemini-3.1-flash-lite-preview|google",
   "quickCommandIncludeNoteContext": true,
   "autoIncludeTextSelection": false,
   "autoAddSelectionToContext": false,

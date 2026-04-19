@@ -197,9 +197,6 @@
   },
   "active": "38c84b1691828a65",
   "lastOpenFiles": [
-    "agrega la carpeta copilot al gitignore y sino existe el archivo crealo",
-    "Welcome.md",
-    "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
     "copilot/copilot-custom-prompts/Clip Web Page.md",
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
@@ -217,6 +214,9 @@
     "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
     "copilot/copilot-custom-prompts",
     "copilot",
+    "agrega la carpeta copilot al gitignore y sino existe el archivo crealo",
+    "Welcome.md",
+    "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
     "test.md",
     "LinkedIn Posts"
   ]
