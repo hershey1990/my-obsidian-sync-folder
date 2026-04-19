@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Welcome"
+              "title": "Sobre ser arquitecto usando IA"
             }
           }
         ]
@@ -197,8 +197,9 @@
   },
   "active": "38c84b1691828a65",
   "lastOpenFiles": [
-    "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
+    "agrega la carpeta copilot al gitignore y sino existe el archivo crealo",
     "Welcome.md",
+    "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
     "copilot/copilot-custom-prompts/Clip Web Page.md",
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
