@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Interviews/Leap Tools/Python/Christian Torres.md",
+                "file": "Interviews/Leap Tools/Python - React/Mauricio Areas.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Christian Torres"
+              "title": "Mauricio Areas"
             }
           }
         ]
@@ -197,12 +197,16 @@
   },
   "active": "e79e4566e8475abe",
   "lastOpenFiles": [
-    "Interviews/Leap Tools/Python/Claudio Guion.md",
-    "Interviews/Leap Tools/Python/Christian Torres.md",
-    "Interviews/Leap Tools/Python/José Raul Hernández.md",
+    "Interviews/Leap Tools/Python - React/Roger Barriga.md",
+    "Interviews/Leap Tools/Python - React/Mauricio Areas.md",
     "Interviews/Leap Tools/Python/Daniel Corrales.md",
+    "Interviews/Leap Tools/Python - React",
+    "Interviews/Leap Tools/Python - React.md",
     "Interviews/Leap Tools/Python/Jesus David Diaz.md",
-    "Interviews/Leap Tools/Python/Jean Carlos VegaUntitled.md",
+    "Interviews/Leap Tools/Python/José Raul Hernández.md",
+    "Interviews/Leap Tools/Python/Jean Carlos Vega.md",
+    "Interviews/Leap Tools/Python/Christian Torres.md",
+    "Interviews/Leap Tools/Python/Claudio Guion.md",
     "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
     "Interviews/Leap Tools/Python",
     "Interviews/Leap Tools",
@@ -226,8 +230,6 @@
     "copilot/copilot-custom-prompts",
     "copilot",
     "agrega la carpeta copilot al gitignore y sino existe el archivo crealo",
-    "Welcome.md",
-    "test.md",
     "LinkedIn Posts"
   ]
 }
