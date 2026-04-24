@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Interviews/Leap Tools/Python - React/Mauricio Areas.md",
+                "file": "Interviews/Leap Tools/Front-end/Rodrigo Moza.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Mauricio Areas"
+              "title": "Rodrigo Moza"
             }
           }
         ]
@@ -197,14 +197,17 @@
   },
   "active": "e79e4566e8475abe",
   "lastOpenFiles": [
-    "Interviews/Leap Tools/Python - React/Roger Barriga.md",
+    "Interviews/Leap Tools/Front-end/Heitor Almeida.md",
+    "Interviews/Leap Tools/Front-end/Rodrigo Moza.md",
+    "Interviews/Leap Tools/Python/Jean Carlos Vega.md",
+    "Interviews/Leap Tools/Front-end",
     "Interviews/Leap Tools/Python - React/Mauricio Areas.md",
+    "Interviews/Leap Tools/Python - React/Roger Barriga.md",
     "Interviews/Leap Tools/Python/Daniel Corrales.md",
     "Interviews/Leap Tools/Python - React",
     "Interviews/Leap Tools/Python - React.md",
     "Interviews/Leap Tools/Python/Jesus David Diaz.md",
     "Interviews/Leap Tools/Python/José Raul Hernández.md",
-    "Interviews/Leap Tools/Python/Jean Carlos Vega.md",
     "Interviews/Leap Tools/Python/Christian Torres.md",
     "Interviews/Leap Tools/Python/Claudio Guion.md",
     "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
@@ -225,8 +228,6 @@
     "copilot/copilot-custom-prompts/Explain like I am 5.md",
     "copilot/copilot-custom-prompts/Simplify.md",
     "copilot/copilot-custom-prompts/Summarize.md",
-    "copilot/copilot-custom-prompts/Translate to Chinese.md",
-    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "agrega la carpeta copilot al gitignore y sino existe el archivo crealo",
