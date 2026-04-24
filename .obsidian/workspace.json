@@ -11,10 +11,14 @@
             "id": "e79e4566e8475abe",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Sobre ser arquitecto usando IA"
             }
           }
         ]
@@ -191,7 +195,7 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "23890fd36fc7f269",
+  "active": "e79e4566e8475abe",
   "lastOpenFiles": [
     "2026-04-21.md",
     "LinkedIn Posts/Sobre ser arquitecto usando IA.md",
