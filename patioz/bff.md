@@ -1,3 +1,13 @@
+```mermaid
+flowchart LR
+Start --> Stop
+```
+
+```mermaid
+flowchart LR
+Start --> Stop
+```
+
 # BFF (Backend for Frontend)
 
 Este servicio actúa como el **Backend for Frontend** o Gateway para toda la plataforma Patioz. Está construido sobre Node.js utilizando TypeScript y el framework Fastify.
