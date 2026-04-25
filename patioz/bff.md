@@ -30,3 +30,45 @@ Para facilitar el desarrollo local, el proyecto incluye un simulador en memoria 
 ## Arquitectura
 
 El proyecto sigue estrictamente los principios de **Arquitectura Limpia (Clean Architecture)** y **Domain-Driven Design (DDD)**. Esto asegura una separación clara de responsabilidades, donde la lógica de negocio del dominio permanece completamente agnóstica a los detalles de la infraestructura (frameworks, bases de datos, colas, etc.). Esta separación facilita las pruebas, el mantenimiento y la evolución del sistema.
+
+## Flujo de Comunicación Asíncrona
+
+El siguiente diagrama ilustra el flujo de una operación asíncrona orquestada por el BFF, como por ejemplo, el procesamiento de una imagen.
+
+```mermaid
+sequenceDiagram
+    participant Client as Cliente (Frontend)
+    participant BFF
+    participant QStash as Cola (QStash)
+    participant Microservice as Microservicio (e.g., imgproxy-api)
+    participant DB as Base de Datos
+
+    Client->>+BFF: 1. Inicia operación (e.g., POST /upload)
+    BFF->>BFF: 2. Genera `operationId`
+    BFF->>DB: 3. Persiste estado inicial de la operación (PENDING)
+    BFF->>-Client: 4. Responde inmediatamente con `operationId`
+    BFF->>+QStash: 5. Publica el trabajo en la cola (con `operationId`)
+    QStash->>-Microservice: 6. Entrega el trabajo al microservicio
+    
+    activate Microservice
+    Microservice->>Microservice: 7. Procesa la tarea...
+    alt Proceso Exitoso
+        Microservice->>BFF: 8a. Notifica éxito (Webhook con resultado)
+        activate BFF
+        BFF->>DB: 9a. Actualiza estado de la operación (COMPLETED)
+        deactivate BFF
+    else Proceso Fallido
+        Microservice->>BFF: 8b. Notifica error (Webhook con detalles)
+        activate BFF
+        BFF->>DB: 9b. Actualiza estado de la operación (FAILED)
+        deactivate BFF
+    end
+    deactivate Microservice
+
+    Note over Client, DB: El cliente usa el `operationId` para consultar el estado periódicamente (Polling).
+
+    Client->>+BFF: 10. GET /operation/status/{operationId}
+    BFF->>DB: 11. Lee estado de la operación
+    BFF-->>-Client: 12. Responde con el estado final (e.g., COMPLETED y resultado)
+```
+
