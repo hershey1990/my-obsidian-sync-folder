@@ -1,3 +1,7 @@
+---
+aliases:
+  - Patioz General
+---
 # Arquitectura de Patioz
 
 Patioz es un sistema de gestión inmobiliaria (Real Estate) fundamentado en una arquitectura de microservicios. Este enfoque de diseño nos permite desarrollar, desplegar y escalar componentes del sistema de forma independiente, otorgando a cada microservicio una autonomía arquitectónica completa.
