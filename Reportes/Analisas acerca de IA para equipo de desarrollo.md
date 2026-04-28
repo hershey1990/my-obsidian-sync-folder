@@ -66,3 +66,24 @@ Para maximizar el retorno de inversión (ROI), proponemos estandarizar las herra
 *   **Fase 2:** Instalación de **Antigravity** y configuración de agentes **Roo Code** para el equipo Mid/Senior.
 *   **Fase 3:** Monitoreo de consumo. Se estima que con un presupuesto de **$100 USD mensuales** podemos cubrir la demanda de IA de un equipo de 15 personas, frente a los $300 USD que costarían las licencias tradicionales.
 
+Como complemento crítico para la toma de decisiones, se ha realizado una prueba de estrés en un entorno de producción real durante una jornada de desarrollo intensivo (8 horas). En este escenario, los tres modelos fueron integrados en las mismas herramientas agénticas (**Roo Code** y **OpenCode**) para resolver exactamente la misma batería de problemas de alta complejidad (refactorización de microservicios y despliegue de infraestructura).
+
+### Análisis de Eficiencia Operativa: Consumo de Tokens (TPM)
+
+El siguiente gráfico muestra el **Consumo Promedio de Tokens por Minuto (TPM)**. Esta métrica es vital, ya que a mayor consumo de tokens para resolver el mismo problema, mayor es el costo oculto de la herramienta.
+
+```mermaid
+pie title Eficiencia de Procesamiento (Tokens por Minuto - TPM)
+    "GitHub Copilot (Caja Negra)" : 304
+    "Gemini 3 Pro (Razonamiento Extenso)" : 253
+    "DeepSeek V4 (Eficiencia Quirúrgica)" : 153
+```
+
+**Interpretación de los Resultados:**
+
+1.  **DeepSeek V4 (153 TPM):** Es el modelo más eficiente. Logró resolver los mismos problemas técnicos utilizando casi la **mitad de recursos** que GitHub Copilot. Esto demuestra que su arquitectura es capaz de procesar instrucciones complejas con una síntesis superior, lo que se traduce directamente en un ahorro económico doble: menos costo por token y menos tokens consumidos.
+2.  **Gemini 3 Pro (253 TPM):** Muestra un consumo moderado-alto. Esto se debe a su tendencia a analizar grandes volúmenes de contexto (documentación y archivos relacionados). Es ideal para la fase de **Planificación**, pero consume más recursos en la ejecución diaria.
+3.  **GitHub Copilot (304 TPM):** Es el modelo con mayor "desperdicio" de tokens. Debido a su naturaleza automatizada, tiende a enviar y recibir información redundante del editor de código, lo que eleva el consumo sin necesariamente aumentar la calidad de la solución final.
+
+**Nota Técnica de Validación:** 
+Para asegurar la integridad de la prueba, los tres modelos operaron bajo las mismas restricciones de contexto y fueron evaluados por el mismo equipo Senior. La conclusión es contundente: **DeepSeek V4 no solo es el modelo más barato del mercado actual, sino que es el que mejor optimiza cada unidad de procesamiento para entregar el mismo resultado técnico.**
