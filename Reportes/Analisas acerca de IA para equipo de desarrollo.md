@@ -87,3 +87,5 @@ pie title Eficiencia de Procesamiento (Tokens por Minuto - TPM)
 
 **Nota Técnica de Validación:** 
 Para asegurar la integridad de la prueba, los tres modelos operaron bajo las mismas restricciones de contexto y fueron evaluados por el mismo equipo Senior. La conclusión es contundente: **DeepSeek V4 no solo es el modelo más barato del mercado actual, sino que es el que mejor optimiza cada unidad de procesamiento para entregar el mismo resultado técnico.**
+
+*"Copilot es un excelente teclado inteligente; Antigravity es un ingeniero junior autónomo sentado en tu IDE. Si buscamos reducir el tiempo de resolución de bugs complejos y la creación de arquitecturas desde cero, Antigravity con su motor de agentes ofrece un ROI significativamente mayor, a pesar de que Copilot sea ligeramente más rápido sugiriendo texto simple."*
