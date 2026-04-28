@@ -16,7 +16,7 @@ Actualmente, el equipo de desarrollo utiliza herramientas de Inteligencia Artifi
 ---
 
 ### 2. EL CAMBIO DE PARADIGMA: IA AGÉNTICA VS. CHAT
-A diferencia del "Chat de IA" tradicional que solo sugiere texto, el uso de **Agentes (Roo Code / OpenCode)** permite que la IA ejecute tareas completas: crear archivos, realizar pruebas y corregir errores de forma autónoma bajo supervisión humana. Esto elimina el "trabajo repetitivo" del desarrollador.
+A diferencia del "Chat de IA" tradicional que solo sugiere texto, el uso de **Agentes (Cline / OpenCode)** permite que la IA ejecute tareas completas: crear archivos, realizar pruebas y corregir errores de forma autónoma bajo supervisión humana. Esto elimina el "trabajo repetitivo" del desarrollador.
 
 ---
 
@@ -44,11 +44,11 @@ graph LR
 ### 4. ESTRATEGIA DE IMPLEMENTACIÓN POR NIVELES
 Para maximizar el retorno de inversión (ROI), proponemos estandarizar las herramientas según la criticidad del puesto:
 
-| Perfil | Herramientas Sugeridas | Beneficio para la Empresa |
+| Perfil | Herramientas Sugeridas             | Beneficio para la Empresa |
 | :--- | :--- | :--- |
 | **Desarrollador Junior** | Antigravity (IDE) + Gemini 3 Flash | **Costo Casi Cero:** Utiliza planes gratuitos para resolver dudas y completar tareas básicas sin bloquear a los seniors. |
-| **Desarrollador Mid** | Roo Code + DeepSeek V4 | **Alta Eficiencia:** La IA escribe el código pesado y el desarrollador valida. Máximo rendimiento por cada dólar invertido. |
-| **Desarrollador Senior** | OpenCode + Gemini 3 Ultra | **Arquitectura Avanzada:** La IA se encarga de la infraestructura y automatización compleja (DevOps), liberando al Senior para decisiones estratégicas. |
+| **Desarrollador Mid** | Cline + DeepSeek V4                | **Alta Eficiencia:** La IA escribe el código pesado y el desarrollador valida. Máximo rendimiento por cada dólar invertido. |
+| **Desarrollador Senior** | OpenCode + Gemini 3 Ultra          | **Arquitectura Avanzada:** La IA se encarga de la infraestructura y automatización compleja (DevOps), liberando al Senior para decisiones estratégicas. |
 
 ---
 
@@ -63,10 +63,10 @@ Para maximizar el retorno de inversión (ROI), proponemos estandarizar las herra
 ### 6. PRÓXIMOS PASOS (PLAN DE ACCIÓN)
 
 *   **Fase 1:** Migración de licencias individuales fijas a un **Pool de API Keys centralizado**.
-*   **Fase 2:** Instalación de **Antigravity** y configuración de agentes **Roo Code** para el equipo Mid/Senior.
+*   **Fase 2:** Instalación de **Antigravity** y configuración de agentes **Cline** para el equipo Mid/Senior.
 *   **Fase 3:** Monitoreo de consumo. Se estima que con un presupuesto de **$100 USD mensuales** podemos cubrir la demanda de IA de un equipo de 15 personas, frente a los $300 USD que costarían las licencias tradicionales.
 
-Como complemento crítico para la toma de decisiones, se ha realizado una prueba de estrés en un entorno de producción real durante una jornada de desarrollo intensivo (8 horas). En este escenario, los tres modelos fueron integrados en las mismas herramientas agénticas (**Roo Code** y **OpenCode**) para resolver exactamente la misma batería de problemas de alta complejidad (refactorización de microservicios y despliegue de infraestructura).
+Como complemento crítico para la toma de decisiones, se ha realizado una prueba de estrés en un entorno de producción real durante una jornada de desarrollo intensivo (8 horas). En este escenario, los tres modelos fueron integrados en las mismas herramientas agénticas (**Cline* y **OpenCode**) para resolver exactamente la misma batería de problemas de alta complejidad (refactorización de microservicios y despliegue de infraestructura).
 
 ### Análisis de Eficiencia Operativa: Consumo de Tokens (TPM)
 
