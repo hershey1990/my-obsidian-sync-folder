@@ -1,3 +1,16 @@
+---
+tipo: entrevista
+candidato: "José Raul Hernández"
+fecha: 
+puesto: "Python"
+empresa: "Leap Tools"
+puntaje_tecnico: 5.0
+puntaje_ingles: 8.0
+resultado: en_proceso
+tags:
+  - entrevista
+---
+
 ## Techinical Interview
 
 - Level 1 - 10: **5.**

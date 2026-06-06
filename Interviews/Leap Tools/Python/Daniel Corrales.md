@@ -1,3 +1,16 @@
+---
+tipo: entrevista
+candidato: "Daniel Corrales"
+fecha: 
+puesto: "Python"
+empresa: "Leap Tools"
+puntaje_tecnico: 7.5
+puntaje_ingles: 6.8
+resultado: en_proceso
+tags:
+  - entrevista
+---
+
 ## Techinical Interview
 
 **Puntaje:** **7.5**

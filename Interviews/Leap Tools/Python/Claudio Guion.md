@@ -1,3 +1,16 @@
+---
+tipo: entrevista
+candidato: "Claudio Guion"
+fecha: 
+puesto: "Python"
+empresa: "Leap Tools"
+puntaje_tecnico: 7.75
+puntaje_ingles: null
+resultado: en_proceso
+tags:
+  - entrevista
+---
+
 ## Techinical Interview
 
 - Level 1 - 10: **7.75**

@@ -1,3 +1,16 @@
+---
+tipo: entrevista
+candidato: "Jesus David Diaz"
+fecha: 
+puesto: "Python"
+empresa: "Leap Tools"
+puntaje_tecnico: 7.0
+puntaje_ingles: 7.5
+resultado: en_proceso
+tags:
+  - entrevista
+---
+
 ## Techinical Interview
 
 **Puntaje:** **7**
