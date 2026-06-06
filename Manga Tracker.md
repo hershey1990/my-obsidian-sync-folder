@@ -453,7 +453,7 @@ let mangas = [];
 let searchQuery = "";
 let statusFilter = "Todos";
 let currentPage = 1;
-const itemsPerPage = 25;
+let itemsPerPage = 20;
 
 // Cargar y procesar datos desde mangas.md
 async function loadData() {
@@ -514,6 +514,23 @@ const searchInput = searchWrapper.createEl("input", {
     type: "text",
     cls: "search-input",
     placeholder: "Buscar manga por nombre..."
+});
+
+// Selector de ítems por página (Paginación)
+const limitWrapper = controlsBar.createEl("div", { cls: "limit-wrapper", style: "display: flex; align-items: center; gap: 6px;" });
+limitWrapper.createEl("span", { text: "Mostrar:", style: "font-size: 13px; color: var(--text-muted); font-weight: 600;" });
+const limitSelect = limitWrapper.createEl("select", {
+    cls: "status-dropdown",
+    style: "padding: 6px 10px; font-size: 13px; font-weight: 600;"
+});
+[10, 20, 50, 100].forEach(num => {
+    const opt = limitSelect.createEl("option", { value: num.toString(), text: `${num} por pág.` });
+    if (num === itemsPerPage) opt.selected = true;
+});
+limitSelect.addEventListener("change", (e) => {
+    itemsPerPage = parseInt(e.target.value);
+    currentPage = 1;
+    render();
 });
 
 // Filtros de estado
