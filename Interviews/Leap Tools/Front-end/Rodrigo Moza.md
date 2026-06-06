@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Rodrigo Moza"
-fecha: 
-puesto: "Front-end"
-empresa: "Leap Tools"
+candidato: Rodrigo Moza
+fecha:
+puesto: Front-end
+empresa: Leap Tools
 puntaje_tecnico: 7.8
-puntaje_ingles: 7.0
-resultado: entrevistado
+puntaje_ingles: 7
+resultado: reporte_entregado
 tags:
   - entrevista
 ---

@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Roger Barriga"
-fecha: 
-puesto: "Python - React"
-empresa: "Leap Tools"
-puntaje_tecnico: 5.0
-puntaje_ingles: 8.0
-resultado: entrevistado
+candidato: Roger Barriga
+fecha:
+puesto: Python - React
+empresa: Leap Tools
+puntaje_tecnico: 5
+puntaje_ingles: 8
+resultado: reporte_entregado
 tags:
   - entrevista
 ---

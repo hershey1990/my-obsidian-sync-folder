@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Claudio Guion"
-fecha: 
-puesto: "Python"
-empresa: "Leap Tools"
+candidato: Claudio Guion
+fecha:
+puesto: Python
+empresa: Leap Tools
 puntaje_tecnico: 7.75
-puntaje_ingles: null
-resultado: entrevistado
+puntaje_ingles:
+resultado: reporte_entregado
 tags:
   - entrevista
 ---

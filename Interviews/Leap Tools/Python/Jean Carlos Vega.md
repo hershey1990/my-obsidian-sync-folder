@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Jean Carlos Vega"
-fecha: 
-puesto: "Python"
-empresa: "Leap Tools"
-puntaje_tecnico: 7.0
+candidato: Jean Carlos Vega
+fecha:
+puesto: Python
+empresa: Leap Tools
+puntaje_tecnico: 7
 puntaje_ingles: 7.5
-resultado: entrevistado
+resultado: reporte_entregado
 tags:
   - entrevista
 ---

@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Heitor Almeida"
-fecha: 
-puesto: "Front-end"
-empresa: "Leap Tools"
+candidato: Heitor Almeida
+fecha:
+puesto: Front-end
+empresa: Leap Tools
 puntaje_tecnico: 6.5
-puntaje_ingles: 5.0
-resultado: entrevistado
+puntaje_ingles: 5
+resultado: reporte_entregado
 tags:
   - entrevista
 ---

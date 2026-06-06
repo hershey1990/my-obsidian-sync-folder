@@ -1,5 +1,6 @@
 | Manga | Capítulo | Estado | URL | Imagen | Notas |
 | --- | --- | --- | --- | --- | --- |
+| Kingdom | 180 | Leyendo |  |  |  |
 | Aka Akatoshitachi no Monogatari | 8 | Pendiente |  |  |  |
 | Kare First Love | 56 | Pendiente |  |  |  |
 | Usotsuki Lily | 1 | Pendiente |  |  |  |

@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Jesus David Diaz"
-fecha: 
-puesto: "Python"
-empresa: "Leap Tools"
-puntaje_tecnico: 7.0
+candidato: Jesus David Diaz
+fecha:
+puesto: Python
+empresa: Leap Tools
+puntaje_tecnico: 7
 puntaje_ingles: 7.5
-resultado: entrevistado
+resultado: reporte_entregado
 tags:
   - entrevista
 ---

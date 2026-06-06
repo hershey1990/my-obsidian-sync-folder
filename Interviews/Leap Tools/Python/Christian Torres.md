@@ -1,12 +1,12 @@
 ---
 tipo: entrevista
-candidato: "Christian Torres"
-fecha: 
-puesto: "Python"
-empresa: "Leap Tools"
+candidato: Christian Torres
+fecha:
+puesto: Python
+empresa: Leap Tools
 puntaje_tecnico: 7.75
 puntaje_ingles: 7.5
-resultado: entrevistado
+resultado: reporte_entregado
 tags:
   - entrevista
 ---
