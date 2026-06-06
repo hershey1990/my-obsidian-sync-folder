@@ -6,7 +6,7 @@ Este panel utiliza **Dataview** para recopilar, organizar y clasificar automáti
 
 ## 📑 Índice de Reportes Recientes
 
-A continuación se listan todos los reportes en tu carpeta, ordenados por fecha de forma descendente.
+A continuación se listan todos los reportes en tu carpeta `Reportes`, ordenados por fecha de forma descendente.
 
 ```dataview
 TABLE 
@@ -16,7 +16,6 @@ TABLE
     tipo AS "Tipo", 
     estado AS "Estado"
 FROM "Reportes"
-WHERE file.name != "Panel de Control"
 SORT fecha DESC
 ```
 
@@ -31,7 +30,7 @@ TABLE
     proyecto AS "Proyecto",
     estado AS "Estado"
 FROM "Reportes"
-WHERE file.name != "Panel de Control" AND (estado = "borrador" OR estado = "revision")
+WHERE (estado = "borrador" OR estado = "revision")
 SORT fecha DESC
 ```
 
@@ -42,7 +41,7 @@ TABLE
     proyecto AS "Proyecto", 
     destinatario AS "Destinatario"
 FROM "Reportes"
-WHERE file.name != "Panel de Control" AND estado = "enviado"
+WHERE estado = "enviado"
 SORT fecha DESC
 ```
 
@@ -55,7 +54,7 @@ Esta lista extrae dinámicamente las tareas pendientes (`- [ ]`) dentro de todos
 ```dataview
 TASK
 FROM "Reportes"
-WHERE !completed AND file.name != "Panel de Control"
+WHERE !completed
 ```
 
 ---
