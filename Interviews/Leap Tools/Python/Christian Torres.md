@@ -6,7 +6,7 @@ puesto: "Python"
 empresa: "Leap Tools"
 puntaje_tecnico: 7.75
 puntaje_ingles: 7.5
-resultado: en_proceso
+resultado: entrevistado
 tags:
   - entrevista
 ---

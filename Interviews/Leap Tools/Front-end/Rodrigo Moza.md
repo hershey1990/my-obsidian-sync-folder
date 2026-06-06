@@ -6,7 +6,7 @@ puesto: "Front-end"
 empresa: "Leap Tools"
 puntaje_tecnico: 7.8
 puntaje_ingles: 7.0
-resultado: en_proceso
+resultado: entrevistado
 tags:
   - entrevista
 ---

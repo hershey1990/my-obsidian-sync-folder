@@ -6,7 +6,7 @@ puesto: "Python - React"
 empresa: "Leap Tools"
 puntaje_tecnico: 6.0
 puntaje_ingles: 7.0
-resultado: en_proceso
+resultado: entrevistado
 tags:
   - entrevista
 ---
