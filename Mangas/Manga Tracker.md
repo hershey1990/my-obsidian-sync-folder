@@ -289,10 +289,54 @@ if (!styleEl) {
             background: rgba(var(--text-accent-rgb), 0.02);
         }
 
+        .manga-cover {
+            width: 40px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: var(--background-secondary);
+            border: 1px solid var(--background-modifier-border);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .manga-cover:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border-color: var(--text-accent);
+        }
+
+        .manga-cover-placeholder {
+            width: 40px;
+            height: 55px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--text-accent), #06b6d4);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .manga-cover-placeholder:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .manga-title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
         .manga-name-cell {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .manga-name {
@@ -468,14 +512,15 @@ async function loadData() {
             if (!line || !line.startsWith("|")) continue;
 
             const parts = line.split("|").map(p => p.trim());
-            // parts[0] = "", parts[1] = Manga, parts[2] = Capítulo, parts[3] = Estado, parts[4] = URL, parts[5] = Notas, parts[6] = ""
             if (parts.length >= 6) {
+                const hasImageCol = parts.length >= 8;
                 mangas.push({
                     name: parts[1],
                     chapter: parts[2],
                     status: parts[3] || "Pendiente",
                     url: parts[4] || "",
-                    notes: parts[5] || ""
+                    image: hasImageCol ? parts[5] : "",
+                    notes: hasImageCol ? parts[6] : parts[5] || ""
                 });
             }
         }
@@ -487,8 +532,8 @@ async function loadData() {
 // Guardar los datos en mangas.md
 async function saveData() {
     try {
-        let tableHeader = "| Manga | Capítulo | Estado | URL | Notas |\n| --- | --- | --- | --- | --- |";
-        let rows = mangas.map(m => `| ${m.name} | ${m.chapter} | ${m.status} | ${m.url} | ${m.notes} |`);
+        let tableHeader = "| Manga | Capítulo | Estado | URL | Imagen | Notas |\n| --- | --- | --- | --- | --- | --- |";
+        let rows = mangas.map(m => `| ${m.name} | ${m.chapter} | ${m.status} | ${m.url} | ${m.image || ""} | ${m.notes || ""} |`);
         let newContent = [tableHeader, ...rows].join("\n") + "\n";
         await app.vault.modify(file, newContent);
     } catch (e) {
@@ -585,6 +630,10 @@ formContainer.innerHTML = `
             <input type="text" id="new-manga-url" placeholder="http://...">
         </div>
         <div class="form-group">
+            <label>URL de Imagen</label>
+            <input type="text" id="new-manga-image" placeholder="http://... o archivo.jpg">
+        </div>
+        <div class="form-group">
             <label>Notas</label>
             <input type="text" id="new-manga-notes" placeholder="Notas...">
         </div>
@@ -617,10 +666,11 @@ formContainer.querySelector("#btn-form-submit").addEventListener("click", async 
     const chapter = formContainer.querySelector("#new-manga-chapter").value.trim() || "1";
     const status = formContainer.querySelector("#new-manga-status").value;
     const url = formContainer.querySelector("#new-manga-url").value.trim();
+    const image = formContainer.querySelector("#new-manga-image").value.trim();
     const notes = formContainer.querySelector("#new-manga-notes").value.trim();
 
     // Añadir al inicio de la lista
-    mangas.unshift({ name, chapter, status, url, notes });
+    mangas.unshift({ name, chapter, status, url, image, notes });
     
     await saveData();
     formContainer.style.display = "none";
@@ -633,6 +683,7 @@ function clearForm() {
     formContainer.querySelector("#new-manga-chapter").value = "1";
     formContainer.querySelector("#new-manga-status").value = "Pendiente";
     formContainer.querySelector("#new-manga-url").value = "";
+    formContainer.querySelector("#new-manga-image").value = "";
     formContainer.querySelector("#new-manga-notes").value = "";
 }
 
@@ -742,14 +793,34 @@ function render() {
             const isCompleted = m.status === "Finalizado";
             const dropdownClass = m.status.toLowerCase().replace(" ", "-");
 
+            // Generar imagen de portada o iniciales
+            let coverImgHTML = "";
+            if (m.image && m.image.trim()) {
+                let imgUrl = m.image.trim();
+                let resolvedSrc = imgUrl;
+                if (!imgUrl.startsWith("http") && !imgUrl.startsWith("data:")) {
+                    const localImgFile = app.vault.getFiles().find(f => f.path.toLowerCase().endsWith(imgUrl.toLowerCase()) || f.name.toLowerCase() === imgUrl.toLowerCase());
+                    if (localImgFile) {
+                        resolvedSrc = app.vault.adapter.getResourcePath(localImgFile.path);
+                    }
+                }
+                coverImgHTML = `<img class="manga-cover" src="${resolvedSrc}" data-idx="${absoluteIdx}" title="Doble clic para cambiar la portada" />`;
+            } else {
+                const initial = m.name ? m.name.charAt(0).toUpperCase() : "?";
+                coverImgHTML = `<div class="manga-cover-placeholder" data-idx="${absoluteIdx}" title="Doble clic para añadir portada">${initial}</div>`;
+            }
+
             tableHTML += `
                 <tr class="manga-row" data-idx="${absoluteIdx}">
                     <td>
                         <div class="manga-name-cell">
-                            <span class="manga-name">${m.name}</span>
-                            ${urlIcon}
+                            ${coverImgHTML}
+                            <div class="manga-title-wrapper">
+                                <span class="manga-name">${m.name}</span>
+                                ${urlIcon}
+                                ${m.notes ? `<div class="manga-notes" title="${m.notes}">${m.notes}</div>` : ""}
+                            </div>
                         </div>
-                        ${m.notes ? `<div class="manga-notes" title="${m.notes}">${m.notes}</div>` : ""}
                     </td>
                     <td>
                         <div class="chapter-control" style="justify-content: center;">
@@ -806,6 +877,20 @@ function render() {
 
 // 5. Vincular eventos de la tabla
 function bindTableEvents() {
+    // Doble clic en la portada para añadir o modificar la URL/archivo de imagen
+    table.querySelectorAll(".manga-cover, .manga-cover-placeholder").forEach(cover => {
+        cover.addEventListener("dblclick", async () => {
+            const idx = parseInt(cover.getAttribute("data-idx"));
+            const currentImg = mangas[idx].image || "";
+            const newImg = prompt(`Introduce la URL de internet o el nombre del archivo local para la portada de "${mangas[idx].name}":`, currentImg);
+            if (newImg !== null) {
+                mangas[idx].image = newImg.trim();
+                await saveData();
+                render();
+            }
+        });
+    });
+
     // Botones de incremento (+)
     table.querySelectorAll(".btn-inc").forEach(btn => {
         btn.addEventListener("click", async () => {
