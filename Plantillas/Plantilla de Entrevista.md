@@ -6,7 +6,7 @@ puesto:
 empresa: 
 puntaje_tecnico: null
 puntaje_ingles: null
-resultado: en_proceso
+resultado: por_entrevistar
 tags:
   - entrevista
 ---
@@ -59,6 +59,6 @@ tags:
 > *¿Recomiendas al candidato? ¿Para qué rol o nivel? ¿Qué tan urgente es contratarlo?*
 
 ### 🚦 Resultado
-- [ ] ✅ Aprobado — Pasa a siguiente fase
-- [ ] ⏳ En espera — Candidato de backup
-- [ ] ❌ Rechazado — No cumple requerimientos mínimos
+- [ ] 📋 **Por Entrevistar** — Agendado, pendiente de realizar
+- [ ] 🎙️ **Entrevistado** — Entrevista realizada, en elaboración de reporte
+- [ ] ✅ **Reporte Entregado** — Reporte enviado al cliente

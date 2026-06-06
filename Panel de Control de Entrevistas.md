@@ -13,10 +13,9 @@ tags:
 
 ```dataviewjs
 const statusLabels = {
-  "en_proceso":  { label: "⏳ En Proceso",  color: "#3b82f6" },
-  "aprobado":    { label: "✅ Aprobado",    color: "#22c55e" },
-  "en_espera":   { label: "🟡 En Espera",   color: "#f59e0b" },
-  "rechazado":   { label: "❌ Rechazado",   color: "#ef4444" },
+  "por_entrevistar":   { label: "📋 Por Entrevistar",   color: "#a855f7" },
+  "entrevistado":      { label: "🎙️ Entrevistado",      color: "#3b82f6" },
+  "reporte_entregado": { label: "✅ Reporte Entregado", color: "#22c55e" },
 };
 
 const pages = dv.pages('"Interviews"')
@@ -84,7 +83,7 @@ function makeStatusSelect(page) {
   const select = document.createElement("select");
   select.className = "iv-status-select";
 
-  const statuses = ["en_proceso", "aprobado", "en_espera", "rechazado"];
+  const statuses = ["por_entrevistar", "entrevistado", "reporte_entregado"];
   statuses.forEach(s => {
     const opt = document.createElement("option");
     opt.value = s;
@@ -168,10 +167,9 @@ container.appendChild(table);
 
 ```dataviewjs
 const statusLabels = {
-  "en_proceso": { label: "⏳ En Proceso", color: "#3b82f6" },
-  "aprobado":   { label: "✅ Aprobado",   color: "#22c55e" },
-  "en_espera":  { label: "🟡 En Espera",  color: "#f59e0b" },
-  "rechazado":  { label: "❌ Rechazado",  color: "#ef4444" },
+  "por_entrevistar":   { label: "📋 Por Entrevistar",   color: "#a855f7" },
+  "entrevistado":      { label: "🎙️ Entrevistado",      color: "#3b82f6" },
+  "reporte_entregado": { label: "✅ Reporte Entregado", color: "#22c55e" },
 };
 
 function scoreClass(val) {
@@ -190,7 +188,7 @@ function makeStatusSelect(page) {
   const file = app.vault.getAbstractFileByPath(page.file.path);
   const select = document.createElement("select");
   select.className = "iv-status-select";
-  const statuses = ["en_proceso", "aprobado", "en_espera", "rechazado"];
+  const statuses = ["por_entrevistar", "entrevistado", "reporte_entregado"];
   statuses.forEach(s => {
     const opt = document.createElement("option");
     opt.value = s;
@@ -267,7 +265,6 @@ for (const [grupo, pages] of Object.entries(grupos).sort()) {
 2. **Estructura de carpetas:** `Interviews/[Cliente]/[Stack]/[Nombre Candidato].md`
 3. **Cambiar estado:** Haz clic directamente en el dropdown de la columna **Estado** — se guarda automáticamente.
 4. **Colores de estado:**
-   - 🔵 **En Proceso** — Entrevista realizada, pendiente de decisión
-   - ✅ **Aprobado** — Pasa a siguiente fase
-   - 🟡 **En Espera** — Candidato de backup
-   - 🔴 **Rechazado** — No cumple requerimientos
+   - 🟣 **Por Entrevistar** — Candidato agendado, pendiente de entrevista
+   - 🔵 **Entrevistado** — Entrevista realizada, pendiente de reporte
+   - ✅ **Reporte Entregado** — Reporte enviado al cliente
