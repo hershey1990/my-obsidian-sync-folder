@@ -1,9 +1,18 @@
-**PARA:** Dirección de Tecnología / Gerencia de Operaciones
-**DE:** Senior Tech Lead & Solution Architect
-**FECHA:** Mayo de 2026
-**ASUNTO:** Propuesta de optimización de costos y productividad: Implementación de Ecosistema de IA Agéntica
-
 ---
+tipo: propuesta
+proyecto: Ecosistema de IA Agéntica
+fecha: 2026-05
+destinatario: Dirección de Tecnología / Gerencia de Operaciones
+autor: Senior Tech Lead & Solution Architect
+asunto: Propuesta de optimización de costos y productividad
+estado: enviado
+tags:
+  - reporte/propuesta
+  - empresa/tecnologia
+---
+
+# Propuesta de optimización de costos y productividad: Implementación de Ecosistema de IA Agéntica
+
 
 ### 1. RESUMEN EJECUTIVO
 Actualmente, el equipo de desarrollo utiliza herramientas de Inteligencia Artificial de forma fragmentada, lo que genera costos variables y resultados inconsistentes. Esta propuesta detalla un cambio de estrategia: pasar de suscripciones fijas y cerradas (como GitHub Copilot) a un modelo de **"Pago por Uso Inteligente"** utilizando los nuevos modelos **DeepSeek V4** y **Gemini 3**.
@@ -62,9 +71,10 @@ Para maximizar el retorno de inversión (ROI), proponemos estandarizar las herra
 
 ### 6. PRÓXIMOS PASOS (PLAN DE ACCIÓN)
 
-*   **Fase 1:** Migración de licencias individuales fijas a un **Pool de API Keys centralizado**.
-*   **Fase 2:** Instalación de **Antigravity** y configuración de agentes **Cline** para el equipo Mid/Senior.
-*   **Fase 3:** Monitoreo de consumo. Se estima que con un presupuesto de **$100 USD mensuales** podemos cubrir la demanda de IA de un equipo de 15 personas, frente a los $300 USD que costarían las licencias tradicionales.
+- [ ] **Fase 1:** Migración de licencias individuales fijas a un **Pool de API Keys centralizado**.
+- [ ] **Fase 2:** Instalación de **Antigravity** y configuración de agentes **Cline** para el equipo Mid/Senior.
+- [ ] **Fase 3:** Monitoreo de consumo. Se estima que con un presupuesto de **$100 USD mensuales** podemos cubrir la demanda de IA de un equipo de 15 personas, frente a los $300 USD que costarían las licencias tradicionales.
+
 
 Como complemento crítico para la toma de decisiones, se ha realizado una prueba de estrés en un entorno de producción real durante una jornada de desarrollo intensivo (8 horas). En este escenario, los tres modelos fueron integrados en las mismas herramientas agénticas (**Cline* y **OpenCode**) para resolver exactamente la misma batería de problemas de alta complejidad (refactorización de microservicios y despliegue de infraestructura).
 
