@@ -3,10 +3,10 @@
 ```dataviewjs
 // 1. Obtener y configurar el archivo de datos
 const dataFilePath = "mangas/mangas.md";
-const file = app.vault.getAbstractFileByPath(dataFilePath);
+const file = app.vault.getFiles().find(f => f.path.replace(/\\/g, "/").toLowerCase() === dataFilePath.toLowerCase());
 
 if (!file) {
-    dv.paragraph("⚠️ **Error**: No se encontró el archivo `mangas.md` en la ruta `mangas/mangas.md`. Por favor asegúrate de que exista en esa carpeta.");
+    dv.paragraph("⚠️ **Error**: No se encontró el archivo `mangas.md` en la ruta `mangas/mangas.md`. Por favor asegúrate de que exista en esa carpeta y de que Obsidian haya indexado los cambios.");
     return;
 }
 
