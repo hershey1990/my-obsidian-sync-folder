@@ -1,7 +1,8 @@
 ---
 tipo: adr
 fecha: 2026-03-01
-estado: aceptado
+estado: reemplazado
+reemplazado_por: ADR-006
 tags:
   - adr
 ---

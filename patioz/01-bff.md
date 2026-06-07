@@ -17,15 +17,11 @@ La validación de todos los datos de entrada (payloads, query params, etc.) se g
 1.  **Validación en Tiempo de Ejecución:** Define schemas que validan la estructura y los tipos de los datos de las peticiones HTTP en el borde del sistema (la capa de rutas).
 2.  **Inferencia de Tipos Estáticos:** A partir de un único schema de Zod, se infieren automáticamente los tipos de TypeScript para los DTOs (Data Transfer Objects). Esto elimina la duplicación de código y garantiza que los tipos estáticos y las validaciones de runtime estén siempre sincronizados.
 
-## Orquestación Asíncrona con QStash
+## Orquestación Asíncrona con BullMQ
 
-Para la orquestación de flujos que involucran a múltiples microservicios o para tareas de larga duración (como el procesamiento de subidas de archivos), el BFF utiliza **QStash (de Upstash)**.
+Para la orquestación de flujos que involucran tareas de larga duración (como el procesamiento de subidas de archivos), el BFF utiliza **BullMQ (Redis)**. Cuando necesita ejecutar una tarea en segundo plano, publica un trabajo en una cola de BullMQ que es procesada por un worker dedicado dentro del mismo proceso o en un worker por separado. Esto desacopla la petición HTTP de la ejecución, mejorando la experiencia del usuario y la resiliencia del sistema.
 
-Cuando el BFF necesita invocar un proceso en otro microservicio de forma asíncrona, publica un mensaje en una cola de QStash. Esto desacopla los servicios, mejorando la resiliencia y escalabilidad del sistema. Si un microservicio está temporalmente caído, QStash puede reintentar la entrega del mensaje.
-
-### Simulador Local: `localStash`
-
-Para facilitar el desarrollo local, el proyecto incluye un simulador en memoria de QStash (referido como `localStash` o `LocalQueuePublisher`). Esto permite a los desarrolladores probar los flujos de trabajo asíncronos completos en su máquina sin necesidad de una conexión a internet o una cuenta real de QStash, agilizando significativamente los ciclos de prueba y desarrollo. Se activa mediante la variable de entorno `QUEUE_PROVIDER=local`.
+BullMQ ofrece control total sobre las colas: reintentos configurables, prioridades, scheduling, y monitoreo vía su Dashboard (Bull Board). Al correr sobre Redis, no requiere servicios externos a la infraestructura del proyecto.
 
 ## Arquitectura
 
@@ -39,36 +35,30 @@ El siguiente diagrama ilustra el flujo de una operación asíncrona orquestada p
 sequenceDiagram
     participant Client as Cliente (Frontend)
     participant BFF
-    participant QStash as Cola (QStash)
-    participant Microservice as Microservicio (e.g., imgproxy-api)
+    participant Redis as Redis / BullMQ
+    participant Worker as Worker (mismo proceso)
     participant DB as Base de Datos
 
     Client->>+BFF: 1. Inicia operación (e.g., POST /upload)
     BFF->>BFF: 2. Genera `operationId`
     BFF->>DB: 3. Persiste estado inicial de la operación (PENDING)
     BFF->>-Client: 4. Responde inmediatamente con `operationId`
-    BFF->>+QStash: 5. Publica el trabajo en la cola (con `operationId`)
-    QStash->>-Microservice: 6. Entrega el trabajo al microservicio
+    BFF->>+Redis: 5. Publica el trabajo en la cola (con `operationId`)
+    Redis->>-Worker: 6. Entrega el trabajo al worker
     
-    activate Microservice
-    Microservice->>Microservice: 7. Procesa la tarea...
+    activate Worker
+    Worker->>Worker: 7. Procesa la tarea...
     alt Proceso Exitoso
-        Microservice->>BFF: 8a. Notifica éxito (Webhook con resultado)
-        activate BFF
-        BFF->>DB: 9a. Actualiza estado de la operación (COMPLETED)
-        deactivate BFF
+        Worker->>DB: 8a. Actualiza estado de la operación (COMPLETED)
     else Proceso Fallido
-        Microservice->>BFF: 8b. Notifica error (Webhook con detalles)
-        activate BFF
-        BFF->>DB: 9b. Actualiza estado de la operación (FAILED)
-        deactivate BFF
+        Worker->>DB: 8b. Actualiza estado de la operación (FAILED)
     end
-    deactivate Microservice
+    deactivate Worker
 
     Note over Client, DB: El cliente usa el `operationId` para consultar el estado periódicamente (Polling).
 
-    Client->>+BFF: 10. GET /operation/status/{operationId}
-    BFF->>DB: 11. Lee estado de la operación
-    BFF-->>-Client: 12. Responde con el estado final (e.g., COMPLETED y resultado)
+    Client->>+BFF: 9. GET /operation/status/{operationId}
+    BFF->>DB: 10. Lee estado de la operación
+    BFF-->>-Client: 11. Responde con el estado final (e.g., COMPLETED y resultado)
 ```
 

@@ -1,6 +1,6 @@
-# imgproxy-api — Servicio de Subida Archivos y CDN
+# imgproxy — Módulo de Subida Archivos y CDN
 
-Servicio encargado de la recepción, procesamiento y almacenamiento de archivos (imágenes, documentos) en **Amazon S3**, actuando como **CDN** interno del ecosistema Patioz.
+Módulo encargado de la recepción, procesamiento y almacenamiento de archivos (imágenes, documentos) en **Amazon S3**, actuando como **CDN** interno del ecosistema Patioz. Es parte del monolite y se comunica con los demás módulos a través de llamadas directas o colas BullMQ.
 
 ## Stack Tecnológico
 
@@ -10,7 +10,7 @@ Servicio encargado de la recepción, procesamiento y almacenamiento de archivos 
 - **CDN:** CloudFront (o S3 Transfer Acceleration) para distribución global
 - **Procesamiento de Imágenes:** Sharp (thumbnails, redimensionado, compresión)
 - **Validación:** Zod (schemas de tipo de archivo, tamaño, dimensiones)
-- **Cola:** QStash / localStash (procesamiento asíncrono de archivos pesados)
+- **Cola:** BullMQ (Redis) para procesamiento asíncrono de archivos pesados
 
 ## Responsabilidades
 
