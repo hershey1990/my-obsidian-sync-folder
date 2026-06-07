@@ -3,3 +3,18 @@
 .obsidian/
 .env
 .envrc
+
+# Config files with API keys / secrets
+opencode.json
+
+# Generated data files
+mangas_parsed.json
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+*.log
+
+# Node (just in case)
+node_modules/
+dist/
