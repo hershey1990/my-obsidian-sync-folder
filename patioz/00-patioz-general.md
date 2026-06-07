@@ -22,3 +22,34 @@ Sus responsabilidades principales son:
 - [[bff]]
 - [[auth]]
 - [[imgproxy-api]]
+
+---
+
+## 📐 Architecture Decision Records (ADRs)
+
+Toda decisión arquitectónica importante se documenta como un ADR en [[adr/00-index|patioz/adr/]].
+
+```dataview
+TABLE fecha AS "Fecha", decision AS "Decisión", estado AS "Estado"
+FROM "patioz/adr"
+WHERE tipo = "adr"
+SORT file.name ASC
+```
+
+---
+
+## 📘 Runbooks
+
+Procedimientos operativos y operaciones del día a día en [[runbooks/00-index|patioz/runbooks/]].
+
+---
+
+## 🗓 Timeline del Proyecto
+
+Línea de tiempo con milestones y roadmap en [[05-timeline]].
+
+---
+
+## 📖 Glosario del Dominio
+
+Lenguaje ubicuo del proyecto en [[06-glosario]].
