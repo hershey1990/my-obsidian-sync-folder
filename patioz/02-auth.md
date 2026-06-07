@@ -1,6 +1,6 @@
-# Servicio de Autorización (Auth API)
+# Módulo de Autorización (Auth)
 
-Esta API, construida con **NestJS 10** y **Supabase**, gestiona la autorización mediante un sistema de **Control de Acceso Basado en Roles (RBAC)**. Es crucial entender que este servicio **no se encarga de la autenticación** (login/password), sino que determina los permisos que tiene un usuario ya autenticado.
+Este módulo, construido con **NestJS 10** y **Supabase**, gestiona la autorización mediante un sistema de **Control de Acceso Basado en Roles (RBAC)** dentro del monolite. Es crucial entender que este módulo **no se encarga de la autenticación** (login/password), sino que determina los permisos que tiene un usuario ya autenticado.
 
 ## Stack Tecnológico
 
@@ -23,22 +23,24 @@ Para que un usuario tenga permiso para realizar una `acción` sobre un `recurso`
 
 ### Diagrama de Flujo: Verificación de Permiso
 
-El siguiente diagrama ilustra cómo un cliente (como el BFF) interactuaría con este servicio para verificar un permiso.
+El siguiente diagrama ilustra cómo un cliente externo (frontend) interactúa con este módulo para verificar un permiso a través de la capa HTTP del monolite.
 
 ```mermaid
 sequenceDiagram
-    participant Client as Cliente (e.g., BFF)
-    participant AuthAPI as Auth API (NestJS)
+    participant Client as Cliente (Frontend)
+    participant HTTP as Capa HTTP (Fastify)
+    participant AuthModule as Módulo Auth (NestJS)
     participant Supabase as Base de Datos
 
-    Client->>+AuthAPI: 1. GET /auth/check-permission?userId=...&action=...&resource=...
-    activate AuthAPI
-    AuthAPI->>AuthAPI: 2. Valida DTO (userId, action, resource)
-    AuthAPI->>+Supabase: 3. Ejecuta query para encontrar coincidencia en la cadena user_roles -> roles -> role_permissions -> permissions
-    Supabase-->>-AuthAPI: 4. Devuelve resultado de la query
-    AuthAPI->>AuthAPI: 5. Registra la consulta en `audit_logs` (en segundo plano)
-    AuthAPI-->>-Client: 6. Responde con `{"hasPermission": boolean}`
-    deactivate AuthAPI
+    Client->>+HTTP: 1. GET /auth/check-permission?userId=...&action=...&resource=...
+    HTTP->>+AuthModule: 2. Delega al módulo Auth
+    AuthModule->>AuthModule: 3. Valida DTO (userId, action, resource)
+    AuthModule->>+Supabase: 4. Ejecuta query para encontrar coincidencia en la cadena user_roles -> roles -> role_permissions -> permissions
+    Supabase-->>-AuthModule: 5. Devuelve resultado de la query
+    AuthModule->>AuthModule: 6. Registra la consulta en `audit_logs` (en segundo plano)
+    AuthModule-->>-HTTP: 7. Responde con `{"hasPermission": boolean}`
+    HTTP-->>-Client: 8. Responde al frontend
+    deactivate AuthModule
 ```
 
 ## Endpoints de la API

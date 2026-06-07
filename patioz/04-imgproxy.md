@@ -5,7 +5,7 @@ Módulo encargado de la recepción, procesamiento y almacenamiento de archivos (
 ## Stack Tecnológico
 
 - **Runtime:** Node.js / TypeScript
-- **Framework:** Fastify (consistente con el BFF)
+- **Framework:** Fastify (capa HTTP del monolite)
 - **Storage:** Amazon S3 (buckets públicos/privados según el recurso)
 - **CDN:** CloudFront (o S3 Transfer Acceleration) para distribución global
 - **Procesamiento de Imágenes:** Sharp (thumbnails, redimensionado, compresión)
@@ -14,7 +14,7 @@ Módulo encargado de la recepción, procesamiento y almacenamiento de archivos (
 
 ## Responsabilidades
 
-1. **Upload de archivos:** Recibe archivos desde el BFF o directamente desde el frontend (presigned URLs).
+1. **Upload de archivos:** Recibe archivos desde la capa HTTP del monolite o directamente desde el frontend (presigned URLs).
 2. **Procesamiento:** Redimensiona, comprime y convierte imágenes a formatos óptimos (WebP, AVIF).
 3. **Almacenamiento:** Persiste en S3 con una estructura de carpetas predecible (`/{tenant}/{tipo}/{uuid}.{ext}`).
 4. **Entrega:** Sirve los archivos a través de CloudFront con caché y transformaciones on-the-fly.
@@ -24,21 +24,24 @@ Módulo encargado de la recepción, procesamiento y almacenamiento de archivos (
 
 ```mermaid
 sequenceDiagram
-    participant Client as Cliente (Frontend / BFF)
-    participant API as imgproxy-api
+    participant Client as Cliente (Frontend)
+    participant HTTP as Capa HTTP (Fastify)
+    participant Module as Módulo imgproxy
     participant S3 as Amazon S3
     participant CDN as CloudFront
 
-    Client->>+API: 1. POST /upload (multipart)
-    API->>API: 2. Valida tipo, tamaño, sanitiza nombre
-    API->>API: 3. Procesa (redimensiona, comprime)
-    API->>+S3: 4. PUT objeto en bucket
-    S3-->>-API: 5. Devuelve ETag / URL
-    API-->>-Client: 6. Responde con URL pública del CDN
-    Client->>CDN: 7. GET /{uuid}.webp
-    CDN->>+S3: 8. Fetch desde origin (cache miss)
-    S3-->>-CDN: 9. Devuelve objeto
-    CDN-->>-Client: 10. Sirve archivo cachead
+    Client->>+HTTP: 1. POST /upload (multipart)
+    HTTP->>+Module: 2. Delega al módulo imgproxy
+    Module->>Module: 3. Valida tipo, tamaño, sanitiza nombre
+    Module->>Module: 4. Procesa (redimensiona, comprime)
+    Module->>+S3: 5. PUT objeto en bucket
+    S3-->>-Module: 6. Devuelve ETag / URL
+    Module-->>-HTTP: 7. URL pública del CDN
+    HTTP-->>-Client: 8. Responde con URL pública del CDN
+    Client->>CDN: 9. GET /{uuid}.webp
+    CDN->>+S3: 10. Fetch desde origin (cache miss)
+    S3-->>-CDN: 11. Devuelve objeto
+    CDN-->>-Client: 12. Sirve archivo cachead
 ```
 
 ## Endpoints

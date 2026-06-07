@@ -6,22 +6,19 @@ aliases:
 
 Patioz es un sistema de gestión inmobiliaria (Real Estate) construido sobre un **Monolito Modular**. Los módulos (auth, bff, imgproxy) están separados por Clean Architecture dentro de un mismo proyecto, comunicándose vía llamadas directas o colas asíncronas con **BullMQ (Redis)**. Este enfoque prioriza la simplicidad operativa y la velocidad de entrega, sin sacrificar la opción de extraer módulos a microservicios independientes en el futuro.
 
-## API Gateway (BFF)
+## Arquitectura del Sistema
 
-El núcleo de la orquestación en Patioz es el **API Gateway**. Actúa como una capa de intermediación entre el cliente (la aplicación de frontend) y los módulos internos.
+Patioz se ejecuta como un solo proceso Node.js (monolite) que agrupa toda la lógica del servidor. La división en **módulos** es puramente lógica: cada módulo aísla su dominio con Clean Architecture, pero todos comparten el mismo runtime, base de datos (Supabase/PostgreSQL) y Redis (caché + colas BullMQ).
 
-Sus responsabilidades principales son:
+**Capa de entrada HTTP:** Fastify expone las rutas REST. Cada ruta delega al módulo correspondiente vía function calls directas, no HTTP. Esto elimina la latencia de red entre servicios y simplifica el deploy a un solo proceso.
 
-- **Orquestación y Agregación:** Recibe peticiones desde el frontend y las traduce en una o varias llamadas a los módulos correspondientes (`auth`, `imgproxy`, etc.). Posteriormente, agrega y transforma las respuestas en una única carga útil (payload) optimizada para la vista que la solicitó.
-- **Punto de Entrada Único (Single Entry Point):** Expone una API unificada y cohesiva para el cliente. Esto desacopla al frontend de la complejidad interna del sistema.
-- **Optimización para el Cliente:** Permite adaptar las respuestas a las necesidades específicas de la interfaz de usuario, reduciendo la cantidad de datos transferidos y minimizando la lógica de negocio en el lado del cliente.
+**Comunicación asíncrona:** BullMQ (Redis) maneja tareas pesadas (procesamiento de imágenes, notificaciones). Los workers pueden ejecutarse en el mismo proceso o como procesos separados, sin cambiar la lógica de dominio.
 
 ## Índice de Módulos y Componentes
 
 - [[mapui-frontend]]
-- [[bff]]
 - [[auth]]
-- [[imgproxy-api]]
+- [[imgproxy]]
 
 ---
 
