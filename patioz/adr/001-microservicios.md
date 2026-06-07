@@ -3,6 +3,7 @@ tipo: adr
 fecha: 2026-01-15
 estado: reemplazado
 reemplazado_por: ADR-006
+decision: "Adopción de arquitectura de microservicios"
 tags:
   - adr
 ---

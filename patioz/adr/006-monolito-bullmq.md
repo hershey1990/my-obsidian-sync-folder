@@ -2,6 +2,7 @@
 tipo: adr
 fecha: 2026-06-07
 estado: aceptado
+decision: "Migración a Monolito Modular + BullMQ"
 tags:
   - adr
 ---

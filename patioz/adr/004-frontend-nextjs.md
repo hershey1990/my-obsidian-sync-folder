@@ -2,6 +2,7 @@
 tipo: adr
 fecha: 2026-02-15
 estado: aceptado
+decision: "Frontend con Next.js + Leaflet + búsqueda híbrida"
 tags:
   - adr
 ---

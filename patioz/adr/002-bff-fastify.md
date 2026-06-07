@@ -2,6 +2,7 @@
 tipo: adr
 fecha: 2026-01-20
 estado: aceptado
+decision: "BFF con Fastify + TypeScript + Clean Architecture"
 tags:
   - adr
 ---

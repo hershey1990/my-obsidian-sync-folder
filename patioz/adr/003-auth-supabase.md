@@ -2,6 +2,7 @@
 tipo: adr
 fecha: 2026-02-01
 estado: aceptado
+decision: "Auth API con NestJS + Supabase + RBAC"
 tags:
   - adr
 ---
