@@ -1,6 +1,6 @@
 filters:
   and:
-    - file.inFolder("Mangas")
+    - file.inFolder("Mangas/Series")
     - file.ext == "md"
 views:
   - type: table
