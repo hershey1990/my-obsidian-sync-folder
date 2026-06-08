@@ -32,3 +32,5 @@ SORT file.name ASC
 - [[patioz/adr/003-auth-supabase|003 — Auth API con NestJS + Supabase]]
 - [[patioz/adr/004-frontend-nextjs|004 — Frontend con Next.js]]
 - [[patioz/adr/005-queue-qstash|005 — Cola de mensajería con QStash]]
+- [[patioz/adr/006-monolito-bullmq|006 — Migración a Monolito Modular + BullMQ]]
+- [[patioz/adr/007-auth-integration|007 — Integración de Auth en el Monolito Modular]]

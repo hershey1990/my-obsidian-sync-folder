@@ -1,17 +1,19 @@
-# Módulo de Autorización (Auth)
+# Módulo de Autorización y Autenticación (Auth)
 
-Este módulo, construido con **NestJS 10** y **Supabase**, gestiona la autorización mediante un sistema de **Control de Acceso Basado en Roles (RBAC)** dentro del monolite. Es crucial entender que este módulo **no se encarga de la autenticación** (login/password), sino que determina los permisos que tiene un usuario ya autenticado.
+Este módulo gestiona tanto la **autenticación** (login/signup) como la **autorización** (roles y permisos RBAC) dentro del monolite, utilizando **Supabase Auth** y **PostgreSQL**.
+
+Tras el ADR-007, la lógica de auth se integró completamente en el monolite eliminando el submódulo NestJS heredado. Fastify expone los endpoints `/auth/*` y delega directamente al módulo de dominio.
 
 ## Stack Tecnológico
 
-- **Framework:** NestJS 10 sobre Express.
-- **Lenguaje:** TypeScript 5.
-- **Base de Datos:** Supabase (PostgreSQL).
-- **Validación:** `class-validator` y `class-transformer`.
+- **Autenticación:** Supabase Auth (login, signup, sesiones JWT).
+- **Base de Datos:** Supabase (PostgreSQL) — roles, permisos y usuarios del dominio en el esquema `public`.
+- **SDK:** `@supabase/supabase-js` desde la capa de infraestructura.
+- **Capa HTTP:** Fastify expone los endpoints `/auth/*`.
 
 ## Arquitectura y Flujo de Permisos
 
-El proyecto sigue una arquitectura **Hexagonal (Clean Architecture)**, lo que garantiza una separación estricta entre la lógica de negocio y los detalles de implementación (frameworks, base de datos).
+El módulo sigue una arquitectura **Hexagonal (Clean Architecture)** encapsulada en el monolite. La lógica de dominio de auth no depende de frameworks ni de Supabase directamente — solo las implementaciones de infraestructura.
 
 ### Flujo Lógico de Permisos
 
@@ -23,22 +25,20 @@ Para que un usuario tenga permiso para realizar una `acción` sobre un `recurso`
 
 ### Diagrama de Flujo: Verificación de Permiso
 
-El siguiente diagrama ilustra cómo un cliente externo (frontend) interactúa con este módulo para verificar un permiso a través de la capa HTTP del monolite.
-
 ```mermaid
 sequenceDiagram
     participant Client as Cliente (Frontend)
     participant HTTP as Capa HTTP (Fastify)
-    participant AuthModule as Módulo Auth (NestJS)
+    participant AuthModule as Módulo Auth
     participant Supabase as Base de Datos
 
     Client->>+HTTP: 1. GET /auth/check-permission?userId=...&action=...&resource=...
     HTTP->>+AuthModule: 2. Delega al módulo Auth
     AuthModule->>AuthModule: 3. Valida DTO (userId, action, resource)
-    AuthModule->>+Supabase: 4. Ejecuta query para encontrar coincidencia en la cadena user_roles -> roles -> role_permissions -> permissions
-    Supabase-->>-AuthModule: 5. Devuelve resultado de la query
-    AuthModule->>AuthModule: 6. Registra la consulta en `audit_logs` (en segundo plano)
-    AuthModule-->>-HTTP: 7. Responde con `{"hasPermission": boolean}`
+    AuthModule->>+Supabase: 4. Ejecuta query RBAC
+    Supabase-->>-AuthModule: 5. Devuelve resultado
+    AuthModule->>AuthModule: 6. Registra en audit_logs (background)
+    AuthModule-->>-HTTP: 7. Responde {"hasPermission": boolean}
     HTTP-->>-Client: 8. Responde al frontend
     deactivate AuthModule
 ```
@@ -46,6 +46,32 @@ sequenceDiagram
 ## Endpoints de la API
 
 El prefijo base para todos los endpoints es `/auth`.
+
+### `POST /register`
+
+Crea un nuevo usuario. Los desarrolladores deben usar este método para simular flujos idénticos a producción.
+
+- **Body:**
+  ```json
+  {
+    "email": "string",
+    "password": "string"
+  }
+  ```
+- **Respuesta Exitosa:** `201 Created` con `{ "user": User, "session": Session }`
+
+### `POST /login`
+
+Inicia sesión y devuelve un JWT.
+
+- **Body:**
+  ```json
+  {
+    "email": "string",
+    "password": "string"
+  }
+  ```
+- **Respuesta Exitosa:** `200 OK` con `{ "user": User, "session": Session }`
 
 ### `POST /assign-role`
 
@@ -83,10 +109,17 @@ Obtiene los registros de auditoría de las verificaciones de permisos, con pagin
   - `offset` (number, opcional, default: 0): Desplazamiento para la paginación.
 - **Respuesta Exitosa:** `200 OK` con `{ "data": AuditLog[] }`
 
+## Flujo de Desarrollo
+
+1. Las migraciones (seeds) crean un usuario de prueba con roles predefinidos.
+2. Los desarrolladores crean usuarios adicionales usando `POST /register` para simular flujos reales.
+3. No se permite insertar usuarios directamente en `auth.users` de Supabase.
+
 ## Estructura de la Base de Datos
 
 Las tablas principales se encuentran en el esquema `public` de Supabase:
 
+- `users`: Sincronizada con `auth.users` mediante triggers de base de datos.
 - `roles`: Define los roles disponibles (e.g., "admin", "viewer").
 - `permissions`: Define los permisos atómicos como un par `acción` + `recurso`.
 - `user_roles`: Tabla de unión que asigna roles a usuarios.
