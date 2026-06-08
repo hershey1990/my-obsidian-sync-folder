@@ -88,12 +88,26 @@ function convertEmbeds(content, sourceDir) {
   });
 }
 
-function convertWikilinks(content, fileMap) {
+function computeRelativeLink(fromDir, toPath) {
+  if (fromDir === '.') {
+    return './' + toPath;
+  }
+  const rel = path.relative(fromDir, toPath).replace(/\\/g, '/');
+  if (!rel.startsWith('.')) {
+    return './' + rel;
+  }
+  return rel;
+}
+
+function convertWikilinks(content, fileMap, sourceFile) {
+  const sourceRelative = path.relative(SOURCE_DIR, sourceFile).replace(/\\/g, '/');
+  const sourceDir = path.dirname(sourceRelative);
+
   content = content.replace(/\[\[([^\|\]]+)\|([^\]]+)\]\]/g, (_match, target, alias) => {
     const resolved = resolveWikilink(target, fileMap);
     if (resolved) {
       stats.wikilinksConverted++;
-      return `[${alias}](/patioz-docs/${resolved})`;
+      return `[${alias}](${computeRelativeLink(sourceDir, resolved)})`;
     }
     stats.externalWikilinks++;
     return alias;
@@ -103,7 +117,7 @@ function convertWikilinks(content, fileMap) {
     const resolved = resolveWikilink(target, fileMap);
     if (resolved) {
       stats.wikilinksConverted++;
-      return `[${target}](/patioz-docs/${resolved})`;
+      return `[${target}](${computeRelativeLink(sourceDir, resolved)})`;
     }
     stats.externalWikilinks++;
     return target;
@@ -152,7 +166,7 @@ function main() {
     content = cleanFrontmatter(content);
     content = removeDataviewBlocks(content);
     content = convertEmbeds(content, SOURCE_DIR);
-    content = convertWikilinks(content, fileMap);
+    content = convertWikilinks(content, fileMap, sourceFile);
 
     fs.writeFileSync(targetFile, content, 'utf-8');
     stats.filesWritten++;
