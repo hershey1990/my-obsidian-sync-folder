@@ -1,10 +1,11 @@
 ---
-chapter: 180
+chapter: 875
 status: Leyendo
 url: ""
 image: ""
 notes: ""
-tags: [manga]
+tags:
+  - manga
 ---
 
 # Kingdom
