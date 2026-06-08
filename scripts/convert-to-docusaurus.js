@@ -140,11 +140,12 @@ function main() {
   const sourceFiles = walkDir(SOURCE_DIR);
   console.log(`Found ${sourceFiles.length} markdown files`);
 
+  const categoryFileName = '_category_.json';
   let categoryJson = null;
-  const categoryPath = path.join(TARGET_DIR, '_category.json');
+  const categoryPath = path.join(TARGET_DIR, categoryFileName);
   if (fs.existsSync(categoryPath)) {
     categoryJson = fs.readFileSync(categoryPath, 'utf-8');
-    console.log('Preserved _category.json');
+    console.log('Preserved ' + categoryFileName);
   }
 
   if (fs.existsSync(TARGET_DIR)) {
@@ -153,7 +154,7 @@ function main() {
   fs.mkdirSync(TARGET_DIR, { recursive: true });
 
   if (categoryJson) {
-    fs.writeFileSync(path.join(TARGET_DIR, '_category.json'), categoryJson, 'utf-8');
+    fs.writeFileSync(path.join(TARGET_DIR, categoryFileName), categoryJson, 'utf-8');
   }
 
   for (const sourceFile of sourceFiles) {
