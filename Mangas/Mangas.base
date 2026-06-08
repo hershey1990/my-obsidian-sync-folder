@@ -1,0 +1,35 @@
+filters:
+  and:
+    - 'file.inFolder("Mangas")'
+    - 'file.ext == "md"'
+
+views:
+  - type: table
+    name: Tabla
+    limit: 200
+    order:
+      - file.name
+      - chapter
+      - status
+      - url
+      - image
+      - notes
+    sort:
+      - property: status
+        direction: ASC
+      - property: file.name
+        direction: ASC
+
+  - type: cards
+    name: Cards
+    limit: 100
+    order:
+      - file.name
+      - chapter
+      - status
+      - image
+    sort:
+      - property: status
+        direction: ASC
+      - property: file.name
+        direction: ASC
