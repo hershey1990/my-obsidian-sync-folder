@@ -22,27 +22,18 @@ Se divide la responsabilidad de correo en dos proveedores según el flujo:
 | **Inbound (recibir)** | Zoho Mail | MX, webmail, IMAP para cuentas admin, etc. |
 | **Outbound (enviar)** | AWS SES | Emails transaccionales vía API/SMTP |
 
-```
-  ┌─────────────────────────────────────────────────────────┐
-  │                    dominio: patioz.co                    │
-  ├─────────────────────────────────────────────────────────┤
-  │                                                         │
-  │  ┌──────────────┐   ┌──────────────┐   ┌──────────────┐ │
-  │  │  Zoho Mail   │   │   AWS SES    │   │   Supabase   │ │
-  │  │  (INBOUND)   │   │  (OUTBOUND)  │   │    Auth      │ │
-  │  │              │   │              │   │              │ │
-  │  │ Recibe:      │   │ Envía:       │   │ Usa SES como │ │
-  │  │ admin@,      │   │ Tu API →     │   │ SMTP para:   │ │
-  │  │ noreply@,    │   │ transaccional│   │ • Pass reset │ │
-  │  │ etc.         │   │              │   │ • Confirm    │ │
-  │  │              │   │ Supabase →   │   │ • Magic link │ │
-  │  │ Webmail/IMAP │   │ auth emails  │   │              │ │
-  │  └──────┬───────┘   └──────┬───────┘   └──────┬───────┘ │
-  │         │                  │                   │         │
-  │    MX → Zoho          SPF → amazonses     SMTP → SES    │
-  │    (recibir)          DKIM → SES CNAME     (enviar)     │
-  │                       (enviar)                          │
-  └─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph dominio["dominio: patioz.co"]
+        direction LR
+        Z["Zoho Mail (INBOUND)<br/>────────────<br/>Recibe: admin@, noreply@, etc.<br/>Webmail / IMAP"]
+        S["AWS SES (OUTBOUND)<br/>────────────<br/>Tu API → transaccional<br/>Supabase → auth emails"]
+        U["Supabase Auth<br/>────────────<br/>Usa SES como SMTP para:<br/>• Pass reset<br/>• Confirm<br/>• Magic link"]
+    end
+
+    Z -->|"MX → Zoho"| mx["mx.zoho.com (recibir)"]
+    S -->|"SPF/DKIM → SES CNAME"| dkim["amazonses.com (enviar)"]
+    U -->|"SMTP → SES"| smtp["email-smtp.us-east-1.amazonaws.com (enviar)"]
 ```
 
 **Clave:** MX apunta a Zoho (recibir), SPF autoriza a ambos (`amazonses.com` + `zohomail.com`), y Supabase simplemente usa SES como relay SMTP.
