@@ -88,6 +88,12 @@ function convertEmbeds(content, sourceDir) {
   });
 }
 
+function toSlug(filepath) {
+  return filepath.replace(/\\/g, '/').split('/')
+    .map(segment => segment.replace(/^\d+-/, ''))
+    .join('/');
+}
+
 function computeRelativeLink(fromDir, toPath) {
   if (fromDir === '.') {
     return './' + toPath;
@@ -107,7 +113,7 @@ function convertWikilinks(content, fileMap, sourceFile) {
     const resolved = resolveWikilink(target, fileMap);
     if (resolved) {
       stats.wikilinksConverted++;
-      return `[${alias}](${computeRelativeLink(sourceDir, resolved)})`;
+      return `[${alias}](${computeRelativeLink(sourceDir, toSlug(resolved))})`;
     }
     stats.externalWikilinks++;
     return alias;
@@ -117,7 +123,7 @@ function convertWikilinks(content, fileMap, sourceFile) {
     const resolved = resolveWikilink(target, fileMap);
     if (resolved) {
       stats.wikilinksConverted++;
-      return `[${target}](${computeRelativeLink(sourceDir, resolved)})`;
+      return `[${target}](${computeRelativeLink(sourceDir, toSlug(resolved))})`;
     }
     stats.externalWikilinks++;
     return target;
