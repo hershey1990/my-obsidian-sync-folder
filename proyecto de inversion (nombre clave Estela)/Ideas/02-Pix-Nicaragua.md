@@ -82,6 +82,14 @@ Implementar un sistema de pagos instantáneos estilo Pix en Nicaragua, donde el 
 | Competencia con Kash | 🟢 Baja | Kash tiene poca adopción |
 | Falta de internet/infra | 🟡 Media | Puede empezar en urbano |
 
+## Decisiones del fundador
+
+| Aspecto | Realidad |
+|---------|----------|
+| Confianza en Kash | Baja — no confían en ella por ser privada, ningún comercio la acepta, solo sirve P2P |
+| APIs bancarias | No existen APIs abiertas en Nicaragua — tocaría convenios uno por uno o screen scraping |
+| Modelo viable | App P2P con UX superior que use transferencias bancarias tradicionales por detrás (ACH/terceros) |
+
 ## Notas del fundador
 - Le emociona personalmente pero lo ve difícil
 - Considera a los bancos "mafias" — hay frustración genuine con el sistema actual
