@@ -73,6 +73,10 @@ Plataforma que conecta usuarios con profesionales de servicios (fontaneros, carp
 - Seguro / garantía básica
 - Reporte de malas experiencias
 
+### Pagos
+- Efectivo y online (tarjeta/wallet)
+- La plataforma debería soportar ambos para no excluir a no bancarizados
+
 ### Logística
 - ¿El profesional va a la casa del usuario? (modelo inDrive: el conductor va al pasajero)
 - ¿El usuario puede ir al taller del profesional? (ej. mecánico)
