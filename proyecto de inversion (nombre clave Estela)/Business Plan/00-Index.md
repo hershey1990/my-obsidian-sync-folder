@@ -8,13 +8,13 @@
 
 | Documento | Estado | Descripción |
 |-----------|--------|-------------|
-| `01-Executive-Summary.md` | 🔴 Pendiente | Resumen ejecutivo de 1 página |
-| `02-Problem-Solution.md` | 🔴 Pendiente | Problema, solución y propuesta de valor |
-| `03-Market-Analysis.md` | 🔴 Pendiente | TAM, SAM, SOM, competencia |
-| `04-Product.md` | 🔴 Pendiente | Definición del producto, features, MVP |
-| `05-Business-Model.md` | 🔴 Pendiente | Monetización, unit economics |
-| `06-Technical-Strategy.md` | 🔴 Pendiente | Stack, arquitectura, roadmap técnico |
-| `07-Go-to-Market.md` | 🔴 Pendiente | Estrategia de adquisición y growth |
-| `08-Competitive-Analysis.md` | 🔴 Pendiente | Competidores directos e indirectos |
-| `09-Financial-Projections.md` | 🔴 Pendiente | Proyecciones 3-5 años, funding request |
-| `10-Team.md` | 🔴 Pendiente | Perfil del fundador, gaps a cubrir |
+| `01-Executive-Summary.md` | 🟢 Borrador | Resumen ejecutivo (pendiente nombre y funding) |
+| `02-Problem-Solution.md` | 🟢 Borrador | Problema, solución y propuesta de valor |
+| `03-Market-Analysis.md` | 🟢 Borrador | TAM, SAM, SOM, competencia |
+| `04-Product.md` | 🟢 Borrador | Definición del producto, features, MVP |
+| `05-Business-Model.md` | 🟢 Borrador | Monetización, unit economics |
+| `06-Technical-Strategy.md` | 🟢 Borrador | Stack, arquitectura, roadmap técnico |
+| `07-Go-to-Market.md` | 🟢 Borrador | Estrategia de adquisición y growth |
+| `08-Competitive-Analysis.md` | 🟢 Borrador | Competidores directos e indirectos |
+| `09-Financial-Projections.md` | 🟢 Borrador | Proyecciones 3 años, funding request |
+| `10-Team.md` | 🟡 Pendiente | Perfil del fundador — falta info personal |
