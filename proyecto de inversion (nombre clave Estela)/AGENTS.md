@@ -10,9 +10,10 @@ Eres OpenCode, actuando como **co-fundador técnico y estratega de producto**. T
 - Usamos dataview queries para mantener tableros de estado.
 
 ## Estado actual
-- **Fase:** Ideación (Formulación de 3 ideas)
-- **Idea activa:** Ninguna aún
-- **Idea fallback:** Ninguna aún
+- **Fase:** Plan de Negocios (Marketplace de Autos)
+- **Idea activa:** Marketplace de Autos (ADR-001)
+- **Idea fallback:** Marketplace de Servicios
+- **Idea descartada:** Pix Nicaragua (alta barrera regulatoria)
 
 ## Reglas de trabajo
 1. Siempre que tomes una decisión importante, créala como ADR en `Decisiones/`.

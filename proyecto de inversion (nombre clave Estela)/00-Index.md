@@ -1,6 +1,6 @@
 # Proyecto de Inversión — *Clave: Estela*
 
-**Estado:** ⚡ Ideación  
+**Estado:** 📋 Plan de Negocios (Marketplace de Autos)  
 **Objetivo:** Definir, validar y presentar un plan de negocios para una plataforma digital a un inversor.
 
 ---
@@ -9,28 +9,31 @@
 
 | Carpeta | Propósito |
 |---------|-----------|
-| `Ideas/` | Las 2-3 ideas iniciales, análisis y eliminación progresiva |
+| `Ideas/` | Las 3 ideas formuladas (+ descartadas) |
 | `Decisiones/` | ADRs y acuerdos clave del proyecto |
 | `Research/` | Investigación de mercado, competencia, tendencias |
 | `Business Plan/` | Plan de negocios final para el inversor |
 | `Technical/` | Arquitectura, stack tecnológico, prototipos |
 | `Sessions/` | Registro de sesiones con OpenCode para continuidad de contexto |
 
-## Estado de las ideas
+## Estado del plan de negocios
 
 ```dataview
 TABLE
-  status AS "Estado",
-  pitch AS "Pitch",
-  priority AS "Prioridad"
-FROM "proyecto de inversion (nombre clave Estela)/Ideas"
-SORT priority ASC
+  status AS "Estado"
+FROM "proyecto de inversion (nombre clave Estela)/Business Plan"
+SORT file.name ASC
 ```
 
 ## Timeline
 
-- [ ] **Fase 1:** Formular las 3 ideas
-- [ ] **Fase 2:** Evaluación y descarte → 1 idea + fallback
-- [ ] **Fase 3:** Validación de mercado y técnica
-- [ ] **Fase 4:** Plan de negocios completo
-- [ ] **Fase 5:** Presentación al inversor
+- [x] **Fase 1:** Formular las 3 ideas
+- [x] **Fase 2:** Evaluación y descarte → Marketplace de Autos + fallback Servicios
+- [ ] **Fase 3:** Plan de negocios (en progreso)
+- [ ] **Fase 4:** Presentación al inversor
+
+## Decisiones clave
+
+| # | Decisión | Archivo |
+|---|----------|---------|
+| 001 | Marketplace de Autos como idea ganadora | `Decisiones/ADR-001-Seleccion-Idea.md` |
