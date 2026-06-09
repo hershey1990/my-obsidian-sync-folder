@@ -92,8 +92,8 @@ Lidera un equipo de **7 personas** (2 backend, 3 frontend, QA/HR) que trabajan j
 
 | Mes | Hito |
 |:---:|------|
-| 3 | MVP + beta cerrada |
-| 6 | Lanzamiento público + primeros dealers |
-| 9 | 1,000 autos publicados + 30 dealers activos |
-| 12 | Comisiones + inspecciones activas, $1K+/mes MRR |
+| 4 | MVP + lanzamiento público |
+| 6 | 500 autos + 15 dealers activos |
+| 9 | 1,000 autos + 30 dealers + escrow activo |
+| 12 | 2,000 autos + inspecciones + $1K+/mes MRR |
 | 18 | Breakeven mensual o Serie A |

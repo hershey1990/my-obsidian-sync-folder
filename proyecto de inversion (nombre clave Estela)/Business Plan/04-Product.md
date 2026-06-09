@@ -91,12 +91,12 @@ Protección comprador-vendedor:
 ## Roadmap visual
 
 ```
-Mes 1-2:  Desarrollo MVP (backend + frontend web)
-Mes 3:    Beta cerrada (amigos, grupos de autos)
-Mes 4:    Lanzamiento público MVP
-Mes 5-6:  Iteración basada en feedback + primeras optimizaciones
-Mes 7-9:  Historial vehicular + inspection service + IA
-Mes 10-12: App nativa + pagos + expansión a 2da ciudad
+Mes 1-3:  Desarrollo MVP (backend + frontend web)
+Mes 3-4:  Beta cerrada + polish + fixes
+Mes 4:    🚀 Lanzamiento público MVP
+Mes 5-6:  Iteración + onboarding de dealers
+Mes 7-9:  Escrow + inspecciones programadas + IA fotos
+Mes 10-12: App nativa + historial vehicular + expansión
 ```
 
 ## Métricas objetivo (primer año)

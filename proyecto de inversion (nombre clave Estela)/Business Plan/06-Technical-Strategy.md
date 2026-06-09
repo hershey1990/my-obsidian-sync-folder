@@ -125,7 +125,7 @@ POST   /api/contact                 # Contactar vendedor (genera lead)
 | 5 | 9-10 | Perfiles de dealer + dashboards |
 | 6 | 11-12 | Comparación de modelos + ofertas |
 | 7 | 13-14 | Beta cerrada + fixes + pulido |
-| 8 | 15-16 | Lanzamiento público |
+| 8 | 15-16 | 🚀 Lanzamiento público |
 
 ## ¿Por qué este stack?
 
