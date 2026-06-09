@@ -11,99 +11,139 @@ status: "borrador"
 
 - Mercado: Nicaragua (año 1-2), expansión regional (año 3+)
 - Precios en USD
-- Sin costo de goods sold (marketplace C2C, sin inventario)
-- CAC incremental a medida que crece la base de usuarios
-- Tasa de retención anual: ~40% (marketplaces suelen tener retención moderada)
+- Sin costo de goods sold (marketplace C2C)
+- Equipo de 7 personas (ver Team.md para detalle de salarios y dedicación)
+
+## Estructura de costos — Año 1
+
+### Salarios (con equipo disponible)
+
+| Período | Dedicación | Costo mensual | Total |
+|---------|:----------:|:-------------:|:-----:|
+| Meses 1-3 | Part-time (50% salario) | $4,650 | $13,950 |
+| Meses 4-12 | Full-time (100% salario) | $9,300 | $83,700 |
+| **Total salarios año 1** | | | **$97,650** |
+
+### Costos operativos mensuales
+
+| Concepto | Costo/mes |
+|----------|:---------:|
+| AI tools (7 personas × $20) | $140 |
+| Servidores / hosting (Vercel, Supabase, etc.) | $200 |
+| GitHub / herramientas | $50 |
+| Dominios + SSL | $5 |
+| **Total operativo mensual** | **$395** |
+| **Total operativo anual** | **$4,740** |
+
+### Marketing anual
+
+| Concepto | Costo |
+|----------|:-----:|
+| Meta/Google Ads | $8,000 |
+| Influencer / contenido | $3,000 |
+| **Total marketing año 1** | **$11,000** |
+
+### Gastos únicos / legales
+
+| Concepto | Costo |
+|----------|:-----:|
+| Constitución legal + marca | $3,000 |
+| Computadoras / equipos | $0 (ya tienen) |
+| **Total misc año 1** | **$3,000** |
+
+### Resumen de costos año 1
+
+| Categoría | Costo |
+|-----------|:-----:|
+| Salarios | $97,650 |
+| Operativo | $4,740 |
+| Marketing | $11,000 |
+| Legal / misc | $3,000 |
+| **Total año 1** | **$116,390** |
+
+---
 
 ## Proyección de ingresos (3 años)
 
 | Fuente de ingreso | Año 1 | Año 2 | Año 3 |
 |-------------------|:-----:|:-----:|:-----:|
-| **Premium particulares** | | | |
-| Autos publicados totales | 500 | 3,000 | 10,000 |
-| % que usan premium | 10% | 15% | 20% |
-| Ingreso premium | $2,000 | $18,000 | $60,000 |
-| | | | |
-| **Suscripción dealers** | | | |
-| Dealers activos | 20 | 80 | 200 |
-| Ingreso promedio / dealer / mes | $25 | $37.50 | $50 |
-| Ingreso dealers | $5,000 | $36,000 | $120,000 |
-| | | | |
-| **Comisión transacciones (3%)** | | | |
-| Transacciones en plataforma | 20 | 200 | 1,000 |
-| Precio promedio transacción | $5,000 | $6,000 | $5,000 |
-| Volumen transaccionado | $100K | $1.2M | $5M |
-| Ingreso comisión (3%) | $3,000 | $35,000 | $150,000 |
-| | | | |
-| **Inspecciones** | | | |
-| Inspecciones realizadas | 50 | 300 | 1,000 |
-| Precio promedio | $40 | $60 | $50 |
-| Ingreso inspecciones | $2,000 | $18,000 | $50,000 |
-| | | | |
-| **Publicidad / leads** | | | |
-| Anunciantes | 0 | 10 | 30 |
-| Ingreso publicidad | $0 | $5,000 | $30,000 |
-| | | | |
-| **Ingreso total** | **$12,000** | **$112,000** | **$410,000** |
+| Premium particulares | $2,000 | $18,000 | $60,000 |
+| Suscripción dealers | $5,000 | $36,000 | $120,000 |
+| Comisión transacciones (3%) | $3,000 | $35,000 | $150,000 |
+| Inspecciones | $2,000 | $18,000 | $50,000 |
+| Publicidad / leads | $0 | $5,000 | $30,000 |
+| **Total ingresos** | **$12,000** | **$112,000** | **$410,000** |
 
-## Proyección de costos
+---
 
-| Costo | Año 1 | Año 2 | Año 3 |
-|-------|:-----:|:-----:|:-----:|
-| **Hosting + infraestructura** | | | |
-| Vercel (Pro) | $240 | $600 | $2,400 |
-| Supabase | $0 (free tier) | $600 | $2,400 |
-| Redis / misc | $0 | $360 | $960 |
-| Dominios + SSL | $50 | $50 | $50 |
-| | | | |
-| **Marketing** | | | |
-| Meta/Google Ads | $5,000 | $15,000 | $30,000 |
-| Influencer / contenido | $1,000 | $5,000 | $10,000 |
-| | | | |
-| **Operaciones** | | | |
-| Herramientas (Notion, etc.) | $500 | $1,000 | $2,000 |
-| Legal + contabilidad | $2,000 | $3,000 | $5,000 |
-| | | | |
-| **Personal** | | | |
-| Fundador (salary) | $0 (sweat equity) | $24,000 | $48,000 |
-| Community manager (part-time) | $0 | $6,000 | $12,000 |
-| | | | |
-| **Total costos** | **$8,790** | **$55,610** | **$112,810** |
-
-## P&L Resumido
+## P&L Proyectado
 
 | | Año 1 | Año 2 | Año 3 |
 |---|:-----:|:-----:|:-----:|
 | Ingresos | $12,000 | $112,000 | $410,000 |
-| Costos | $8,790 | $55,610 | $112,810 |
-| **Utilidad / (Pérdida)** | **$3,210** | **$56,390** | **$297,190** |
-| Margen neto | 27% | 50% | 72% |
+| Costos operativos | $116,390 | $145,000 | $180,000 |
+| **Utilidad / (Pérdida)** | **($104,390)** | **($33,000)** | **$230,000** |
+| Margen neto | -870% | -29% | 56% |
+
+---
 
 ## Funding Request
 
-| Item | Monto |
-|------|:-----:|
-| **Solicitud seed** | **$150,000 - $250,000** |
-| | |
-| **Uso de fondos** | |
-| Desarrollo (MVP + 12 meses de operación) | ~$80K |
-| Marketing (adquisición año 1-2) | ~$50K |
-| Operaciones (hosting, legal, tools) | ~$20K |
-| Red de inspectores (fase 2) | ~$25K |
-| Reserva | ~$25K |
+### Opción A: Solo desarrollo MVP (lean)
 
-### Runway
-- **12-18 meses** con el seed
-- **Objetivo:** Llegar a break-even mensual antes de levantar Serie A
-- **Serie A potencial:** $1-2M (cuando estemos en $10K+/mes de ingresos y crecimiento consistente)
+Si el equipo mantiene sus empleos actuales y dedica solo tiempo parcial los primeros 6 meses:
 
-## KPIs clave para inversor
+| Concepto | Monto |
+|----------|:-----:|
+| Desarrollo MVP (6 meses part-time) | $27,900 |
+| Operaciones + marketing (12 meses) | $18,740 |
+| **Total solicitud** | **~$50,000 - $75,000** |
 
-| KPI | Año 1 objetivo |
-|-----|:--------------:|
-| Autos publicados | 500+ |
-| Transacciones | 20+ |
-| Dealers activos | 20+ |
-| Usuarios registrados | 5,000+ |
-| MRR (Monthly Recurring Revenue) | ~$500 |
-| Tasa de conversión (vista → contacto) | >10% |
+### Opción B: Equipo dedicado completo (recomendada)
+
+Para comprometer al equipo full-time desde el inicio y acelerar:
+
+| Concepto | Monto |
+|----------|:-----:|
+| Salarios 12 meses | $97,650 |
+| Operaciones + marketing + legal | $18,740 |
+| **Total solicitud** | **~$150,000 - $250,000** |
+
+### Uso de fondos (Opción B)
+
+```
+Salarios          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78%
+Operaciones       ━━━━━━ 4%
+Marketing         ━━━━━━━━━ 9%
+Legal / misc      ━━━ 3%
+Reserva           ━━━ 6%
+```
+
+---
+
+## Runway y hitos
+
+### Con $200K seed
+
+| Mes | Hito | Burn rate | Saldo |
+|:---:|------|:---------:|:-----:|
+| 0 | Seed cerrado | — | $200K |
+| 3 | MVP lanzado beta | $18K | $182K |
+| 6 | Launch público + 500 autos | $37K | $145K |
+| 9 | 1,000 autos + 30 dealers | $37K | $108K |
+| 12 | 2,000 autos + ingresos $1K/mes | $37K | $71K |
+| 18 | Break-even o Serie A | $37K | ~$34K |
+
+**Runway: 18-24 meses** con el seed → tiempo suficiente para llegar a tracción y levantar Serie A.
+
+---
+
+## KPIs clave
+
+| KPI | Año 1 | Año 2 | Año 3 |
+|-----|:-----:|:-----:|:-----:|
+| Autos publicados | 500+ | 3,000+ | 10,000+ |
+| Dealers activos | 20+ | 80+ | 200+ |
+| Usuarios registrados | 5,000+ | 20,000+ | 50,000+ |
+| Transacciones en plataforma | 20+ | 200+ | 1,000+ |
+| MRR | ~$500 | ~$5,000 | ~$20,000 |

@@ -2,31 +2,55 @@
 section: "business-plan"
 order: 10
 title: "Team"
-status: "pendiente"
+status: "borrador"
 ---
 
 # Team
-
-> ⚠️ Pendiente de completar con información del fundador.
 
 ## Fundador
 
 | Aspecto | Detalle |
 |---------|---------|
-| **Nombre** | — |
-| **Rol** | CEO / CTO / Full-stack Developer |
-| **Experiencia técnica** | TypeScript, React, Node.js, Next.js, PostgreSQL, Cloud |
+| **Nombre** | Gershell Lopez |
+| **Rol** | CEO / Lead Architect & Developer |
+| **Experiencia técnica** | Full-stack developer, arquitecto de software |
+| **Stack** | TypeScript, React, Node.js, Next.js, PostgreSQL, Cloud |
 | **Experiencia en autos** | Entusiasta, inspecciona autos por hobby para amigos y familiares |
-| **Idiomas** | — |
-| **LinkedIn / Portfolio** | — |
-| **¿Ha emprendido antes?** | — |
-| **¿Por qué este proyecto?** | Pasión por los autos + habilidad técnica para construir la solución + frustración con el mercado actual |
+| **LinkedIn** | [linkedin.com/in/gershell-lopez](https://www.linkedin.com/in/gershell-lopez/) |
+| **¿Por qué este proyecto?** | Pasión por autos + capacidad técnica + frustración con el mercado actual |
+| **Dedicación** | Full-time post-seed |
 
-## Gaps a cubrir post-seed
+## Equipo disponible
 
-| Rol | ¿Cuándo? | Por qué |
-|-----|:---------:|---------|
-| Diseñador UX/UI | Pre-MVP | Si el fundador no tiene experiencia en diseño |
-| Community Manager / Growth | Post-lanzamiento | Para gestión de redes, dealers, contenido |
-| Asesor legal | Pre-lanzamiento | Temas regulatorios, términos y condiciones |
-| Co-founder comercial | Post-seed | Para escalar ventas a dealers, alianzas |
+El fundador tiene acceso a un equipo técnico completo que puede dedicar tiempo al proyecto:
+
+| Rol | Cant. | Salario mensual | Dedicación |
+|-----|:-----:|:---------------:|:----------:|
+| **Lead / Arquitecto** (Gershell) | 1 | $2,800 | Part-time (3 meses) → Full-time |
+| **Backend Developer** | 2 | $1,500 c/u | Part-time (3 meses) → Full-time |
+| **Frontend Senior** | 1 | $1,000 | Part-time (3 meses) → Full-time |
+| **Frontend Junior** | 2 | $750 c/u | Part-time (3 meses) → Full-time |
+| **QA / HR / Administración** | 1 | $1,000 | Part-time (3 meses) → Full-time |
+| **Total** | **7** | **$9,300** | |
+
+### Esquema de dedicación propuesto
+
+| Período | Dedicación | Costo mensual |
+|---------|:----------:|:-------------:|
+| Meses 1-3 (MVP) | Part-time (50% tiempo, 50% salario) | $4,650/mes |
+| Meses 4-12 (Post-MVP) | Full-time (100% salario) | $9,300/mes |
+
+## Costos operativos adicionales
+
+| Concepto | Costo mensual |
+|----------|:-------------:|
+| AI tools (7 devs × $20) | $140 |
+| Servidores / hosting | $200 |
+| Git / herramientas | $50 |
+
+## Gaps a cubrir
+
+| Rol | ¿Cuándo? |
+|-----|:---------:|
+| Community Manager / Growth | Post-lanzamiento |
+| Diseñador UX/UI | Si el equipo actual no cubre diseño |

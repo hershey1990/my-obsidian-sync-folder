@@ -5,7 +5,7 @@ title: "Executive Summary"
 status: "borrador"
 ---
 
-# Executive Summary — Estela Autos
+# Executive Summary — Estela
 
 > **Plataforma C2C de compra, venta e intercambio de autos en Nicaragua.**
 
@@ -15,14 +15,14 @@ Comprar un auto usado en Nicaragua es una experiencia frustrante. Facebook Marke
 
 ## La solución
 
-**Estela** es un marketplace C2C especializado en autos que profesionaliza la experiencia:
+**Estela** es un marketplace C2C especializado en autos:
 
 - **Búsqueda inteligente** con filtros reales de auto (transmisión, motor, combustible, etc.)
-- **Comparación de modelos** — ves un Yaris y al instante lo comparás con un Honda City, Kia Rio (specs + precios de mercado)
+- **Comparación de modelos** — ves un Yaris y lo comparás con un Honda City o Kia Rio
 - **Comparación de ofertas** — todos los Yaris 2018 disponibles lado a lado
-- **Score de condición digital** — cada auto se evalúa con un checklist estandarizado de 30+ puntos (exterior, interior, mecánica, documentos) con fotos vinculadas
+- **Score de condición digital** — cada auto se evalúa con checklist estandarizado de 30+ puntos con fotos
 - **Perfiles de dealer** — concesionarios con inventario, analytics, badges de confianza
-- **Servicio de inspección** (fase 2): red de inspectores + IA en fotos
+- **Red de inspectores** (fase 2): inspección presencial bajo demanda
 
 ## Mercado
 
@@ -37,40 +37,35 @@ Comprar un auto usado en Nicaragua es una experiencia frustrante. Facebook Marke
 
 | Fuente | Detalle |
 |--------|---------|
-| Premium particulares | $9.99/auto publicado destacado |
-|Suscripción dealers | $29-$199/mes según plan |
+| Premium particulares | $9.99/auto destacado |
+| Suscripción dealers | $29-$199/mes |
 | Comisión transacciones (fase 2) | 3-5% por venta asegurada |
 | Inspecciones | $30-50 por inspección presencial |
 
-**Proyección año 3:** $410K en ingresos + márgenes saludables (sin CAPEX físico).
+**Proyección año 3:** $410K ingresos, margen 56%.
 
 ## Competencia
 
-Ningún competidor ofrece búsqueda especializada + score de condición + comparación de modelos + perfiles de dealer. Facebook y Encuentra24 no están optimizados para autos. **Estela es la primera plataforma en Nicaragua construida específicamente para comprar y vender autos.**
+Ningún competidor ofrece búsqueda especializada + score de condición + comparación de modelos + perfiles de dealer. **Estela es la primera plataforma en Nicaragua construida específicamente para comprar y vender autos.**
 
 ## El equipo
 
-Fundador único: **developer full-stack, fanático de los autos, con experiencia real inspeccionando vehículos.** Ya hace de "inspector de confianza" en su círculo social — validación directa de la propuesta de valor. Stack: TypeScript, React, Node.js, PostgreSQL. Puede construir el MVP completo.
+**Gershell Lopez** — CEO & Lead Architect. Full-stack developer, entusiasta de autos con experiencia real inspeccionando vehículos.
+
+Cuenta con un equipo de **7 personas** disponible (2 backend, 3 frontend, QA/HR) que pueden iniciar part-time y escalar a full-time con el seed.
 
 ## Inversión solicitada
 
-**Seed round: $XXX,XXX**
+**Seed: $150,000 - $250,000**
 
-| Uso de fondos | % |
-|---------------|:-:|
-| Desarrollo MVP + plataforma | 40% |
-| Marketing y adquisición de usuarios | 30% |
-| Operaciones (hosting, herramientas, legal) | 15% |
-| Red de inspectores + logística (fase 2) | 10% |
-| Reserva | 5% |
+| Uso | % |
+|-----|:-:|
+| Salarios equipo (12 meses) | 78% |
+| Marketing | 9% |
+| Infraestructura + herramientas | 4% |
+| Legal + constitución | 3% |
+| Reserva | 6% |
 
-**Hito clave con el seed:** 1,000+ autos publicados, 50+ dealers activos, 100+ transacciones en 12 meses.
+**Runway:** 18-24 meses.
 
-## Timeline
-
-| Mes | Hito |
-|:---:|------|
-| 1-4 | MVP completo + beta cerrada |
-| 5 | Lanzamiento público |
-| 6-8 | 1,000 autos + 30 dealers |
-| 9-12 | Inspecciones + historial vehicular + app nativa |
+**Hito clave:** 1,000+ autos publicados, 30+ dealers, 100+ transacciones en 12 meses.
