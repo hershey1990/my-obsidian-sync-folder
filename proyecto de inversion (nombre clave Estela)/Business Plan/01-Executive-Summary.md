@@ -7,65 +7,93 @@ status: "borrador"
 
 # Executive Summary — Estela
 
-> **Plataforma C2C de compra, venta e intercambio de autos en Nicaragua.**
+> **El marketplace de autos que Nicaragua necesita.**
 
 ## El problema
 
-Comprar un auto usado en Nicaragua es una experiencia frustrante. Facebook Marketplace (60% share) no está diseñado para autos — búsqueda genérica, sin filtros reales, sin confianza, lleno de estafas. Encuentra24 (25% share) tiene UX anticuada, sin herramientas de comparación ni estandarización. Vender es igual de malo: no sabes a qué precio ponerlo, negocias con compradores no calificados, y no hay forma de demostrar que tu auto está en buen estado.
+Comprar un auto usado en Nicaragua es una apuesta. Facebook Marketplace (60% share) no está diseñado para autos: búsqueda genérica, sin filtros reales, sin confianza, lleno de estafas. Encuentra24 (25% share) tiene UX de 2010, sin herramientas de comparación ni estandarización. Vender es igual de malo: no sabes a qué precio ponerlo, negocias con compradores no calificados, no hay forma de demostrar que tu auto está en buen estado.
+
+**El mercado está listo para una plataforma especializada.** Nicaragua tiene ~550,000 vehículos y un mercado usado de **$400-800M al año** que opera en Facebook y Encuentra24.
 
 ## La solución
 
-**Estela** es un marketplace C2C especializado en autos:
+**Estela** es un marketplace C2C experto en autos con 3 diferencias fundamentales:
 
-- **Búsqueda inteligente** con filtros reales de auto (transmisión, motor, combustible, etc.)
-- **Comparación de modelos** — ves un Yaris y lo comparás con un Honda City o Kia Rio
-- **Comparación de ofertas** — todos los Yaris 2018 disponibles lado a lado
-- **Score de condición digital** — cada auto se evalúa con checklist estandarizado de 30+ puntos con fotos
-- **Perfiles de dealer** — concesionarios con inventario, analytics, badges de confianza
-- **Red de inspectores** (fase 2): inspección presencial bajo demanda
+| Lo que Facebook/Encuentra24 NO tienen | Estela sí |
+|---------------------------------------|-----------|
+| Filtros reales de auto (transmisión, motor, combustible, tracción) | ✅ |
+| Comparación de modelos (Yaris vs City vs Rio lado a lado) | ✅ |
+| Score de condición digital (checklist estandarizado de 30+ puntos con fotos) | ✅ |
+| Comparación de ofertas (todos los Yaris 2018 disponibles en una tabla) | ✅ |
+| Perfiles profesionales de dealer con analytics | ✅ |
+| Inspección presencial programada (red de inspectores) | ✅ |
+| Intermediación / escrow (protección comprador-vendedor) | ✅ |
+
+## Estrategia de monetización — 3 fases
+
+| Fase | Período | Ingreso | Lógica |
+|:----:|:-------:|:-------:|--------|
+| **1. Tracción** | Mes 0-6 | **$0** | Todo gratis. Hay que ganar usuarios primero. |
+| **2. Activación** | Mes 4-9 | **~$500-2K/mes** | Dealers pagan por leads calificados ($29-199/mes). Particulares pagan por destacar ($9.99). |
+| **3. Monetización plena** | Mes 9+ | **~$5-15K/mes** | **Comisión por intermediación** (escrow 3-5%), **inspecciones programadas** ($30-100), **ads** de servicios afines. |
+
+### 6 fuentes de ingreso
+
+| # | Fuente | Madurez |
+|:-:|--------|:-------:|
+| 1 | Suscripción dealers ($29-199/mes) | Fase 2 |
+| 2 | Premium particulares ($9.99/auto) | Fase 2 |
+| 3 | **Comisión por intermediación** (escrow 3-5%) | Fase 3 ⭐ |
+| 4 | **Inspección programada** ($30-100) | Fase 3 ⭐ |
+| 5 | Publicidad (ads de talleres, seguros, financieras) | Fase 3 |
+| 6 | Marketplace de servicios (referrals a talleres) | Fase 4 |
 
 ## Mercado
 
-| Mercado | Tamaño |
-|---------|--------|
+| Indicador | Valor |
+|-----------|-------|
 | TAM Nicaragua | $400M - $800M / año |
 | SAM (digital) | $320M - $640M / año |
-| SOM año 3 | ~$500K ingresos (2% share) |
 | TAM regional (Centroamérica) | $5B+ |
+| Competidores directos | Ninguno (solo clasificados genéricos) |
 
-## Modelo de negocio
+## Proyecciones
 
-| Fuente | Detalle |
-|--------|---------|
-| Premium particulares | $9.99/auto destacado |
-| Suscripción dealers | $29-$199/mes |
-| Comisión transacciones (fase 2) | 3-5% por venta asegurada |
-| Inspecciones | $30-50 por inspección presencial |
+| | Año 1 | Año 2 | Año 3 |
+|---|:-----:|:-----:|:-----:|
+| Ingresos | $12,000 | $112,000 | $410,000 |
+| Costos | $116,390 | $141,800 | $175,000 |
+| **Resultado** | **($104,390)** | **($29,800)** | **+$235,000** |
+| Margen | -870% | -27% | **+57%** |
 
-**Proyección año 3:** $410K ingresos, margen 56%.
-
-## Competencia
-
-Ningún competidor ofrece búsqueda especializada + score de condición + comparación de modelos + perfiles de dealer. **Estela es la primera plataforma en Nicaragua construida específicamente para comprar y vender autos.**
+> **Lectura para el inversor:** Año 1 es inversión en tracción. Año 2 nos acercamos a break-even. Año 3 el marketplace escala y somos rentables con margen sólido.
 
 ## El equipo
 
-**Gershell Lopez** — CEO & Lead Architect. Full-stack developer, entusiasta de autos con experiencia real inspeccionando vehículos.
+**Gershell Lopez** — CEO & Lead Architect. Full-stack developer, apasionado por autos, con experiencia real inspeccionando vehículos para su círculo social.
 
-Cuenta con un equipo de **7 personas** disponible (2 backend, 3 frontend, QA/HR) que pueden iniciar part-time y escalar a full-time con el seed.
+Lidera un equipo de **7 personas** (2 backend, 3 frontend, QA/HR) que trabajan juntos actualmente y pueden escalar dedicación con el seed.
 
-## Inversión solicitada
+## Inversión
 
-**Seed: $150,000 - $250,000**
+**Solicitud:** $150,000 - $250,000 (Seed)
 
 | Uso | % |
 |-----|:-:|
 | Salarios equipo (12 meses) | 78% |
-| Marketing | 9% |
+| Marketing y adquisición | 9% |
 | Infraestructura + herramientas | 4% |
 | Legal + constitución | 3% |
 | Reserva | 6% |
 
-**Runway:** 18-24 meses.
+**Runway:** 18-24 meses → tiempo suficiente para llegar a tracción y levantar Serie A.
 
-**Hito clave:** 1,000+ autos publicados, 30+ dealers, 100+ transacciones en 12 meses.
+## Hitos clave
+
+| Mes | Hito |
+|:---:|------|
+| 3 | MVP + beta cerrada |
+| 6 | Lanzamiento público + primeros dealers |
+| 9 | 1,000 autos publicados + 30 dealers activos |
+| 12 | Comisiones + inspecciones activas, $1K+/mes MRR |
+| 18 | Breakeven mensual o Serie A |

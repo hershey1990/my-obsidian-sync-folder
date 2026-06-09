@@ -67,14 +67,26 @@ Ser la plataforma de referencia en Nicaragua (y luego Centroamérica) para compr
 
 ## Post-MVP (6-12 meses)
 
-- **Historial del vehículo**: integración con tránsito/registro para ver multas, robos, gravámenes
-- **Inspección profesional**: red de inspectores, servicio pago (~$30-50)
-- **IA en fotos**: detección automática de daños, puntuación automática
+### Servicio de intermediación (Escrow) ⭐
+Protección comprador-vendedor:
+1. Comprador deposita el dinero en Estela
+2. Se realiza inspección y transferencia legal del auto
+3. Estela libera el pago al vendedor
+4. Comisión: 3-5% del precio de venta
+
+### Inspección presencial programada ⭐
+- **Básica** ($30): exterior, interior, mecánica general, documentos
+- **Completa** ($50): + prueba de manejo, scanner OBD2, diagnóstico transmisión
+- **Certificación Estela** ($100): + garantía de condición (si no corresponde, respondemos)
+
+### Otras features
+- **Historial del vehículo**: integración con tránsito/registro para multas, robos, gravámenes
+- **IA en fotos**: detección automática de daños, puntuación automática del score
 - **Calculadora de financiamiento**: cuánto pagarías con cada banco
 - **Valor de reventa estimado**: basado en datos de la plataforma
 - **Subastas**: ofertas en tiempo real por autos específicos
 - **App móvil nativa**: iOS + Android
-- **Pagos integrados**: depósito en garantía para transacciones seguras
+- **Marketplace de servicios**: talleres, seguros, detailing (referral fee)
 
 ## Roadmap visual
 
