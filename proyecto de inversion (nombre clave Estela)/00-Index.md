@@ -11,7 +11,7 @@
 |---------|-----------|
 | `Ideas/` | Las 3 ideas formuladas (+ descartadas) |
 | `Decisiones/` | ADRs y acuerdos clave del proyecto |
-| `Research/` | Investigación de mercado, competencia, tendencias |
+| `Research/` | Investigación de mercado, competencia, tendencias (✅ 5 docs completados) |
 | `Business Plan/` | Plan de negocios final para el inversor |
 | `Technical/` | Arquitectura, stack tecnológico, prototipos |
 | `Sessions/` | Registro de sesiones con OpenCode para continuidad de contexto |

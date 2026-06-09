@@ -105,10 +105,10 @@ date: "2026-06-09"
 ```
 
 **Crecimiento del mercado:**
-- 550,000 vehículos en Nicaragua
-- 40,000-60,000 autos usados vendidos al año
+- 1.6M vehículos en Nicaragua (~560K autos, 62% motos)
+- 57% de autos se compran usados (~64K-112K transacciones/año)
 - 80% usa canales digitales (FB + Encuentra24)
-- $3B en remesas anuales → parte se destina a autos
+- $5.2B en remesas (2024) → parte se destina a autos
 
 **Expansión regional:**
 | País | Mercado usado estimado |

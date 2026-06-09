@@ -13,7 +13,7 @@ status: "borrador"
 
 Comprar un auto usado en Nicaragua es una apuesta. Facebook Marketplace (60% share) no está diseñado para autos: búsqueda genérica, sin filtros reales, sin confianza, lleno de estafas. Encuentra24 (25% share) tiene UX de 2010, sin herramientas de comparación ni estandarización. Vender es igual de malo: no sabes a qué precio ponerlo, negocias con compradores no calificados, no hay forma de demostrar que tu auto está en buen estado.
 
-**El mercado está listo para una plataforma especializada.** Nicaragua tiene ~550,000 vehículos y un mercado usado de **$400-800M al año** que opera en Facebook y Encuentra24.
+**El mercado está listo para una plataforma especializada.** Nicaragua tiene ~560,000 autos (1.6M vehículos total, 62% son motos) y un mercado usado de **$400-800M al año** que opera en Facebook (60% share) y Encuentra24 (25% share).
 
 ## La solución
 
@@ -54,7 +54,7 @@ Comprar un auto usado en Nicaragua es una apuesta. Facebook Marketplace (60% sha
 |-----------|-------|
 | TAM Nicaragua | $400M - $800M / año |
 | SAM (digital) | $320M - $640M / año |
-| TAM regional (Centroamérica) | $5B+ |
+| TAM regional (Centroamérica) | $7B+ |
 | Competidores directos | Ninguno (solo clasificados genéricos) |
 
 ## Proyecciones
