@@ -7,132 +7,276 @@ status: "borrador"
 
 # Estrategia Técnica
 
-## Stack tecnológico propuesto
+## Stack tecnológico
 
-Basado en la experiencia del fundador (full-stack TS/React/Node.js):
-
-### Frontend
+### Frontend (ver ADR-003 para arquitectura detallada)
 - **Next.js 14+** (App Router, React Server Components)
-- **Tailwind CSS** (diseño rápido, responsivo)
-- **shadcn/ui** (componentes base)
+- **Tailwind CSS** + **shadcn/ui**
+- Hosting: **Vercel** (serverless)
+- Mapas (post-MVP): **Leaflet** + **OpenStreetMap**
 
 ### Backend
-- **Next.js API routes** (BFF — Backend for Frontend) para MVP
-- **PostgreSQL** (base de datos principal)
-- **Prisma ORM** (type-safe, migrations)
+- **Laravel 11** (PHP 8.3)
+- ORM: **Eloquent**
+- Auth: **Sanctum** (token-based, vía BFF Proxy)
+- Colas: **Database driver** (jobs table)
+- Tests: **Pest**
+
+### Base de Datos
+- **Supabase PostgreSQL 15** + **PostGIS**
+- DB as a Service (plan Pro: 8GB RAM, 100GB storage)
+- Búsqueda: **PostgreSQL tsvector** (índice GIN en Spanish)
+- Ubicación: **GEOGRAPHY(Point, 4326)** con índice GIST
+
+### Storage
+- **Supabase Storage** (100GB incluidos en plan Pro)
+- Imágenes: Frontend → Laravel → Supabase (validación en backend)
 
 ### Infraestructura
-- **Vercel** (hosting frontend + API, serverless)
-- **Supabase** (PostgreSQL + auth + storage)
-- **Uploadthing** o **Supabase Storage** (fotos de autos)
+| Servicio | Uso | Costo |
+|----------|-----|-------|
+| Vercel Pro | Frontend hosting | $20/mo |
+| Laravel Forge + DO VPS | Backend API (USA) | $24/mo |
+| Supabase Pro | PostgreSQL + PostGIS + Storage | $25/mo |
+| Resend | Email transaccional | $0-20/mo |
+| Sentry | Error tracking | $0/mo |
+| Upstash Redis | Cache (post-MVP) | $0-5/mo |
+| GitHub Actions | CI/CD (lint + tests) | $0/mo |
+| **Total** | | **~$55-80/mo** |
 
-### Features clave
-- **Búsqueda**: PostgreSQL全文検索 (tsvector) para MVP
-- **Geolocalización**: PosGIS en Supabase o Google Maps API
-- **IA para fotos**: TensorFlow.js o API de Google Cloud Vision (post-MVP)
-- **Cache**: Redis (Upstash) para búsquedas frecuentes
-
-## Arquitectura MVP (3-4 meses)
-
-```
-[Browser] → Next.js (App Router) → API Routes
-                ↓
-         Supabase (PostgreSQL + Auth + Storage)
-```
-
-### Database schema (core MVP)
+## Arquitectura General
 
 ```
-users
-  id, name, email, phone, role (buyer/seller/dealer), verified, avatar
-
-dealers
-  id, user_id, business_name, address, logo, years_active, plan
-
-cars
-  id, owner_id, dealer_id?, brand, model, year, version, 
-  transmission, fuel, engine, traction, doors, color, 
-  kilometers, price, negotiable, description, 
-  condition_score, status (active/sold/pending), 
-  location, created_at
-
-car_photos
-  id, car_id, url, order, section (exterior/interior/mechanical/docs)
-
-condition_checklist
-  id, car_id, category, item, score, photo_url?, notes
-
-car_model_specs (DB de modelos para comparación)
-  id, brand, model, year, engine, hp, torque, 
-  fuel_consumption, dimensions, weight, features
-
-comparisons (guardadas por usuario)
-  id, user_id, primary_car_id, compared_cars[]
+[Browser] → Next.js (Vercel)
+              │
+              │ BFF Proxy (httpOnly cookie con Sanctum token)
+              ▼
+         Laravel API (Forge + DO VPS)
+              │
+              ├──→ Supabase PostgreSQL + PostGIS
+              ├──→ Supabase Storage (fotos)
+              ├──→ Resend (emails)
+              └──→ Nominatim (geocoding)
 ```
 
-### API endpoints (MVP)
+### Patrón: Clean Architecture Light
 
 ```
-GET    /api/cars                    # Listar autos (búsqueda + filtros)
-GET    /api/cars/:id                # Detalle del auto
-POST   /api/cars                    # Publicar auto
-PUT    /api/cars/:id                # Editar auto
-DELETE /api/cars/:id                # Eliminar auto
-
-GET    /api/models                  # Listar modelos (para comparación)
-GET    /api/models/:id/compare/:id2 # Comparar 2 modelos
-
-GET    /api/dealers                 # Listar dealers
-GET    /api/dealers/:id             # Perfil de dealer + inventario
-
-POST   /api/auth/register           # Registro
-POST   /api/auth/login              # Login
-
-POST   /api/contact                 # Contactar vendedor (genera lead)
+app/
+  Domain/           ← Eloquent Models, Value Objects, Enums
+  Application/      ← Services (Use Cases con lógica de negocio)
+  Infrastructure/   ← Repositories (queries complejas), External APIs
+  Presentation/     ← Controllers, Form Requests, API Resources
 ```
 
-### Páginas del frontend
+Ver `Decisiones/ADR-002-Arquitectura-Stack.md` para la estructura completa de carpetas.
+
+## Database Schema
+
+```sql
+-- Extension PostGIS
+CREATE EXTENSION IF NOT EXISTS postgis;
+
+CREATE TABLE users (
+    id          BIGSERIAL PRIMARY KEY,
+    name        VARCHAR(255) NOT NULL,
+    email       VARCHAR(255) UNIQUE NOT NULL,
+    phone       VARCHAR(20),
+    password    VARCHAR(255) NOT NULL,
+    role        VARCHAR(20) NOT NULL DEFAULT 'buyer',
+    avatar      TEXT,
+    verified_at TIMESTAMP,
+    created_at  TIMESTAMP DEFAULT NOW(),
+    updated_at  TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE dealers (
+    id            BIGSERIAL PRIMARY KEY,
+    user_id       BIGINT NOT NULL REFERENCES users(id),
+    business_name VARCHAR(255) NOT NULL,
+    address       TEXT,
+    logo          TEXT,
+    years_active  INT DEFAULT 0,
+    plan          VARCHAR(20) DEFAULT 'free',
+    created_at    TIMESTAMP DEFAULT NOW(),
+    updated_at    TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE cars (
+    id              BIGSERIAL PRIMARY KEY,
+    owner_id        BIGINT NOT NULL REFERENCES users(id),
+    dealer_id       BIGINT REFERENCES dealers(id),
+    brand           VARCHAR(100) NOT NULL,
+    model           VARCHAR(100) NOT NULL,
+    year            INT NOT NULL,
+    version         VARCHAR(100),
+    transmission    VARCHAR(20) NOT NULL,
+    fuel            VARCHAR(20) NOT NULL,
+    engine          VARCHAR(100),
+    traction        VARCHAR(20),
+    doors           INT,
+    color           VARCHAR(50),
+    kilometers      INT NOT NULL,
+    price           DECIMAL(12,2) NOT NULL,
+    negotiable      BOOLEAN DEFAULT TRUE,
+    description     TEXT,
+    condition_score INT CHECK (condition_score BETWEEN 1 AND 100),
+    status          VARCHAR(20) DEFAULT 'active',
+    location        GEOGRAPHY(Point, 4326),
+    city            VARCHAR(100),
+    department      VARCHAR(100),
+    created_at      TIMESTAMP DEFAULT NOW(),
+    updated_at      TIMESTAMP DEFAULT NOW()
+);
+
+-- Full-text search index
+ALTER TABLE cars ADD COLUMN search_vector TSVECTOR
+    GENERATED ALWAYS AS (to_tsvector('spanish',
+        coalesce(brand,'') || ' ' || coalesce(model,'') || ' ' || coalesce(description,'')
+    )) STORED;
+CREATE INDEX idx_cars_search ON cars USING GIN(search_vector);
+
+-- Spatial index
+CREATE INDEX idx_cars_location ON cars USING GIST(location);
+
+CREATE TABLE car_photos (
+    id       BIGSERIAL PRIMARY KEY,
+    car_id   BIGINT NOT NULL REFERENCES cars(id) ON DELETE CASCADE,
+    url      TEXT NOT NULL,
+    order    INT DEFAULT 0,
+    section  VARCHAR(20)
+);
+
+CREATE TABLE condition_checklist (
+    id       BIGSERIAL PRIMARY KEY,
+    car_id   BIGINT NOT NULL REFERENCES cars(id) ON DELETE CASCADE,
+    category VARCHAR(50) NOT NULL,
+    item     VARCHAR(255) NOT NULL,
+    score    INT CHECK (score BETWEEN 1 AND 5),
+    photo_url TEXT,
+    notes    TEXT
+);
+
+CREATE TABLE car_model_specs (
+    id              BIGSERIAL PRIMARY KEY,
+    brand           VARCHAR(100) NOT NULL,
+    model           VARCHAR(100) NOT NULL,
+    year            INT NOT NULL,
+    engine          VARCHAR(100),
+    hp              INT,
+    torque          INT,
+    fuel_consumption DECIMAL(5,2),
+    dimensions      VARCHAR(255),
+    weight          INT,
+    features        JSONB,
+    UNIQUE(brand, model, year)
+);
+
+CREATE TABLE comparisons (
+    id           BIGSERIAL PRIMARY KEY,
+    user_id      BIGINT NOT NULL REFERENCES users(id),
+    primary_car_id BIGINT NOT NULL REFERENCES cars(id),
+    compared_cars BIGINT[] NOT NULL DEFAULT '{}',
+    created_at   TIMESTAMP DEFAULT NOW()
+);
+```
+
+## API Endpoints
 
 ```
-/                          → Landing + búsqueda destacada
-/cars                      → Resultados de búsqueda
-/cars/:id                  → Detalle del auto
-/cars/new                  → Publicar auto (auth required)
-/cars/:id/edit             → Editar auto (auth required)
+Base: /api/v1
 
-/compare/models/:id1/:id2  → Comparación de modelos
-/compare/offers/:model     → Comparación de ofertas del mismo modelo
+# Auth
+POST   /api/v1/auth/register        → Register
+POST   /api/v1/auth/login           → Login (devuelve token Sanctum)
+POST   /api/v1/auth/logout          → Revocar token
+GET    /api/v1/auth/me              → Perfil actual
 
-/dealers                   → Directorio de dealers
-/dealers/:id               → Perfil de dealer + inventario
+# Cars
+GET    /api/v1/cars                 → Listar + buscar + filtrar (PostGIS + tsvector)
+GET    /api/v1/cars/{car}           → Detalle con fotos + checklist
+POST   /api/v1/cars                 → Publicar (encola geocoding)
+PUT    /api/v1/cars/{car}           → Editar
+DELETE /api/v1/cars/{car}           → Eliminar / marcar vendido
 
-/dashboard                 → Dashboard del usuario (auth required)
-/dashboard/my-cars         → Mis autos publicados
-/dashboard/dealer          → Dashboard de dealer (auth required)
+# Models
+GET    /api/v1/models               → Catálogo (marca, modelo, año)
+GET    /api/v1/models/{model}       → Specs detalladas
+GET    /api/v1/models/{model}/offers → Listings activos de ese modelo
 
-/auth/login
-/auth/register
+# Dealers
+GET    /api/v1/dealers              → Listar dealers
+GET    /api/v1/dealers/{dealer}     → Perfil + inventario
+
+# Contact
+POST   /api/v1/contact              → Contactar vendedor (lead + email)
+
+# Search
+GET    /api/v1/search/suggestions   → Autocomplete (marca/modelo)
 ```
+
+### Response format
+```json
+// Lista
+{ "data": [...], "meta": { "current_page": 1, "per_page": 20, "total": 150, "last_page": 8 } }
+
+// Recurso individual
+{ "data": { ... } }
+
+// Error
+{ "error": { "code": "VALIDATION_ERROR", "message": "...", "details": { "field": ["msg"] } } }
+```
+
+## Auth Flow (BFF Proxy)
+
+```
+Browser → Next.js API Route → Laravel API
+
+1. Login: POST /api/auth/login (Next.js)
+   → Next.js proxy a POST /api/v1/auth/login (Laravel)
+   → Laravel devuelve Sanctum token
+   → Next.js guarda en httpOnly cookie
+
+2. Cada request autenticado:
+   → Next.js lee httpOnly cookie
+   → Adjunta Authorization: Bearer {token}
+   → Forward a Laravel
+
+3. Logout: Next.js llama a Laravel → revoca token → elimina cookie
+```
+
+## Jobs (Queue)
+
+| Job | Trigger | Driver |
+|-----|---------|--------|
+| `GeocodeCarLocation` | Al crear/actualizar auto | Database |
+| `SendContactNotification` | Al enviar contacto | Database |
+
+Queue driver: **Database** (simple, sin Redis). Migrar a Redis si el volumen lo requiere.
 
 ## Plan de desarrollo
 
-| Sprint | Semanas | Entregable |
-|--------|:-------:|------------|
-| 1 | 1-2 | Setup: Next.js, Supabase, auth, DB schema |
-| 2 | 3-4 | Catálogo de modelos + CRUD de autos |
-| 3 | 5-6 | Búsqueda + filtros + página de detalle |
-| 4 | 7-8 | Checklist de condición + score + fotos |
-| 5 | 9-10 | Perfiles de dealer + dashboards |
-| 6 | 11-12 | Comparación de modelos + ofertas |
-| 7 | 13-14 | Beta cerrada + fixes + pulido |
-| 8 | 15-16 | 🚀 Lanzamiento público |
+| Sprint | Semanas | Backend | Frontend |
+|--------|:-------:|---------|----------|
+| 1 | 1-2 | Setup: Laravel + Forge + Supabase + DB schema + migrations | Setup: Next.js + Tailwind + shadcn/ui + diseño system |
+| 2 | 3-4 | Auth (Sanctum + Register/Login), CRUD Cars + Photos + Checklist | Auth pages, Landing, formulario publicar auto |
+| 3 | 5-6 | Búsqueda tsvector + filtros + PostGIS, CarQueryRepository, Geocoding job | Página de resultados + detalle del auto |
+| 4 | 7-8 | Condition Score Service, Model Specs CRUD, Comparación de modelos | Checklist UI + score visual, comparación de modelos |
+| 5 | 9-10 | Dealer profiles + planes, Dashboard endpoints | Perfiles dealer, dashboard usuario |
+| 6 | 11-12 | Contact system + email jobs, SearchService polishing | Contactar vendedor, dashboard dealer |
+| 7 | 13-14 | Beta: fixes, performance, logs, Sentry | Beta: polish UX/UI, responsive |
+| 8 | 15-16 | 🚀 Lanzamiento público | 🚀 Lanzamiento público |
 
-## ¿Por qué este stack?
+## Decisiones técnicas clave
 
 | Decisión | Por qué |
 |----------|---------|
-| Next.js + Supabase | El fundador ya conoce TS/React/Node.js — maximiza velocidad |
-| Monolito en Next.js | Un solo deploy, simplicidad, escalable hasta ~10K usuarios |
-| PostgreSQL | Datos relacionales (autos, modelos, comparaciones) |
-| Sin app nativa en MVP | PWA + web responsivo llega al 95% de usuarios mobile |
-| Sin IA en MVP | Se agrega en fase 2 cuando hay data |
+| **Laravel + Eloquent** | Preferencia del fundador, madurez del ecosistema, Eloquent es productivo |
+| **Next.js en frontend** | Lo que el equipo conoce de TS/React, server components para SEO |
+| **Supabase (no Neon)** | DB + Storage + PostGIS en un solo servicio por $25/mo. Neon requeriría storage aparte |
+| **Clean Architecture Light** | Estructura suficiente para equipo de 7 sin el overhead de Clean puro |
+| **BFF Proxy** | Auth seguro con httpOnly cookies a pesar de dominios distintos (Vercel + DO) |
+| **PostGIS desde MVP** | Guardar ubicación desde el día 1; mapas se habilitan cuando toque sin migración de datos |
+| **Sin app nativa en MVP** | PWA + web responsivo cubre el 95% de usuarios mobile en Nicaragua |
+| **Sin IA en MVP** | Se agrega en fase 2 (detección de daños en fotos, score automático) |
+| **Queue con Database** | Suficiente para volumen MVP, sin depender de Redis |
