@@ -73,10 +73,15 @@ Kavak (México), OLX Autos, Carvana — plataformas que profesionalizan la compr
 - Desafíos de seguridad en Nicaragua — ¿cómo mitigar?
 
 ## Notas del fundador
+- **Le apasionan los autos** — es fanático, las inspecciona por hobby para sus amigos
+- Ya hace de "inspector de confianza" en su círculo social → validación de que el servicio tiene demanda
 - Developer full-stack, construye MVP solo
 - Monetización abierta a explorar
 - Conoce el mercado local (Nicaragua)
+- Visión: empezar en Nicaragua y expandir a la región (Centroamérica)
 - Inspirado en modelos extranjeros pero adaptado a realidad local sin CAPEX físico
+
+**>>> POTENCIALMENTE LA IDEA GANADORA <<<** (pending comparación formal)
 
 ---
 
