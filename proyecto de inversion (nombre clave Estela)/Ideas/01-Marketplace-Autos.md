@@ -28,6 +28,15 @@ Kavak (México), OLX Autos, Carvana — plataformas que profesionalizan la compr
 - Vendedores particulares
 - Concesionarios / lotes de autos (pequeños y medianos)
 
+## Decisiones del fundador
+
+| Aspecto | Decisión |
+|---------|----------|
+| Modelo de negocio | **C2C Marketplace** (no inventory) — conectar compradores y vendedores |
+| Presencia física | **Cero física** — plataforma 100% digital de referencia |
+| Financiamiento | Bancos locales financian autos usados — oportunidad de integrar |
+| Inspiración | Carvana, CarGurus (no cargan en la región), Kavak (modelo distinto) |
+
 ## Preguntas abiertas
 
 ### Mercado
@@ -37,8 +46,6 @@ Kavak (México), OLX Autos, Carvana — plataformas que profesionalizan la compr
 - ¿Hay importación de autos usados? ¿Cómo fluye el inventory?
 
 ### Producto
-- ¿MVP mínimo: clasificados mejorados? ¿O inspección tipo Kavak?
-- ¿Modelo C2C, C2B, B2C, o híbrido?
 - ¿Qué features harían que un usuario **migre** de Facebook/Encuentra24?
   - Búsqueda inteligente por filtros reales (año, km, transmisión, motor, etc.)
   - Historial del vehículo (VIN check)
@@ -47,30 +54,29 @@ Kavak (México), OLX Autos, Carvana — plataformas que profesionalizan la compr
   - Calculadora de financiamiento
   - Valor de reventa estimado
 
-### Monetización (incierta)
-- ¿Comisión por venta? (ej. Kavak compra y revende — modelo inventory)
-- ¿Suscripción para concesionarios?
-- ¿Listing fees para vendedores particulares?
-- ¿Publicidad?
-- ¿Servicios financieros (financiamiento, seguros)?
-- ¿Inspection/service fees?
+### Monetización (oportunidades)
+- Comisión por transacción (% del precio de venta)
+- Planes de suscripción para concesionarios / lotes de autos
+- Listing fees para vendedores particulares (anuncio destacado)
+- Publicidad de servicios complementarios (seguros, financiamiento, mecánicos)
+- Referidos a bancos por financiamiento
 
 ### Confianza y seguridad
 - ¿Cómo evitar autos robados o problemas legales?
-- ¿Verificación de identidad?
-- ¿Depósito en garantía / escrow?
-- ¿Qué pasa con las estafas?
+- Verificación de identidad ( ¿cédula / INSS? )
+- Depósito en garantía / escrow para transacciones seguras
+- Sistema de reseñas y reputación
 
 ### Logística
-- ¿Modelo 100% digital o con puntos físicos de inspección?
-- ¿Entrega del auto? ¿Prueba de manejo?
-- Nicaragua tiene desafíos logísticos y de seguridad — ¿cómo se manejan?
+- Prueba de manejo: ¿cómo se coordina sin intervención de la plataforma?
+- Entrega: C2C, las partes se ponen de acuerdo
+- Desafíos de seguridad en Nicaragua — ¿cómo mitigar?
 
 ## Notas del fundador
-- Es developer, puede construir MVP
-- No está seguro de monetización — quiere explorar opciones
+- Developer full-stack, construye MVP solo
+- Monetización abierta a explorar
 - Conoce el mercado local (Nicaragua)
-- Inspirado en Kavak pero adaptado a realidad local
+- Inspirado en modelos extranjeros pero adaptado a realidad local sin CAPEX físico
 
 ---
 
