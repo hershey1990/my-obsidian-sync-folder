@@ -37,3 +37,5 @@ SORT file.name ASC
 | # | Decisión | Archivo |
 |---|----------|---------|
 | 001 | Marketplace de Autos como idea ganadora | `Decisiones/ADR-001-Seleccion-Idea.md` |
+| 002 | Stack tecnológico (Laravel + Next.js + Supabase) | `Decisiones/ADR-002-Arquitectura-Stack.md` |
+| 003 | Arquitectura Frontend (monorepo con 2 apps) | `Decisiones/ADR-003-Arquitectura-Frontend.md` |
