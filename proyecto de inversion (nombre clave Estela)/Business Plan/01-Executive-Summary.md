@@ -62,9 +62,9 @@ Comprar un auto usado en Nicaragua es una apuesta. Facebook Marketplace (60% sha
 | | Año 1 | Año 2 | Año 3 |
 |---|:-----:|:-----:|:-----:|
 | Ingresos | $12,000 | $112,000 | $410,000 |
-| Costos | $116,390 | $141,800 | $175,000 |
-| **Resultado** | **($104,390)** | **($29,800)** | **+$235,000** |
-| Margen | -870% | -27% | **+57%** |
+| Costos | $111,740 | $140,000 | $175,000 |
+| **Resultado** | **($99,740)** | **($28,000)** | **+$235,000** |
+| Margen | -831% | -25% | **+57%** |
 
 > **Lectura para el inversor:** Año 1 es inversión en tracción. Año 2 nos acercamos a break-even. Año 3 el marketplace escala y somos rentables con margen sólido.
 

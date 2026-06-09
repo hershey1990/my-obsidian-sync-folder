@@ -37,8 +37,8 @@ El fundador tiene acceso a un equipo técnico completo que puede dedicar tiempo 
 
 | Período | Dedicación | Costo mensual |
 |---------|:----------:|:-------------:|
-| Meses 1-3 (MVP) | Part-time (50% tiempo, 50% salario) | $4,650/mes |
-| Meses 4-12 (Post-MVP) | Full-time (100% salario) | $9,300/mes |
+| Meses 1-4 (MVP + buffer) | Part-time (50% tiempo, 50% salario) | $4,650/mes |
+| Meses 5-12 (Post-MVP) | Full-time (100% salario) | $9,300/mes |
 
 ## Costos operativos adicionales
 

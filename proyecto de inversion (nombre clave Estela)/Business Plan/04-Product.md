@@ -91,8 +91,8 @@ Protección comprador-vendedor:
 ## Roadmap visual
 
 ```
-Mes 1-3:  Desarrollo MVP (backend + frontend web)
-Mes 3-4:  Beta cerrada + polish + fixes
+Mes 1-4:  Desarrollo MVP + beta (backend + frontend web)
+          Incluye 1 mes de buffer para imprevistos
 Mes 4:    🚀 Lanzamiento público MVP
 Mes 5-6:  Iteración + onboarding de dealers
 Mes 7-9:  Escrow + inspecciones programadas + IA fotos

@@ -153,12 +153,12 @@ Todo gratis. El objetivo es ganar el mercado, no cobrar el primer día.
 Ingresos vs Costos (3 años)
                          
 Año 1           ████ Ingresos $12K
-                ██████████████████████████████████ Costos $116K
-                Pérdida: ($104K) → Inversión en tracción
+                ██████████████████████████████████ Costos $112K
+                Pérdida: ($100K) → Inversión en tracción
 
 Año 2           ████████████████████████ Ingresos $112K
-                ██████████████████████████████████ Costos $142K
-                Pérdida: ($30K) → Cerca de break-even
+                ██████████████████████████████████ Costos $140K
+                Pérdida: ($28K) → Cerca de break-even
 
 Año 3           ████████████████████████████████████████████ Ingresos $410K
                 ██████████████████████████████████ Costos $175K
@@ -234,11 +234,9 @@ Año 3           █████████████████████
 ```
 Mes 0  ──── Seed cerrado
          │
-Mes 1-3 ──── Desarrollo MVP (part-time 50%)
+Mes 1-4 ──── Desarrollo MVP + beta (part-time 50%)
          │   Setup → CRUD → Búsqueda → Checklist → Comparación
-         │
-Mes 3-4 ──── Beta cerrada + polish
-         │
+         │   Incluye 1 mes de buffer
 Mes 4   ──── 🚀 LANZAMIENTO PÚBLICO (part-time → full-time)
          │
 Mes 5-6 ──── Onboarding dealers + primeras transacciones

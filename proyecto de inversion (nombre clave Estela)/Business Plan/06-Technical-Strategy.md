@@ -254,7 +254,7 @@ Browser → Next.js API Route → Laravel API
 
 Queue driver: **Database** (simple, sin Redis). Migrar a Redis si el volumen lo requiere.
 
-## Plan de desarrollo
+## Plan de desarrollo (4 meses + buffer)
 
 | Sprint | Semanas | Backend | Frontend |
 |--------|:-------:|---------|----------|
@@ -266,6 +266,9 @@ Queue driver: **Database** (simple, sin Redis). Migrar a Redis si el volumen lo 
 | 6 | 11-12 | Contact system + email jobs, SearchService polishing | Contactar vendedor, dashboard dealer |
 | 7 | 13-14 | Beta: fixes, performance, logs, Sentry | Beta: polish UX/UI, responsive |
 | 8 | 15-16 | 🚀 Lanzamiento público | 🚀 Lanzamiento público |
+| _9_ | _17-20_ | _Buffer: fixes post-lanzamiento, features críticas pendientes_ | _Buffer: polish, correcciones_ |
+
+> **Nota:** El plan es de 4 meses (16 semanas) con 1 mes de buffer. Si el MVP está listo en semana 16, se lanza. Si necesita ajustes, el buffer evita retrasar el launch público.
 
 ## Decisiones técnicas clave
 

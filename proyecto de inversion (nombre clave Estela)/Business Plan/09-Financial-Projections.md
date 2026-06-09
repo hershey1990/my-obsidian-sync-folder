@@ -20,9 +20,9 @@ status: "borrador"
 
 | Período | Dedicación | Costo mensual | Total |
 |---------|:----------:|:-------------:|:-----:|
-| Meses 1-3 | Part-time (50% salario) | $4,650 | $13,950 |
-| Meses 4-12 | Full-time (100% salario) | $9,300 | $83,700 |
-| **Total salarios año 1** | | | **$97,650** |
+| Meses 1-4 | Part-time (50% salario) | $4,650 | $18,600 |
+| Meses 5-12 | Full-time (100% salario) | $9,300 | $74,400 |
+| **Total salarios año 1** | | | **$93,000** |
 
 ### Costos operativos mensuales
 
@@ -55,11 +55,11 @@ status: "borrador"
 
 | Categoría | Costo |
 |-----------|:-----:|
-| Salarios | $97,650 |
+| Salarios | $93,000 |
 | Operativo | $4,740 |
 | Marketing | $11,000 |
 | Legal / misc | $3,000 |
-| **Total año 1** | **$116,390** |
+| **Total año 1** | **$111,740** |
 
 ---
 
@@ -81,9 +81,9 @@ status: "borrador"
 | | Año 1 | Año 2 | Año 3 |
 |---|:-----:|:-----:|:-----:|
 | Ingresos | $12,000 | $112,000 | $410,000 |
-| Costos operativos | $116,390 | $145,000 | $180,000 |
-| **Utilidad / (Pérdida)** | **($104,390)** | **($33,000)** | **$230,000** |
-| Margen neto | -870% | -29% | 56% |
+| Costos operativos | $111,740 | $140,000 | $175,000 |
+| **Utilidad / (Pérdida)** | **($99,740)** | **($28,000)** | **$235,000** |
+| Margen neto | -831% | -25% | 57% |
 
 ---
 
@@ -95,9 +95,9 @@ Si el equipo mantiene sus empleos actuales y dedica solo tiempo parcial los prim
 
 | Concepto | Monto |
 |----------|:-----:|
-| Desarrollo MVP (6 meses part-time) | $27,900 |
+| Desarrollo MVP (4 meses part-time) | $18,600 |
 | Operaciones + marketing (12 meses) | $18,740 |
-| **Total solicitud** | **~$50,000 - $75,000** |
+| **Total solicitud** | **~$40,000 - $60,000** |
 
 ### Opción B: Equipo dedicado completo (recomendada)
 
@@ -105,7 +105,7 @@ Para comprometer al equipo full-time desde el inicio y acelerar:
 
 | Concepto | Monto |
 |----------|:-----:|
-| Salarios 12 meses | $97,650 |
+| Salarios 12 meses | $93,000 |
 | Operaciones + marketing + legal | $18,740 |
 | **Total solicitud** | **~$150,000 - $250,000** |
 

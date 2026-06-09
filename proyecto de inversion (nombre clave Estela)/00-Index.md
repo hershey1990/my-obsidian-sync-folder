@@ -29,7 +29,7 @@ SORT file.name ASC
 
 - [x] **Fase 1:** Formular las 3 ideas
 - [x] **Fase 2:** Evaluación y descarte → Marketplace de Autos + fallback Servicios
-- [ ] **Fase 3:** Plan de negocios (en progreso)
+- [x] **Fase 3:** Plan de negocios (Investigación + Riesgos completados, resto en borrador avanzado)
 - [ ] **Fase 4:** Presentación al inversor
 
 ## Decisiones clave

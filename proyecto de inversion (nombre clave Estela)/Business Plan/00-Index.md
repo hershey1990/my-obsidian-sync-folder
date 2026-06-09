@@ -18,4 +18,5 @@
 | `08-Competitive-Analysis.md` | 🟢 Borrador | Competidores directos e indirectos |
 | `09-Financial-Projections.md` | 🟢 Borrador avanzado | Proyecciones 3 años, funding $150-250K |
 | `10-Team.md` | 🟢 Borrador | Gershell Lopez + equipo de 7 personas |
-| `Research/` | 🟡 Completado | 5 docs con fuentes citadas (parque vehicular, mercado, digital, remesas, competencia) |
+| `11-Risk-Analysis.md` | 🟡 Completado | 5 categorías, mitigaciones, planes de contingencia |
+| `Research/` | 🟡 Completado | 5 docs con fuentes citadas |
