@@ -1,0 +1,19 @@
+filters:
+  and:
+    - file.inFolder("Yu-Gi-Oh Brain/Ideas")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Ideas
+    order:
+      - file.name
+      - arquetipos_base
+      - origen
+      - estado
+      - fecha
+    sort:
+      - property: estado
+        direction: ASC
+      - property: fecha
+        direction: DESC
+    limit: 200

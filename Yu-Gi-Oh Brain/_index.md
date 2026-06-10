@@ -8,34 +8,20 @@ tags:
 
 Base de conocimiento personal para Master Duel.
 
-## Arquetipos
+## Bases de datos
 
-- [[Arquetipos/Arquetipo - Dark Magician|Dark Magician]] — activo
-- [[Arquetipos/Arquetipo - Red-Eyes|Red-Eyes]] — activo
-- [[Arquetipos/Arquetipo - Monarchs|Monarchs]] — activo
-- [[Arquetipos/Arquetipo - Gaia|Gaia]] — explorando
-
-## Mazos
-
-- [[Mazos/Mazo - Dark Magician|Dark Magician]] — optimizado
-- [[Mazos/Mazo - Red-Eyes Metalmorph|Red-Eyes Metalmorph]] — optimizado
-- [[Mazos/Mazo - Monarchs|Monarchs]] — optimizado
-
-## Ideas
-
-- [[Ideas/Idea - Dark Magician + Monarchs|Dark Magician + Monarchs]] — pendiente
-- [[Ideas/Idea - Gaia Bystial Rank 8|Gaia Bystial Rank 8]] — pendiente
+| Base | Contenido |
+|---|---|
+| [[Arquetipos/Arquetipos.base\|📊 Arquetipos]] | Tabla con nombre, estado, formato, actualización |
+| [[Mazos/Mazos.base\|📊 Mazos]] | Tabla con arquetipo, estado, dificultad, actualización |
+| [[Ideas/Ideas.base\|📊 Ideas]] | Tabla con arquetipos involucrados, origen, estado, fecha |
 
 ---
 
-### Crear nuevo
+## Acceso rápido
 
-| Tipo | Plantilla |
-|---|---|
-| Arquetipo | `YGO - Arquetipo` |
-| Mazo | `YGO - Mazo` |
-| Idea | `YGO - Idea` |
+**Arquetipos:** [[Arquetipos/Arquetipo - Dark Magician|Dark Magician]] · [[Arquetipos/Arquetipo - Red-Eyes|Red-Eyes]] · [[Arquetipos/Arquetipo - Monarchs|Monarchs]] · [[Arquetipos/Arquetipo - Gaia|Gaia]]
 
-### Bases
+**Mazos:** [[Mazos/Mazo - Dark Magician|Dark Magician]] · [[Mazos/Mazo - Red-Eyes Metalmorph|Red-Eyes Metalmorph]] · [[Mazos/Mazo - Monarchs|Monarchs]]
 
-Abre cada carpeta y usa `Ctrl+P` → **"Bases: Create view"** para ver los datos como tabla, board o calendario. Los campos YAML se detectan automáticamente.
+**Ideas:** [[Ideas/Idea - Dark Magician + Monarchs|DM + Monarchs]] · [[Ideas/Idea - Gaia Bystial Rank 8|Gaia Bystial Rank 8]]

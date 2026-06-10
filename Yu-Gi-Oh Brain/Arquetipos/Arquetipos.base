@@ -1,0 +1,18 @@
+filters:
+  and:
+    - file.inFolder("Yu-Gi-Oh Brain/Arquetipos")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Arquetipos
+    order:
+      - file.name
+      - estado
+      - formato
+      - ultima_actualizacion
+    sort:
+      - property: estado
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    limit: 200

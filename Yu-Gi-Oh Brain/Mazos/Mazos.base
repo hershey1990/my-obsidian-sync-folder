@@ -1,0 +1,19 @@
+filters:
+  and:
+    - file.inFolder("Yu-Gi-Oh Brain/Mazos")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Mazos
+    order:
+      - file.name
+      - arquetipo_principal
+      - estado
+      - dificultad
+      - ultima_actualizacion
+    sort:
+      - property: estado
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    limit: 200
