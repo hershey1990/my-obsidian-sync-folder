@@ -6,47 +6,36 @@ tags:
 
 # Yu-Gi-Oh Brain
 
-Base de conocimiento personal para Master Duel. Arquetipos, mazos, ideas y análisis vía IA.
+Base de conocimiento personal para Master Duel.
 
-[[Arquetipos/Arquetipo - Dark Magician|Dark Magician]] · [[Arquetipos/Arquetipo - Red-Eyes|Red-Eyes]] · [[Arquetipos/Arquetipo - Monarchs|Monarchs]] · [[Arquetipos/Arquetipo - Gaia|Gaia]]
+## Arquetipos
 
-## Navegación
+- [[Arquetipos/Arquetipo - Dark Magician|Dark Magician]] — activo
+- [[Arquetipos/Arquetipo - Red-Eyes|Red-Eyes]] — activo
+- [[Arquetipos/Arquetipo - Monarchs|Monarchs]] — activo
+- [[Arquetipos/Arquetipo - Gaia|Gaia]] — explorando
 
-| Carpeta | Contenido | Acción |
-|---|---|---|
-| `Arquetipos/` | Fichas con mecánica, engine, variantes | Nueva → Plantilla: `YGO - Arquetipo` |
-| `Mazos/` | Deck lists completas, combos, matchups | Nueva → Plantilla: `YGO - Mazo` |
-| `Ideas/` | Ideas generadas (IA/propias) para nuevos decks | Nueva → Plantilla: `YGO - Idea` |
+## Mazos
 
----
+- [[Mazos/Mazo - Dark Magician|Dark Magician]] — optimizado
+- [[Mazos/Mazo - Red-Eyes Metalmorph|Red-Eyes Metalmorph]] — optimizado
+- [[Mazos/Mazo - Monarchs|Monarchs]] — optimizado
 
-## Todos los registros
+## Ideas
 
-```dataview
-TABLE tipo, estado, ultima_actualizacion
-FROM "Yu-Gi-Oh Brain/Arquetipos"
-SORT ultima_actualizacion DESC
-```
-
-```dataview
-TABLE tipo, estado, ultima_actualizacion
-FROM "Yu-Gi-Oh Brain/Mazos"
-SORT ultima_actualizacion DESC
-```
-
-```dataview
-TABLE tipo, estado, fecha
-FROM "Yu-Gi-Oh Brain/Ideas"
-SORT fecha DESC
-```
+- [[Ideas/Idea - Dark Magician + Monarchs|Dark Magician + Monarchs]] — pendiente
+- [[Ideas/Idea - Gaia Bystial Rank 8|Gaia Bystial Rank 8]] — pendiente
 
 ---
 
-## Cuántos tengo
+### Crear nuevo
 
-```dataview
-TABLE length(rows) AS total
-FROM "Yu-Gi-Oh Brain"
-WHERE tipo
-GROUP BY tipo
-```
+| Tipo | Plantilla |
+|---|---|
+| Arquetipo | `YGO - Arquetipo` |
+| Mazo | `YGO - Mazo` |
+| Idea | `YGO - Idea` |
+
+### Bases
+
+Abre cada carpeta y usa `Ctrl+P` → **"Bases: Create view"** para ver los datos como tabla, board o calendario. Los campos YAML se detectan automáticamente.
