@@ -8,17 +8,23 @@ paginate: true
 style: |
   section {
     font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 28px;
+    padding: 25px 60px;
   }
-  h1 { font-size: 2.5em; margin-bottom: 0.2em; }
-  h2 { font-size: 1.6em; margin-bottom: 0.5em; }
-  table { font-size: 0.75em; }
-  li { font-size: 0.85em; }
+  h1 { font-size: 2em; margin-bottom: 0.15em; }
+  h2 { font-size: 1.3em; margin-bottom: 0.3em; }
+  h3 { font-size: 1em; margin-bottom: 0.2em; }
+  p { margin: 0.3em 0; }
+  table { font-size: 0.6em; }
+  table td, table th { padding: 3px 8px; }
+  li { font-size: 0.7em; margin: 0.15em 0; }
+  blockquote { font-size: 0.65em; margin: 0.3em 0; padding: 5px 15px; }
   .columns { display: flex; gap: 1.5em; }
   .columns > div { flex: 1; }
   .highlight { color: #3b82f6; font-weight: bold; }
   .green { color: #22c55e; font-weight: bold; }
-  .big { font-size: 2em; font-weight: bold; }
-  .small { font-size: 0.65em; color: #94a3b8; }
+  .big { font-size: 1.8em; font-weight: bold; }
+  .small { font-size: 0.55em; color: #94a3b8; }
 ---
 
 # Estela
@@ -59,17 +65,15 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 
 | Funcionalidad | FB/Encuentra24 | **Estela** |
 |---------------|:--------------:|:-----------:|
-| Filtros reales de auto (transmisión, motor, combustible) | ❌ | ✅ |
-| Score de condición digital (checklist 30+ puntos) | ❌ | ✅ |
-| Comparación de modelos lado a lado | ❌ | ✅ |
-| Perfiles profesionales de dealer | ❌ | ✅ |
-| Escrow + Inspecciones | ❌ | ✅ (Fase 3) |
+| Filtros reales (transmisión, motor, combustible, tracción) | ❌ | ✅ |
+| Score de condición digital (checklist 30+ puntos con fotos) | ❌ | ✅ |
+| Comparación de modelos y ofertas lado a lado | ❌ | ✅ |
+| Perfiles profesionales de dealer con analytics | ❌ | ✅ |
+| Escrow + Inspecciones programadas | ❌ | ✅ (Fase 3) |
 
-### Demo — Wireframes del MVP
+> 🔗 Wireframes (mostrar manualmente): `Technical/Wireframes/02-search.png` (búsqueda) · `Technical/Wireframes/03-car-detail.png` (detalle + score) · `Technical/Wireframes/01-landing.png` · `Technical/Wireframes/04-publish-wizard.png`
 
-![Búsqueda con filtros](../Technical/Wireframes/02-search.png) ![Car Detail + Condition Score](../Technical/Wireframes/03-car-detail.png)
-
-<!-- speaker: Mientras que en Facebook buscás autos como buscás una lámpara usada, en Estela podés filtrar por transmisión, combustible, tracción. Cada auto tiene un Score de Condición basado en un checklist de 30+ puntos con fotos. Podés comparar modelos lado a lado — un Yaris 2018 vs un City 2018. Esto no existe hoy en Nicaragua. -->
+<!-- speaker: Mientras que en Facebook buscás autos como buscás una lámpara usada, en Estela podés filtrar por transmisión, combustible, tracción. Cada auto tiene un Score de Condición basado en un checklist de 30+ puntos con fotos. Podés comparar modelos lado a lado — un Yaris 2018 vs un City 2018. Esto no existe hoy en Nicaragua. Enseñar los wireframes manualmente durante esta slide. -->
 
 ---
 
@@ -79,7 +83,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 
 **Vendedor** (particular o dealer) → publica auto + fotos + checklist de condición
 
-**Estela** → búsqueda inteligente + score 1-100 + comparación modelos/ofertas + contacto seguro
+**Estela** → búsqueda inteligente + score 1-100 + comparación + contacto
 
 **Comprador** → busca, compara, contacta
 
@@ -99,12 +103,12 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 
 ## Slide 4: Mercado
 
-**TAM $400-800M** (Nicaragua) → **TAM Regional $7B+** (Centroamérica)
+**TAM $400-800M** (Nicaragua) → **$7B+** (Centroamérica)
 → **SAM Digital $320-640M** (80% online) → **SOM Año 3: ~$500K** (2%)
 
 | Indicador | Valor | Fuente |
 |-----------|:-----:|--------|
-| Parque vehicular Nicaragua | 1.6M (560K autos) | Tránsito Nacional |
+| Parque vehicular | 1.6M (560K autos) | Tránsito Nacional |
 | % comprados usados | **57%** | Investigación Interactiva |
 | Usuarios internet | **4.89M (69.6%)** | DataReportal 2026 |
 | Remesas (2024) | **$5,243M** → motor de demanda | BCN |
@@ -112,10 +116,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 
 | País | Mercado usado |
 |------|:--------------:|
-| Guatemala | $4B+ |
-| Costa Rica | $1.2B+ |
-| Honduras | $800M+ |
-| El Salvador | $700M+ |
+| Guatemala $4B+ · Costa Rica $1.2B+ · Honduras $800M+ · El Salvador $700M+ |
 
 <!-- speaker: El mercado de autos usados en Nicaragua mueve entre 400 y 800 millones de dólares al año. Crece al 28% anual. El 80% de los compradores usa canales digitales — pero las herramientas son genéricas. Centroamérica suma más de 7 mil millones. Nicaragua además recibe más de 5 mil millones en remesas al año — parte importante se destina a autos. -->
 
@@ -142,7 +143,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 | Dealer Pro | $70 | **$790** | **11.3x** | ~1 mes |
 | Dealer Básico | $40 | **$232** | **5.8x** | ~1.4 meses |
 
-> CPM en Nicaragua: **$0.40** — cada dólar de marketing rinde más.
+> CPM Nicaragua: **$0.40** — cada dólar de marketing rinde más que en cualquier mercado desarrollado.
 
 <!-- speaker: Primero usuarios, después ingresos. Los primeros 6 meses todo es gratis. En Fase 2 activamos suscripciones para dealers con LTV/CAC de 5.8x a 11.3x — los dealers que pagan se recuperan en menos de 2 meses. En Fase 3 llegamos a márgenes del 90% con escrow e inspecciones. Y el CPM es de solo 40 centavos. -->
 
@@ -152,7 +153,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 
 ## Slide 6: Competencia
 
-**Mapa competitivo:** Alta especialización + Alta confianza
+**Mapa competitivo:** Alta especialización + alta confianza
 
 | Baja especialización | **Alta especialización** |
 |:--------------------:|:------------------------:|
@@ -180,7 +181,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 |-----------|---------|
 | Full-stack developer | TypeScript, React, Node.js, Laravel |
 | Arquitecto de software | Experiencia en sistemas productivos |
-| **Fanático de autos** | Inspecciona por hobby — conoce el dolor |
+| **Fanático de autos** | Inspecciona por hobby — conoce el dolor del comprador |
 | Lidera equipo | 7 personas trabajando juntas hoy |
 
 | Rol | Cant. | Experiencia |
@@ -198,19 +199,10 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 
 ## Slide 8: Roadmap + Tracción
 
-**Mes 0** — Seed cerrado
-
-**Meses 1-4** — Desarrollo MVP part-time (50%) + 1 mes buffer
-→ Setup → CRUD → Búsqueda → Checklist → Comparación
-
-**Mes 4** — 🚀 **Lanzamiento público** (part-time → full-time)
-
-**Meses 5-6** — Onboarding dealers + primeras transacciones
-
-**Meses 7-9** — Escrow + inspecciones + IA fotos
-
-**Meses 10-12** — App nativa + inicio expansión regional
-
+**Mes 0** — Seed cerrado · **Mes 1-4** — Desarrollo MVP part-time (50%) + 1 mes buffer
+**Mes 4** — 🚀 **Lanzamiento público** (full-time)
+**Mes 5-6** — Onboarding dealers · **Mes 7-9** — Escrow + inspecciones
+**Mes 10-12** — App nativa + inicio expansión regional
 **Mes 12** — 🏁 **2,000 autos + $1,500+/mes MRR**
 
 ### Tracción proyectada
@@ -237,16 +229,10 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 | **Resultado** | **($100K)** | **($28K)** | **+$235K** |
 | Margen | -831% | -25% | **+57%** |
 
-### Detalle Año 3
-
-| Fuente | Ingreso |
-|--------|:-------:|
-| Premium particulares | $60,000 |
-| Suscripción dealers | $120,000 |
-| Escrow (3-5%) | $150,000 |
-| Inspecciones | $50,000 |
-| Publicidad | $30,000 |
-| **Total** | **$410,000** |
+| Fuente Año 3 | Ingreso |
+|--------------|:-------:|
+| Premium particulares $60K · Suscripción dealers $120K · Escrow $150K | |
+| Inspecciones $50K · Publicidad $30K | **Total $410K** |
 
 | Escenario | Ingreso Año 3 |
 |:---------:|:-------------:|
@@ -254,7 +240,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 | **Base** | **$410K (+$235K)** |
 | Optimista | $700K (+$525K) |
 
-<!-- speaker: Llegamos a break-even al final del año 2 y somos rentables en año 3 con margen del 57%. Incluso en el escenario pesimista — con el doble de CAC y la mitad de conversiones — el negocio no quiebra. Las 5 fuentes de ingreso nos protegen. -->
+<!-- speaker: Llegamos a break-even al final del año 2 y somos rentables en año 3 con margen del 57%. Incluso en el escenario pesimista — con el doble de CAC y la mitad de conversiones — el negocio no quiebra. Las 5 fuentes de ingreso nos protegen: no dependemos de una sola línea. -->
 
 ---
 
@@ -263,19 +249,12 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 ## Slide 10: El Ask + Términos + Salida
 
 **Solicitamos $150,000 - $250,000 (Seed)**
-
-- **Salarios** (7 personas, 12 meses) — 78%
-- **Marketing** — 9% · **Infraestructura** — 4%
-- **Legal** — 3% · **Reserva** — 6%
+Salarios 78% · Marketing 9% · Infra 4% · Legal 3% · Reserva 6%
 
 | Término | Valor |
 |---------|-------|
-| Pre-money | **$700K** |
-| Inversión objetivo | **$200K** |
-| Dilución | **22.2%** |
-| Instrumento | **SAFE (YC standard)** |
-| Valuation Cap | **$1.5M** · Discount 20% |
-| Runway | **18-24 meses** |
+| Pre-money **$700K** · Inversión **$200K** · Dilución **22.2%** |
+| Instrumento **SAFE** (YC) · Cap **$1.5M** · Discount 20% · Runway **18-24m** |
 
 | Escenario | Prob. | Retorno inversor |
 |:---------:|:-----:|:----------------:|
@@ -284,7 +263,7 @@ Pre-money: **$700K** | SAFE (Cap **$1.5M**, 20% discount)
 | Dividendos/Buyback | 35% | **$200-400K (1-2x)** |
 | **Expected Value** | | **~$1.15M (5.8x)** |
 
-<!-- speaker: Estamos levantando entre 150 y 250 mil dólares en SAFE con pre-money de 700K y cap de millón y medio. 78% va a salarios del equipo por 12 meses. Runway de 18-24 meses. El valor esperado para el inversor es de 5.8x en 3-5 años. Seis razones: mercado real de $400M, founder-market fit, equipo listo, ejecución lean, múltiples fuentes de ingreso, y camino claro a rentabilidad. -->
+<!-- speaker: Estamos levantando entre 150 y 250 mil dólares en SAFE con pre-money de 700K y cap de millón y medio. 78% va a salarios del equipo por 12 meses. Runway de 18-24 meses. El valor esperado para el inversor es de 5.8x en 3-5 años. Mercado real de $400M, founder-market fit, equipo listo, ejecución lean, múltiples fuentes de ingreso, y camino claro a rentabilidad. -->
 
 ---
 
