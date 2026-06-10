@@ -29,6 +29,15 @@ Ej: `Arquetipo - Dark Magician.md`, `Mazo - Red-Eyes Metalmorph.md`
 
 ## Work Guidance
 
+### Regla fundamental: vault first
+- ANTES de crear cualquier mazo, idea o análisis:
+  1. Leer arquetipos existentes en la base (`Yu-Gi-Oh Brain/Arquetipos/`)
+  2. Leer mazos existentes (`Yu-Gi-Oh Brain/Mazos/`)
+  3. Leer ideas existentes (`Yu-Gi-Oh Brain/Ideas/`) — evitar duplicados
+  4. Solo si falta información actual (banlist, sets nuevos, top cuts), buscar en web
+- El vault es la fuente de verdad. La web es complemento, no origen.
+- No generar contenido basado en training data interna si contradice o ignora lo que ya está en el vault.
+
 ### Cómo alimentar la base
 1. Usuario proporciona URL (masterduelmeta.com, ygoprodeck.com, yugipedia.com) o deck list
 2. IA extrae: arquetipo principal, engine, variantes, deck list, posición en meta
