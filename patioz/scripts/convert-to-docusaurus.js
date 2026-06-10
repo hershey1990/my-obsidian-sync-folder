@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SOURCE_DIR = path.resolve(__dirname, '..', 'patioz');
+const SOURCE_DIR = path.resolve(__dirname, '..');
 const TARGET_DIR = path.resolve(__dirname, '..', 'recruitment-docs', 'docs', 'patioz-docs');
 
 const stats = {

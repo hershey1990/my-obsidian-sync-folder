@@ -20,4 +20,5 @@
 | `10-Team.md` | 🟢 Borrador | Gershell Lopez + equipo de 7 personas |
 | `11-Risk-Analysis.md` | 🟡 Completado | 5 categorías, mitigaciones, planes de contingencia |
 | `12-Unit-Economics.md` | 🟡 Completado | CAC/LTV por segmento, sensibilidad, palancas |
+| `13-Cap-Table.md` | 🟡 Completado | Estructura legal, SAFE, pre-money $700K, dilución 22%, IP Assignment |
 | `Research/` | 🟡 Completado | 5 docs con fuentes citadas |
