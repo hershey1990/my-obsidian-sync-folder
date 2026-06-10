@@ -21,4 +21,5 @@
 | `11-Risk-Analysis.md` | 🟡 Completado | 5 categorías, mitigaciones, planes de contingencia |
 | `12-Unit-Economics.md` | 🟡 Completado | CAC/LTV por segmento, sensibilidad, palancas |
 | `13-Cap-Table.md` | 🟡 Completado | Estructura legal, SAFE, pre-money $700K, dilución 22%, IP Assignment |
+| `14-Exit-Strategy.md` | 🟡 Completado | Serie A, adquisición, dividendos, matriz de escenarios, expected value 5.8x |
 | `Research/` | 🟡 Completado | 5 docs con fuentes citadas |
