@@ -8,6 +8,8 @@ tags:
 
 Base de conocimiento personal para Master Duel. Arquetipos, mazos, ideas y análisis vía IA.
 
+[[Arquetipos/Arquetipo - Dark Magician|Dark Magician]] · [[Arquetipos/Arquetipo - Red-Eyes|Red-Eyes]] · [[Arquetipos/Arquetipo - Monarchs|Monarchs]] · [[Arquetipos/Arquetipo - Gaia|Gaia]]
+
 ## Navegación
 
 | Carpeta | Contenido | Acción |
@@ -16,63 +18,35 @@ Base de conocimiento personal para Master Duel. Arquetipos, mazos, ideas y anál
 | `Mazos/` | Deck lists completas, combos, matchups | Nueva → Plantilla: `YGO - Mazo` |
 | `Ideas/` | Ideas generadas (IA/propias) para nuevos decks | Nueva → Plantilla: `YGO - Idea` |
 
+---
+
 ## Todos los registros
 
 ```dataview
-TABLE
-  tipo AS Tipo,
-  estado AS Estado,
-  ultima_actualizacion AS Actualizado
-FROM "Yu-Gi-Oh Brain"
-WHERE tipo
+TABLE tipo, estado, ultima_actualizacion
+FROM "Yu-Gi-Oh Brain/Arquetipos"
 SORT ultima_actualizacion DESC
+```
+
+```dataview
+TABLE tipo, estado, ultima_actualizacion
+FROM "Yu-Gi-Oh Brain/Mazos"
+SORT ultima_actualizacion DESC
+```
+
+```dataview
+TABLE tipo, estado, fecha
+FROM "Yu-Gi-Oh Brain/Ideas"
+SORT fecha DESC
 ```
 
 ---
 
-## Mazos por estado
+## Cuántos tengo
 
 ```dataview
-TABLE
-  rows.nombre AS Mazo,
-  rows.dificultad AS Dificultad
-FROM "Yu-Gi-Oh Brain/Mazos"
-WHERE tipo = "mazo"
-GROUP BY estado AS Estado
-SORT Estado ASC
-```
-
-## Arquetipos
-
-```dataview
-TABLE
-  nombre AS Arquetipo,
-  estado AS Estado,
-  ultima_actualizacion AS Actualizado
-FROM "Yu-Gi-Oh Brain/Arquetipos"
-WHERE tipo = "arquetipo"
-SORT estado ASC, nombre ASC
-```
-
-## Ideas pendientes
-
-```dataview
-TABLE
-  nombre AS Idea,
-  arquetipos_base AS Arquetipos,
-  origen AS Origen
-FROM "Yu-Gi-Oh Brain/Ideas"
-WHERE estado = "pendiente" OR estado = "probar"
-SORT fecha ASC
-```
-
-## Estadísticas
-
-```dataview
-TABLE
-  length(rows) AS Cantidad
+TABLE length(rows) AS total
 FROM "Yu-Gi-Oh Brain"
 WHERE tipo
-GROUP BY tipo AS Tipo
-SORT Tipo ASC
+GROUP BY tipo
 ```
