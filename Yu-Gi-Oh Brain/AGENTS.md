@@ -50,6 +50,15 @@ Ej: `Arquetipo - Dark Magician.md`, `Mazo - Red-Eyes Metalmorph.md`
 3. Proponer combinaciones con: premisa, core combo, deck list sugerida, viabilidad
 4. Crear nota en Ideas/ con tipo: idea, origen: ia
 
+### Consulta de fuentes (Referencias/)
+- ANTES de generar cualquier contenido que requiera data actual:
+  1. Leer `Referencias/Referencias.base` — obtener URLs activas por categoría
+  2. Si la referencia tiene prioridad **alta** y la data puede estar desactualizada → hacer webfetch
+  3. Si la referencia es **banlist** → siempre consultar antes de armar un mazo
+  4. Si una URL no responde → marcarla en la nota y no re-intentar en la sesión
+- El vault es fuente de verdad para arquetipos ya documentados
+- Las referencias son para **actualizar** (banlist, top cuts nuevos) o **crear** (arquetipos nuevos)
+
 ### Fuentes autorizadas
 - masterduelmeta.com — tier lists, decks ganadores, tech stats
 - ygoprodeck.com — deck lists, precios, top cuts
@@ -72,3 +81,4 @@ Ej: `Arquetipo - Dark Magician.md`, `Mazo - Red-Eyes Metalmorph.md`
 | `Mazos/AGENTS.md` | Deck lists |
 | `Ideas/AGENTS.md` | Ideas generadas (IA/propias) |
 | `Plantillas/AGENTS.md` | Reglas de templates |
+| `Referencias/AGENTS.md` | Fuentes web (banlist, tier lists, decks) |

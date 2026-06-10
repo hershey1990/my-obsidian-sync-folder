@@ -17,3 +17,9 @@ Base de conocimiento personal para Master Duel.
 ---
 
 ![[Ideas/Ideas.base]]
+
+---
+
+## Consultas
+
+![[Referencias/Referencias.base]]

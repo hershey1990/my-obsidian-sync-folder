@@ -1,0 +1,19 @@
+filters:
+  and:
+    - file.inFolder("Yu-Gi-Oh Brain/Referencias")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Fuentes
+    order:
+      - file.name
+      - categoria
+      - prioridad
+      - ultima_consulta
+      - url
+    sort:
+      - property: prioridad
+        direction: ASC
+      - property: categoria
+        direction: ASC
+    limit: 200
