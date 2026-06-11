@@ -43,15 +43,14 @@ El board vive en `Board/Kanban.md` usando el plugin **Kanban** (obsidian communi
 ### Fases (orden lógico programable)
 | Fase | Módulo | Depende de |
 |---|---|---|
-| 0 | Cimientos (monorepo, Laravel, design system) | — |
-| 1 | Auth (users, landing, login/register) | Fase 0 |
+| 1 | Auth (users, landing, login/register) | — |
 | 2 | Cars CRUD (modelo, API, publish wizard) | Fase 1 |
 | 3 | Search (tsvector, filtros, mapa, geocoding) | Fase 2 |
 | 4 | Condition Score (checklist, score 1-100) | Fase 2 |
 | 5 | Comparison (model specs, comparativa) | Fase 2 |
 | 6 | Dealers + Monetización (perfiles, planes, pagos) | Fase 1, 2 |
 | 7 | Contact + Favoritos (contacto, email, favs) | Fase 1, 2 |
-| 8 | Admin (backoffice, moderación) | Fase 0, 1, 2, 6 |
+| 8 | Admin (backoffice, moderación) | Fase 1, 2, 6 |
 | 9 | Polish + Launch (SEO, monitoreo, seed, launch) | Todo |
 
 > **Principio:** Cada fase es una vertical slice completa. Ninguna fase depende de una fase posterior.
