@@ -21,7 +21,7 @@ kanban-plugin: board
 
 ## 👨‍💻 Planning
 
-- [ ] [[Definiciones/00-Cimientos|🏗 Fase 0: Cimientos]]
+- [ ] [[Board/00-Cimientos|🏗 Fase 0: Cimientos]]
 - [ ] [[Definiciones/01-Auth|🔐 Fase 1: Auth]]
 - [ ] [[Board/02-Cars-CRUD|🚗 Fase 2: Cars CRUD]]
 
