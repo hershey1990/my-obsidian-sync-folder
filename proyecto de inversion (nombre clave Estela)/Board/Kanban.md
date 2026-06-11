@@ -1,10 +1,12 @@
 ---
 
-kanban-plugin: basic
+kanban-plugin: board
 
 ---
 
-# 🎯 Board de Planificación — Estela
+## 🎯 Board de Planificación — Estela
+
+
 
 ## 📥 Backlog
 
@@ -16,10 +18,22 @@ kanban-plugin: basic
 - [ ] [[Board/08-Admin|🔧 Fase 8: Admin]]
 - [ ] [[Board/09-Polish-Launch|🚀 Fase 9: Polish + Launch]]
 
+
 ## 👨‍💻 Planning
 
 - [ ] [[Definiciones/00-Cimientos|🏗 Fase 0: Cimientos]]
 - [ ] [[Definiciones/01-Auth|🔐 Fase 1: Auth]]
 - [ ] [[Board/02-Cars-CRUD|🚗 Fase 2: Cars CRUD]]
 
+
 ## ✅ Done
+
+
+
+
+
+%% kanban:settings
+```
+{"kanban-plugin":"board"}
+```
+%%
