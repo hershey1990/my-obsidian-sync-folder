@@ -4,7 +4,7 @@ kanban-plugin: basic
 
 ---
 
-# 🎯 Board de Desarrollo — Estela
+# 🎯 Board de Planificación — Estela
 
 ## 📥 Backlog
 
@@ -42,26 +42,25 @@ kanban-plugin: basic
 - [ ] [[TSK-027]] Beta testing + seed data
 - [ ] [[TSK-028]] Launch checklist
 
-## 📝 Planning
+## 👨‍💻 Planning
 
 ### 🏗 Fase 0: Cimientos
 - [ ] [[TSK-001]] Setup monorepo (Turborepo)
 - [ ] [[TSK-002]] Setup Laravel + Supabase
 - [ ] [[TSK-003]] Design system (shadcn/ui)
+- [ ] [[Definiciones/00-Cimientos]] Definición del módulo
 
 ### 🔐 Fase 1: Auth
 - [ ] [[TSK-004]] Users domain + Auth API
 - [ ] [[TSK-005]] Landing + Auth pages
+- [ ] [[Definiciones/01-Auth]] Definición del módulo
 
 ### 🚗 Fase 2: Cars CRUD
 - [ ] [[TSK-006]] Cars domain + migrations
 - [ ] [[TSK-007]] Car CRUD API + photo upload
 - [ ] [[TSK-008]] Publish wizard + Car detail
+- [ ] [[Definiciones/02-Cars-CRUD]] Definición del módulo
 
-## ⏳ Blocked
+## ✅ Done
 
-*(Mover cards aquí cuando estén listos pero bloqueados por dependencia)*
-
-## ✅ Planned
-
-*(Mover cards aquí cuando estén completamente detallados, estimados y sin blockers — listos para que un dev los tome)*
+*(Mover fases aquí cuando estén completamente planeadas: definición + tasks detalladas)*

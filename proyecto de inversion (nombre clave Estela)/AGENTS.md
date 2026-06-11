@@ -28,17 +28,17 @@ El board vive en `Board/Kanban.md` usando el plugin **Kanban** (obsidian communi
 ### Columnas
 | Columna | Propósito |
 |---|---|
-| 📥 Backlog | Tasks identificadas pero sin planificar activamente |
-| 📝 Planning | Tasks en desglose y estimación |
-| ⏳ Blocked | Tasks listas pero bloqueadas por dependencia |
-| ✅ Planned | Tasks completamente detalladas, listas para desarrollo |
+| 📥 Backlog | Módulos/tasks identificadas pero sin planificar activamente |
+| 👨‍💻 Planning | Módulo siendo desglosado (definición + tasks) |
+| ✅ Done | Módulo completamente planeado (definición + tasks detalladas + estimadas) |
 
 ### Convenciones
 - Cada task es un `.md` en `Board/<fase>/` con frontmatter YAML
+- Cada módulo tiene una definición en `Definiciones/<id>.md`
 - Los IDs siguen el patrón `TSK-NNN`
 - Las dependencias se declaran en el frontmatter (`dependencias: ["TSK-XXX"]`)
 - Mover un card entre columnas = arrastrarlo en el Kanban
-- Cuando un task pasa a `✅ Planned`, está listo para asignar a un dev
+- Un módulo pasa a `✅ Done` cuando tiene su definición + todas sus tasks detalladas
 
 ### Fases (orden lógico programable)
 | Fase | Módulo | Depende de |
