@@ -8,59 +8,18 @@ kanban-plugin: basic
 
 ## 📥 Backlog
 
-### 🔍 Fase 3: Search
-- [ ] [[TSK-009]] Search index + filters backend
-- [ ] [[TSK-010]] Geocoding (Nominatim + PostGIS)
-- [ ] [[TSK-011]] Search page + filters + map UI
-- [ ] [[TSK-012]] Autocomplete + suggestions
-
-### 📋 Fase 4: Condition Score
-- [ ] [[TSK-013]] Checklist domain + CalculateScoreService
-- [ ] [[TSK-014]] Checklist UI + Score visualization
-
-### ⚖️ Fase 5: Comparison
-- [ ] [[TSK-015]] Model specs catalog + seed
-- [ ] [[TSK-016]] Compare service + page UI
-
-### 💰 Fase 6: Dealers + Monetización
-- [ ] [[TSK-017]] Dealer domain + profiles API
-- [ ] [[TSK-018]] Dealer dashboard frontend
-- [ ] [[TSK-019]] Payments + subscriptions
-
-### ✉️ Fase 7: Contact + Favoritos
-- [ ] [[TSK-020]] Contact seller + email
-- [ ] [[TSK-021]] Favorites system
-- [ ] [[TSK-022]] User dashboard + profile
-
-### 🔧 Fase 8: Admin
-- [ ] [[TSK-023]] Admin app scaffolding + auth
-- [ ] [[TSK-024]] Moderate listings + manage users
-
-### 🚀 Fase 9: Polish + Launch
-- [ ] [[TSK-025]] SEO (metadata, sitemap, OG)
-- [ ] [[TSK-026]] Performance + Sentry monitoring
-- [ ] [[TSK-027]] Beta testing + seed data
-- [ ] [[TSK-028]] Launch checklist
+- [ ] [[Board/03-Search|🔍 Fase 3: Search]]
+- [ ] [[Board/04-Condition-Score|📋 Fase 4: Condition Score]]
+- [ ] [[Board/05-Comparison|⚖️ Fase 5: Comparison]]
+- [ ] [[Board/06-Dealers|💰 Fase 6: Dealers + Monetización]]
+- [ ] [[Board/07-Contact-Favs|✉️ Fase 7: Contact + Favoritos]]
+- [ ] [[Board/08-Admin|🔧 Fase 8: Admin]]
+- [ ] [[Board/09-Polish-Launch|🚀 Fase 9: Polish + Launch]]
 
 ## 👨‍💻 Planning
 
-### 🏗 Fase 0: Cimientos
-- [ ] [[TSK-001]] Setup monorepo (Turborepo)
-- [ ] [[TSK-002]] Setup Laravel + Supabase
-- [ ] [[TSK-003]] Design system (shadcn/ui)
-- [ ] [[Definiciones/00-Cimientos]] Definición del módulo
-
-### 🔐 Fase 1: Auth
-- [ ] [[TSK-004]] Users domain + Auth API
-- [ ] [[TSK-005]] Landing + Auth pages
-- [ ] [[Definiciones/01-Auth]] Definición del módulo
-
-### 🚗 Fase 2: Cars CRUD
-- [ ] [[TSK-006]] Cars domain + migrations
-- [ ] [[TSK-007]] Car CRUD API + photo upload
-- [ ] [[TSK-008]] Publish wizard + Car detail
-- [ ] [[Definiciones/02-Cars-CRUD]] Definición del módulo
+- [ ] [[Definiciones/00-Cimientos|🏗 Fase 0: Cimientos]]
+- [ ] [[Definiciones/01-Auth|🔐 Fase 1: Auth]]
+- [ ] [[Board/02-Cars-CRUD|🚗 Fase 2: Cars CRUD]]
 
 ## ✅ Done
-
-*(Mover fases aquí cuando estén completamente planeadas: definición + tasks detalladas)*
