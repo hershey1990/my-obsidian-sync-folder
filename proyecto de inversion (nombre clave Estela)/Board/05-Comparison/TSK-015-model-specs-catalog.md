@@ -3,7 +3,7 @@ id: TSK-015
 fase: 5
 modulo: Comparison
 prioridad: alta
-dependencias: ["TSK-002"]
+dependencias: []
 estimado: 2d
 ---
 

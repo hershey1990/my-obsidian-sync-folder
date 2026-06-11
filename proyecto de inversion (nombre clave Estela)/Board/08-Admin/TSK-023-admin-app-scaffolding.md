@@ -3,7 +3,7 @@ id: TSK-023
 fase: 8
 modulo: Admin
 prioridad: media
-dependencias: ["TSK-001", "TSK-003", "TSK-004"]
+dependencias: ["TSK-004"]
 estimado: 2d
 ---
 

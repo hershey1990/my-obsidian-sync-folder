@@ -3,7 +3,7 @@ id: TSK-008
 fase: 2
 modulo: Cars CRUD
 prioridad: alta
-dependencias: ["TSK-003", "TSK-005", "TSK-007"]
+dependencias: ["TSK-005", "TSK-007"]
 estimado: 4d
 ---
 

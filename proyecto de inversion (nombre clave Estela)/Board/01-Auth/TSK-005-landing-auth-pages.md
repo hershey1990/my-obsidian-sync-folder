@@ -3,7 +3,7 @@ id: TSK-005
 fase: 1
 modulo: Auth
 prioridad: alta
-dependencias: ["TSK-001", "TSK-003", "TSK-004"]
+dependencias: ["TSK-004"]
 estimado: 3d
 ---
 

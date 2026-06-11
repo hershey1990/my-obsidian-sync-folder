@@ -3,7 +3,7 @@ id: TSK-011
 fase: 3
 modulo: Search
 prioridad: alta
-dependencias: ["TSK-003", "TSK-008", "TSK-009"]
+dependencias: ["TSK-008", "TSK-009"]
 estimado: 3d
 ---
 
