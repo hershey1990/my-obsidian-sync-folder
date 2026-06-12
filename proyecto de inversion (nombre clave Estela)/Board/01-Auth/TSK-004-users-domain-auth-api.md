@@ -22,7 +22,6 @@ Modelo de usuarios, integración con spatie/laravel-permission y endpoints de au
 
 ### Domain
 - `User.php` — Eloquent Model (id, name, email, phone, password, avatar, verified_at)
-  - NO incluye columna `role` — se asigna via spatie (`model_has_roles`)
   - HasRoles trait de spatie
   - HasApiTokens trait de Sanctum
   - Mutator: password hasheado al setear
@@ -37,11 +36,11 @@ Modelo de usuarios, integración con spatie/laravel-permission y endpoints de au
 
 ### Application
 - `RegisterUserService.php`
-  - Recibe RegisterUserRequest (DTO o array)
+  - Recibe RegisterUserRequest
   - Valida reglas de negocio (email único, password policy, teléfono)
   - Crea User + assignRole('buyer')
   - Crea token Sanctum
-  - Devuelve User + token
+  - Devuelve User + role + token
 - `LoginService.php`
   - Valida credenciales
   - Crea token Sanctum
@@ -52,7 +51,7 @@ Modelo de usuarios, integración con spatie/laravel-permission y endpoints de au
   - Devuelve User autenticado con role
 
 ### Presentation
-- `RegisterUserRequest.php` — Form Request con reglas de validación
+- `RegisterUserRequest.php` — Form Request
   - name: required, string, max:255
   - email: required, email, unique:users
   - phone: required, string, regex:/^\+505\d{8}$/
@@ -69,27 +68,20 @@ Modelo de usuarios, integración con spatie/laravel-permission y endpoints de au
   - POST /api/v1/auth/logout (auth:sanctum)
 
 ### Infrastructure
-- Spatie migration publicada (tablas: roles, permissions, model_has_roles, model_has_permissions, role_has_permissions)
+- Spatie migration publicada (roles, permissions, model_has_roles, model_has_permissions, role_has_permissions)
 - `RolePermissionSeeder.php` — seeders con permisos y roles según ADR-004
 - Sanctum config: token expiración 24h
 
 ### Tests (Pest)
-- `Unit/Domain/Users/PhoneNumberTest.php` — validación de formato
-- `Feature/Api/V1/Auth/RegisterTest.php` — registro exitoso, email duplicado, password débil
-- `Feature/Api/V1/Auth/LoginTest.php` — login exitoso, credenciales inválidas, rate limiting
-- `Feature/Api/V1/Auth/MeTest.php` — token válido, token inválido, token expirado
-- `Feature/Api/V1/Auth/LogoutTest.php` — logout exitoso, token revocado post-logout
-
-## Dependencias técnicas
-
-| Dependencia | Comando | Propósito |
-|---|---|---|
-| spatie/laravel-permission | `composer require spatie/laravel-permission` | RBAC |
-| Pest | Ya incluido en Laravel 11 | Testing |
+- `Unit/Domain/Users/PhoneNumberTest.php`
+- `Feature/Api/V1/Auth/RegisterTest.php`
+- `Feature/Api/V1/Auth/LoginTest.php`
+- `Feature/Api/V1/Auth/MeTest.php`
+- `Feature/Api/V1/Auth/LogoutTest.php`
 
 ## Criterios de aceptación
 
-1. POST /api/v1/auth/register crea usuario con role `buyer`, devuelve 201 + token
+1. POST /api/v1/auth/register crea usuario con role `buyer`, devuelve 201 + user + token
 2. POST /api/v1/auth/register rechaza email duplicado con 422
 3. POST /api/v1/auth/register rechaza password débil con 422
 4. POST /api/v1/auth/register rechaza teléfono inválido con 422
