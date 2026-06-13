@@ -218,12 +218,12 @@ docs.gettalento.com/
 
 ## Próximos pasos
 
-- [ ] Crear aplicación OIDC en Zoho API Console
-- [ ] Aprovisionar servidor con Docker
-- [ ] Configurar `docker-compose.yml` con variables de entorno
-- [ ] Configurar dominio y SSL
-- [ ] Hacer deploy de Outline
-- [ ] Probar login con Zoho
+- [x] Crear aplicación OIDC en Zoho API Console
+- [x] Aprovisionar servidor con Docker
+- [x] Configurar `docker-compose.yml` con variables de entorno
+- [x] Configurar dominio y SSL
+- [x] Hacer deploy de Outline
+- [x] Probar login con Zoho
 - [ ] Migrar contenido desde Docusaurus
 - [ ] Configurar colecciones y permisos
 - [ ] Comunicar a los miembros de la empresa
