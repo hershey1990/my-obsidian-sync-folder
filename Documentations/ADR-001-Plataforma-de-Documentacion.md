@@ -150,13 +150,13 @@ Requisitos del servidor:
 
 Servicios del stack:
 
-| Servicio | Rol |
-|---|---|
-| `outlinewiki/outline` | Aplicación principal |
-| `postgres:16` | Base de datos |
-| `redis:7` | Cache + sesiones en tiempo real |
-| `minio/minio` | Almacenamiento de archivos (S3-compatible) |
-| `nginx` / `caddy` | Reverse proxy + SSL |
+| Servicio              | Rol                                        |
+| --------------------- | ------------------------------------------ |
+| `outlinewiki/outline` | Aplicación principal                       |
+| `postgres:16`         | Base de datos                              |
+| `redis:7`             | Cache + sesiones en tiempo real            |
+| `minio/minio`         | Almacenamiento de archivos (S3-compatible) |
+| `nginx` / `caddy`     | Reverse proxy + SSL                        |
 
 ### Fase 4: Deploy
 
