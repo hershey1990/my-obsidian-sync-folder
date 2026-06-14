@@ -11,3 +11,4 @@ Vault personal de notas y proyectos. Contiene múltiples áreas independientes.
 | Child | Scope |
 |---|---|
 | `Yu-Gi-Oh Brain/AGENTS.md` | Yu-Gi-Oh Master Duel: database de arquetipos, mazos, ideas |
+| `Talento/Infraestructure Frontend/AGENTS.md` | Control: panel gestión servidores SSH, playbooks, monitoreo |
