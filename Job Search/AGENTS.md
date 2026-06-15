@@ -61,9 +61,9 @@ Después de cada entrevista, registrar entrada en `Retrospectivas.md`.
 |---|---|---|
 | 001 | Posicionamiento Profesional | Aceptado |
 | 002 | Estructura y Narrativa del CV | Aceptado |
-| 003 | Mercado Objetivo | Pendiente |
+| 003 | Mercado Objetivo | Aceptado |
 | 004 | Skills Gap & Learning Path | Pendiente |
-| 005 | Sistema de Seguimiento | Pendiente |
+| 005 | Sistema de Seguimiento | Aceptado |
 
 ## Key Decisions (resumen ejecutivo de ADR-001)
 - **Título target**: "Senior AI Software Engineer" (no "AI Native Engineer" — término no estandarizado en el mercado)
