@@ -62,7 +62,7 @@ Después de cada entrevista, registrar entrada en `Retrospectivas.md`.
 | 001 | Posicionamiento Profesional | Aceptado |
 | 002 | Estructura y Narrativa del CV | Aceptado |
 | 003 | Mercado Objetivo | Aceptado |
-| 004 | Skills Gap & Learning Path | Pendiente |
+| 004 | Skills Gap & Learning Path | Aceptado |
 | 005 | Sistema de Seguimiento | Aceptado |
 
 ## Key Decisions (resumen ejecutivo de ADR-001)
