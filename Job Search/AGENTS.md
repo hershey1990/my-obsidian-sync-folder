@@ -60,7 +60,7 @@ Después de cada entrevista, registrar entrada en `Retrospectivas.md`.
 | ADR | Título | Estado |
 |---|---|---|
 | 001 | Posicionamiento Profesional | Aceptado |
-| 002 | Estructura y Narrativa del CV | Pendiente |
+| 002 | Estructura y Narrativa del CV | Aceptado |
 | 003 | Mercado Objetivo | Pendiente |
 | 004 | Skills Gap & Learning Path | Pendiente |
 | 005 | Sistema de Seguimiento | Pendiente |

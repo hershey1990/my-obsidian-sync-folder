@@ -59,7 +59,23 @@ Ejemplos de transformación:
 
 > *AI-Augmented Software Architect with 15+ years designing scalable systems across Go, Node.js, and cloud-native stacks. Combines deep architecture experience (microservices, hexagonal, event-driven, AWS) with AI tooling integration (LLMs, RAG, MCP, agents) to deliver systems that ship faster, scale reliably, and improve continuously.*
 
-### 5. Core Competencies (3 columnas)
+### 5. AI-Enhanced Projects (borrador final)
+
+Sección nueva que muestra projects personales/internos construidos con AI-augmented workflow.
+
+**Patioz — Real State Platform (Airbnb/Zillow-like)**
+> *Stack: Node.js, NestJS, TypeScript, Supabase, Redis, Next.js, React, TanStack, Monorepo*
+>
+> Architected from scratch using Spec-Driven Development (OpenAPI) with an AI-augmented team of 7 engineers. Designed system architecture (microservices, event-driven), AI tooling pipelines (Copilot, Cline, OpenCode, Supabase MCP), and CI/CD. Leveraged structured prompt workflows and context engineering to accelerate delivery — achieving 40% reduction in task estimation vs. pre-AI baselines.
+> → 1 year active development
+
+**Omnichannel Communication System (Twilio-based Call Center)**
+> *Stack: Node.js, TypeScript, Supabase, Redis, Twilio, TanStack, Vite, Zod*
+>
+> Designed multi-agent chat system with assignment/deassignment flows, unifying multiple communication channels under a single omnichannel architecture. Defined AI-augmented workflows (Spec-Driven Development, MCP, Copilot CLI) across the full stack, enabling the team to spec, build, and iterate 40% faster than traditional development cycles.
+> → In development
+
+### 6. Core Competencies (3 columnas)
 
 ```
 Arquitectura & Cloud:     Microservicios, Hexagonal, Event-Driven, AWS,
@@ -85,7 +101,7 @@ Development Stacks:       Go (Golang), Node.js, TypeScript, React, PHP (Laravel)
 - Positivo: CV escaneable, keywords correctas, diferenciación inmediata
 - Positivo: Sección AI-Enhanced Projects compensa falta de título "AI" en experiencia laboral
 - Riesgo: "Additional Experience" puede verse como ocultar empleos cortos (mitigación: se mantienen visibles, solo más concisos)
-- Pendiente: Los AI-Enhanced Projects se documentarán cuando el autor los proporcione
+- Cerrado: AI-Enhanced Projects documentados (Patioz + Omnichannel) con métricas de 40% reducción
 
 ## Estado
 - [x] Aceptado
