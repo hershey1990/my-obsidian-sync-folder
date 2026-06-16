@@ -15,6 +15,7 @@ Panel web self-hosted para gestionar servidores vía SSH: monitoreo, playbooks d
 | 007 | Arquitectura: **Layered + Action Pattern** | `adrs/ADR-007-arquitectura.md` |
 | 008 | SSH: **SshService con spatie/ssh** | `adrs/ADR-008-ssh-service.md` |
 | 009 | Dev: **Neon como DB local de desarrollo** | `adrs/ADR-009-neon-local-dev.md` |
+| 010 | Frontend: **.tsx en lugar de .jsx** | `adrs/ADR-010-tsx-sobre-jsx.md` |
 
 ## Stack
 | Capa | Tecnología |

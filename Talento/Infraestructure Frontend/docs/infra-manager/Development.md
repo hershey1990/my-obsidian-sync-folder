@@ -104,6 +104,7 @@ infra-manager/
 
 - PSR-12 for PHP code
 - ESLint + Prettier for TypeScript/React
+- All React components use `.tsx` extension (no `.jsx`)
 - Tailwind CSS utility classes for styling
 - shadcn/ui components (do not create custom UI components unless necessary)
 - All SSH credentials must be encrypted before storage
