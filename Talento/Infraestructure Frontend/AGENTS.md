@@ -13,6 +13,7 @@ Panel web self-hosted para gestionar servidores vía SSH: monitoreo, playbooks d
 | 005 | Licencia: **MIT** | `adrs/ADR-005-licencia.md` |
 | 006 | Docs: **Español** (por ahora) | `adrs/ADR-006-lenguaje-documentacion.md` |
 | 007 | Arquitectura: **Layered + Action Pattern** | `adrs/ADR-007-arquitectura.md` |
+| 008 | SSH: **SshService con spatie/ssh** | `adrs/ADR-008-ssh-service.md` |
 
 ## Stack
 | Capa | Tecnología |
