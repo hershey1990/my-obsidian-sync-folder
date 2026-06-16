@@ -31,6 +31,8 @@ Connecting a server requires SSH access with a private key (`.pem`).
 
 After adding a server, run auto-discovery to detect running services.
 
+All SSH operations (test connection, auto-discovery, periodic health checks) go through `SshService` — a centralized service that handles PEM decryption, temporary key files, and command execution via `spatie/ssh`.
+
 The panel executes:
 
 | Command | Purpose |

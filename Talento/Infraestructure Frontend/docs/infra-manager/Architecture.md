@@ -129,3 +129,41 @@ Execution records for auditing and debugging.
 2. Panel runs: `docker ps`, `docker images`, `systemctl`, `ss -tlnp`
 3. Results are parsed and displayed
 4. User confirms discovered services → ServerResources are created
+
+## SshService (spatie/ssh)
+
+Central service wrapping `spatie/ssh` — the critical dependency for all modules that interact with remote servers.
+
+### API
+
+| Method | Description | Consumers |
+|---|---|---|
+| `testConnection(Server): bool` | Verifies SSH connectivity | Servers |
+| `execute(Server, command, timeout): CommandResult` | Synchronous command execution | Playbooks, Health, Resources |
+| `executeAsync(Server, command, onOutput): CommandResult` | Command with live output callback | Playbooks (streaming) |
+| `upload(Server, local, remote): bool` | SCP file upload | Playbooks |
+| `download(Server, remote, local): bool` | SCP file download | Playbooks |
+
+### Connection Flow
+
+1. `pem_key` is decrypted from the database with `Crypt::decryptString()`
+2. Key is written to a temporary file (`sys_get_temp_dir()`, permissions `0600`)
+3. `spatie/ssh` builds the `ssh` command via Symfony Process
+4. Command executes against the remote server
+5. Temp file is always removed (PHP `finally` block)
+
+### Integration
+
+```
+Servers ──► SshService::testConnection()
+Resources ► SshService::execute()          — discovery, health checks
+Playbooks ► SshService::execute/Async()    — ssh steps, streaming output
+         ► SshService::upload/download()   — file transfer
+Health   ► SshService::execute()           — health check commands
+```
+
+### Error Handling
+
+- `CommandResult` DTO with `exitCode`, `output`, `successful()`, `failed()`
+- Timeout per command (default 30s, configurable per call)
+- Connections are non-persistent — each call opens and closes a new session

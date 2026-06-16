@@ -9,6 +9,8 @@ Playbooks are multi-step automation pipelines that can execute commands across S
 
 ## Step Types
 
+SSH steps execute via `SshService` (powered by `spatie/ssh`), which handles PEM decryption, connection, and output streaming. Commands can stream live output to the browser via WebSocket.
+
 | Type | Description | Runs On |
 |---|---|---|
 | **SSH** | Remote command via SSH | Target server |
