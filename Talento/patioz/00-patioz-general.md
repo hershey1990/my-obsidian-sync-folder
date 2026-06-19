@@ -19,6 +19,7 @@ Patioz se ejecuta como un solo proceso Node.js (monolite) que agrupa toda la ló
 - [[mapui-frontend]]
 - [[auth]]
 - [[imgproxy]]
+- [[patioz/adr/009-scheduling-inhouse|scheduling]] — Módulo de agendamiento de visitas (in-house)
 
 ---
 
