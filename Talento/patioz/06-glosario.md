@@ -1,7 +1,7 @@
 ---
 tags:
   - patioz/glosario
-actualizado: 2026-06-18
+actualizado: 2026-06-22
 ---
 # 📖 Glosario de Patioz — Lenguaje Ubicuo
 
@@ -43,6 +43,15 @@ actualizado: 2026-06-18
 | **Twilio** | Servicio de SMS y WhatsApp. Notificaciones al cliente via `TemplateNotificationService`. |
 | **MapUI** | Frontend principal con mapa interactivo. Consume la API del monolite en `/api/v1/*`. |
 | **GeoJSON** | Formato estándar para datos geográficos (polígonos, puntos, líneas). Usado por el módulo `maps` con Turf.js. |
+| **maps module** | Módulo NestJS del monolite que expone endpoints REST para polígonos, geocoding fallback y consultas geográficas con Turf.js. Cachea polígonos frecuentes en Redis. |
+| **locations module** | Módulo NestJS del monolite que gestiona coordenadas de propiedades y entidades. Tabla `locations` con datos geográficos en JSONB. |
+| **Jerarquía de zonas** | Estructura de 5 niveles: País(1) → Departamento(2) → Municipio(3) → Distrito(4) → Zona/Barrio(5). Cada nivel tiene un `parent_id` que referencia al nivel superior. |
+| **Preservación de geometría** | Principio arquitectónico: el polígono catastral local es la fuente de verdad geográfica. Google nunca reemplaza el `geojson` local, solo ajusta metadatos de verificación (verified, confidence, verifiedAt). |
+| **Verificación espacial** | Algoritmo de 3 chequeos encadenados (contención de centroid, ratio de áreas, solape) que determina si un polígono local corresponde a un place_id de Google. |
+| **Confidence (geográfico)** | Nivel de confianza de verificación: high (0.4-0.95 ratio), medium (0.2-0.4\|0.95-1.3), low (fuera de rango o centroid no contenido). |
+| **Geocoding inverso** | Dado un punto (lat, lng), determinar en qué zona(s) de la jerarquía se encuentra usando turf.booleanPointInPolygon. Endpoint: `GET /locations/containing`. |
+| **Reconciliación batch** | Job administrativo que detecta y fusiona duplicados geográficos: Tipo A (mismo google_place_id) y Tipo B (fragmentos espaciales contiguos fusionables vía turf.union). |
+| **google_viewport** | Rectángulo de encuadre devuelto por Google Place Details (north, south, east, west). Se almacena solo como referencia, nunca como geometría de pintado. |
 | **DTO** | Data Transfer Object. Clase con decoradores `class-validator` que define y valida la estructura de entrada de cada endpoint. |
 | **LocalizedString** | Tipo `{ es?: string; en?: string }` usado para todos los campos multilingüe (títulos, descripciones). Almacenado como JSONB en PostgreSQL. |
 

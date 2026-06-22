@@ -20,6 +20,7 @@ Patioz se ejecuta como un solo proceso Node.js (monolite) que agrupa toda la ló
 - [[auth]]
 - [[imgproxy]]
 - [[patioz/adr/009-scheduling-inhouse|scheduling]] — Módulo de agendamiento de visitas (in-house)
+- [[patioz/adr/011-mapas-ubicaciones|locations/maps]] — Módulo de búsqueda y verificación de ubicaciones geográficas
 
 ---
 

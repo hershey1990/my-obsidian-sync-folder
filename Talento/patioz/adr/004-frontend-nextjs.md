@@ -1,7 +1,8 @@
 ---
 tipo: adr
 fecha: 2026-02-15
-estado: aceptado
+estado: reemplazado
+reemplazado_por: ADR-011
 decision: "Frontend con Next.js + Leaflet + búsqueda híbrida"
 tags:
   - adr

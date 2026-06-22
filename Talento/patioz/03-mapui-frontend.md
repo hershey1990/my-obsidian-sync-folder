@@ -10,63 +10,72 @@ Esta es la interfaz de usuario principal de Patioz para la navegación y búsque
 - **Mapa:** Leaflet con React Leaflet
 - **Tooling:** Biome (linting) y Prettier (formateo)
 
-## Arquitectura de Búsqueda Híbrida
+## Arquitectura de Búsqueda en Dos Fases
 
-La funcionalidad más importante de esta aplicación es su sistema de búsqueda, que utiliza una estrategia híbrida para combinar la experiencia de usuario de Google con la precisión de los datos locales (GeoJSON).
+> **Definido por ADR-011.** Este ADR reemplazó a ADR-004 como la arquitectura oficial de búsqueda y verificación de ubicaciones.
 
-El objetivo es doble:
-1.  Ofrecer sugerencias de autocompletado rápidas y precisas a través de la API de Google Places.
-2.  Priorizar la visualización de geometrías (polígonos) locales siempre que sea posible para mantener la coherencia de los datos del sistema.
+La búsqueda de ubicaciones sigue una **arquitectura en dos fases** para optimizar costos, latencia y precisión:
 
-### Diagrama de Flujo de Búsqueda
+### Fase 1: Autocomplete (Frontend → Google Maps JS API)
 
-Este diagrama ilustra el proceso desde que el usuario interactúa con la barra de búsqueda.
+El frontend usa el widget `Places Autocomplete` de Google Maps JavaScript API **directamente, sin pasar por el backend**.
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant SearchBar as Barra de Búsqueda (UI)
-    participant NextServer as Servidor Next.js (Server Action)
-    participant GoogleAPI as Google Places API
-    participant Map as Mapa (Leaflet)
-    participant LocalGeoJSON as Datos Locales (GeoJSON)
-
-    User->>SearchBar: 1. Escribe una dirección
-    SearchBar->>+NextServer: 2. Llama a Server Action con el texto (con debounce)
-    NextServer->>+GoogleAPI: 3. Pide sugerencias de autocompletado
-    GoogleAPI-->>-NextServer: 4. Devuelve lista de sugerencias
-    NextServer-->>-SearchBar: 5. Envía sugerencias a la UI
-    
-    User->>SearchBar: 6. Selecciona una sugerencia
-    SearchBar->>+Map: 7. Intenta resolver la ubicación localmente
-    activate Map
-    Map->>+LocalGeoJSON: 8. Busca una coincidencia en los polígonos locales
-    
-    alt Coincidencia Local Encontrada
-        LocalGeoJSON-->>-Map: 9a. Devuelve el polígono correspondiente
-        Map->>Map: 10a. Dibuja el polígono en el mapa y centra la vista
-    else Sin Coincidencia Local
-        Map->>+NextServer: 9b. Pide geocodificación a Google (Fallback)
-        NextServer->>+GoogleAPI: 10b. Pide latitud/longitud para la dirección
-        GoogleAPI-->>-NextServer: 11b. Devuelve coordenadas
-        NextServer-->>-Map: 12b. Envía coordenadas
-        Map->>Map: 13b. Centra el mapa en las coordenadas recibidas
-    end
-    deactivate Map
+```
+Usuario escribe "Manag"
+  ↓
+Frontend → Google Maps JS API (Places Autocomplete widget)
+  ↓
+Google responde con sugerencias: [{ place_id, description, main_text }]
+  ↓
+Usuario selecciona "Managua, Nicaragua"
+  ↓
+Frontend obtiene place_id = "ChIJ..."
 ```
 
-## Modos de Operación: Broker vs. Directo
+**Razones para ir directo a Google:**
+- Latencia optimizada (debounce + caché local de Google)
+- Costo $0 (gratis hasta 28K solicitudes/día)
+- UX completa: dropdown, resaltado, teclado
+- Sin consumo de recursos del backend por keystroke
 
-El cliente de búsqueda (`brokerClient.ts`) puede operar de dos maneras:
+### Fase 2: Verificación (Frontend → Backend)
 
-- **Modo Broker:** Si la variable de entorno `NEXT_PUBLIC_BROKER_API_URL` está definida, las peticiones se dirigen a un servicio intermediario (posiblemente el BFF) que gestiona la lógica de búsqueda.
-- **Modo Directo a Google:** Si la URL del broker no está configurada, la aplicación se comunica directamente con las APIs de Google para la geocodificación de respaldo.
+Cuando el usuario selecciona una sugerencia, el frontend envía el `place_id` al backend:
 
-## Variables de Entorno Clave
+```
+POST /api/v1/locations/search { placeId: "ChIJ_xxx" }
+```
 
-Para que la aplicación funcione correctamente, es necesario configurar las siguientes variables en un archivo `.env.local`:
+Respuesta:
+
+```json
+{
+  "geojson": { "type": "Polygon", "coordinates": [[...]] },
+  "centroid": { "lat": 12.13, "lng": -86.25 },
+  "bbox": { "north": 12.14, "south": 12.12, "east": -86.24, "west": -86.26 },
+  "verified": true,
+  "source": "local",
+  "confidence": "high"
+}
+```
+
+- Si el polígono existe en BD y está verificado (<90 días) → respuesta inmediata ($0)
+- Si expiró o no existe → backend llama a Google Place Details, ejecuta verificación espacial y cachea
+- El frontend **siempre** puede renderizar algo: polígono con estilo según confidence, o marcador punto
+
+### Estados del Location y Pintado Sugerido
+
+| `verified` | `confidence` | Pintado en Leaflet |
+|:---:|:---:|---|---|
+| true | high | borde sólido, opacidad normal |
+| true | medium | borde sólido + ícono "?" |
+| false | low | borde discontinuo, opacidad baja |
+| false (source=google) | — | marcador punto, sin polígono |
+
+### Variables de Entorno Clave
 
 - `NEXT_PUBLIC_OPENSTREETMAP_URL`: URL del proveedor de teselas para el mapa base de Leaflet.
-- `NEXT_PUBLIC_GEOJSON_*`: URLs de las fuentes de datos GeoJSON para las distintas divisiones administrativas (departamentos, municipios, etc.).
-- `NEXT_PUBLIC_BROKER_API_URL` (Opcional): Activa el "Modo Broker".
-- `GOOGLE_MAPS_API_KEY`: Clave de API para los servicios de Google (Places Autocomplete y Geocoding). Debe tener las APIs correspondientes habilitadas en Google Cloud.
+- `NEXT_PUBLIC_BROKER_API_URL` (Opcional): Activa el modo en que el backend proxy sea el destino de `/locations/search`.
+- `GOOGLE_MAPS_API_KEY`: Clave de API para Google Places Autocomplete (frontend) y Place Details (backend).
+
+> Para más detalles, ver [[patioz/adr/011-mapas-ubicaciones|ADR-011: Búsqueda y Verificación de Ubicaciones Geográficas]].

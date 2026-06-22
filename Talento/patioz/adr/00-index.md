@@ -30,7 +30,8 @@ SORT file.name ASC
 - [[patioz/adr/001-microservicios|001 — Adopción de Microservicios]]
 - [[patioz/adr/002-bff-fastify|002 — BFF con Fastify + Clean Architecture]]
 - [[patioz/adr/003-auth-supabase|003 — Auth API con NestJS + Supabase]]
-- [[patioz/adr/004-frontend-nextjs|004 — Frontend con Next.js]]
+- [[patioz/adr/004-frontend-nextjs|004 — Frontend con Next.js]] (reemplazado por ADR-011)
+- [[patioz/adr/011-mapas-ubicaciones|011 — Búsqueda y Verificación de Ubicaciones Geográficas]]
 - [[patioz/adr/005-queue-qstash|005 — Cola de mensajería con QStash]]
 - [[patioz/adr/006-monolito-bullmq|006 — Migración a Monolito Modular + BullMQ]]
 - [[patioz/adr/007-auth-integration|007 — Integración de Auth en el Monolito Modular]]
