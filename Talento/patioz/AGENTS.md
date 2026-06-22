@@ -117,6 +117,20 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 | Actualización | Si un ADR cambia en el vault, se re-copia al repo |
 | Outline solo docs pulidos | `docs/` tiene contenido redactado para consumo externo. No ADRs crudos |
 
+### Qué va en cada zona
+
+| ¿Qué? | Vault (`Talento/patioz/`) | Code Repo (`patioz-api-monolith/`) | Outline (`wiki.gettalento.com`) |
+|---|---|---|---|
+| ADR aceptado | Queda (frontmatter, wikilinks) | **Copia** (numeración repo, sin wikilinks) | No va |
+| ADR propuesto/rechazado/reemplazado | Queda | No va | No va |
+| Doc técnico (setup, deploy, API ref, auth, files, i18n, testing) | Borrador en `docs/` | No va (repo tiene README) | **Versión pulida** desde `docs/` |
+| Decision Log (tabla curada) | No va | No va | **Acá va** (`docs/Decision Log.md`) |
+| Coding Conventions | No va (está en AGENTS.md del repo) | En AGENTS.md del repo | **Versión pulida** (`docs/Coding Conventions.md`) |
+| Glosario | `06-glosario.md` | No va | No va |
+| Runbooks operativos | `runbooks/` | `runbooks/` (si aplica) | Solo troubleshooting común (`docs/Troubleshooting.md`) |
+| Wikilinks de Obsidian (`[[]]`) | Quedan | Se traducen a texto o links relativos | No existen |
+| Frontmatter (`tipo`, `estado`, `fecha`) | Queda | Se elimina | Se usa `title`/`description` |
+
 ### Al modificar un runbook
 
 1. Verificar que los comandos, puertos, URLs y servicios coinciden con el código real
