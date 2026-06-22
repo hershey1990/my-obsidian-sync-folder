@@ -56,5 +56,20 @@ actualizado: 2026-06-22
 | **calendar_connections** | Tabla que almacena la conexión OAuth de un agente con su calendario externo. Campos: `agent_id`, `provider`, `account_email`, `tokens` (encriptado), `sync_config` (JSONB), `last_synced_at`, `status`. |
 | **DTO** | Data Transfer Object. Clase con decoradores `class-validator` que define y valida la estructura de entrada de cada endpoint. |
 | **LocalizedString** | Tipo `{ es?: string; en?: string }` usado para todos los campos multilingüe (títulos, descripciones). Almacenado como JSONB en PostgreSQL. |
+| **fillMissing** | Método de `TranslationService` que auto-traduce campos `LocalizedString` usando AWS Translate cuando un idioma está presente y el otro ausente. No-op si ambos están presentes o ambos ausentes. |
+| **TranslationModule** | Módulo `@Global()` en `src/infrastructure/translation/` que provee `TranslationService` y el adapter `AwsTranslateProvider`. Consumible desde cualquier módulo sin imports adicionales. |
+| **TranslationProvider** | Interfaz `ITranslationProvider` que abstrae el servicio de traducción. La implementación concreta es `AwsTranslateProvider`. Permite cambiar de proveedor de traducción sin afectar el dominio. |
+| **Repository Pattern** | Patrón de arquitectura interna de módulo: `contracts/` define interfaces + DI tokens, `adapters/` implementa infraestructura concreta. Reemplazó la estructura de capas Clean Architecture (domain/application/infrastructure) en ADR-012. |
+| **DI Token** | Constante string (`PROPERTY_REPOSITORY`, `GEOCODING_PROVIDER`) usada para inyección de dependencias en NestJS. Definida en `contracts/`, inyectada vía `@Inject(TOKEN)`. Desacopla el service de la implementación concreta. |
+| **Adapter naming** | Convención `{implementación}-{rol}.ts` para nombrar adapters: `supabase-property.repository.ts`, `google-geocoding.provider.ts`, `remote-auth.provider.ts`. El prefijo documenta la tecnología subyacente. |
+| **Sync DI** | Comunicación síncrona entre módulos: inyectar el repositorio de otro módulo vía su DI token para leer datos o validar existencia. Solo para consultas; no para side effects. Ver ADR-013. |
+| **QueueService** | Servicio utilitario en `QueueModule` (`@Global()`) que recibe una instancia de `Queue` y publica jobs con 3 reintentos y backoff exponencial (2s base). Mecanismo de comunicación asíncrona entre módulos. |
+| **StorageModule** | Módulo `@Global()` en `src/infrastructure/storage/` que provee `StorageService` para operaciones S3 (upload, download, delete). Usa `@aws-sdk/client-s3`. |
+| **IFileApi** | Interfaz en `files/contracts/` que abstrae las operaciones de archivos. La implementación concreta es `RemoteFileApi`, que delega a imgproxy-api vía HTTP. Token: `FILE_API`. |
+| **Variantes de imagen** | Distintas resoluciones generadas por imgproxy-api: `original`, `thumbnail`, `medium`, `full`. El frontend elige la variante según el contexto (lista vs detalle). |
+| **TDD pragmático** | Estrategia de testing donde el test se escribe primero cuando clarifica el contrato, y después cuando el contrato es obvio (CRUD passthrough). Reglas explícitas sobre qué testear y qué no. Ver ADR-016. |
+| **Coverage threshold** | Límites de cobertura enforceados en CI: ≥70% statements, ≥60% branches por módulo. Services y adapters con lógica apuntan a 100% branch coverage. |
+| **createTestApp** | Factory en `test/helpers/test-app.ts` que botea la app NestJS completa con mocks de infraestructura externa (Supabase, Redis, S3, AWS Translate, BullMQ) para tests e2e HTTP. |
+| **e2e HTTP tests** | Tests de integración con Supertest que validan el pipeline completo: Guards → Pipes → Controller → Service → Response. Atrapan lo que tests unitarios no pueden: ValidationPipe, guards globales, status codes reales. |
 
 > *Actualizar este glosario cada vez que surja un término nuevo del dominio o del sistema, o cuando un término quede obsoleto.*

@@ -4,6 +4,8 @@ tipo: adr
 fecha: 2026-06-09
 actualizado: 2026-06-22
 estado: aceptado
+proyecto: patioz-be
+copiado_a: []
 decision: "Módulo de scheduling in-house en el monolito modular NestJS (no cal.com ni herramientas externas de agenda)"
 tags:
 

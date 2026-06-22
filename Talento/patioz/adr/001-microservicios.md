@@ -3,6 +3,8 @@ tipo: adr
 fecha: 2026-01-15
 estado: reemplazado
 reemplazado_por: ADR-006
+proyecto: patioz-be
+copiado_a: []
 decision: "Adopción de arquitectura de microservicios"
 tags:
   - adr

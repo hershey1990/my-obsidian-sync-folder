@@ -3,6 +3,10 @@ tipo: adr
 fecha: 2026-06-07
 estado: aceptado
 decision: "Migración a Monolito Modular + BullMQ"
+proyecto: patioz-be
+copiado_a: []
+corregido_por:
+  - ADR-012
 tags:
   - adr
 ---
@@ -36,6 +40,8 @@ Se migra a una arquitectura de **Monolito Modular**:
 
 ## Estado
 - [x] Aceptado
+
+> **Nota (2026-06-22):** La estructura interna de módulos descrita en este ADR ("Clean Architecture con dominio, aplicación e infraestructura") fue corregida por ADR-012. La implementación real usa el Repository Pattern con `contracts/` + `adapters/` a nivel raíz del módulo, sin subdirectorios `domain/application/infrastructure`.
 
 ## Reemplaza
 - ADR-001 (Microservicios)

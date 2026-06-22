@@ -3,6 +3,8 @@ tipo: adr
 fecha: 2026-02-15
 estado: reemplazado
 reemplazado_por: ADR-011
+proyecto: patioz-fe
+copiado_a: []
 decision: "Frontend con Next.js + Leaflet + búsqueda híbrida"
 tags:
   - adr

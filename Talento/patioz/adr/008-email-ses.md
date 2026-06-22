@@ -1,7 +1,9 @@
 ---
 tipo: adr
 fecha: 2026-06-08
-estado: propuesto
+estado: aceptado
+proyecto: patioz-be
+copiado_a: []
 decision: "Envío de emails transaccionales con AWS SES + recepción con Zoho Mail"
 tags:
   - adr
@@ -78,6 +80,6 @@ En Supabase Dashboard → Authentication → SMTP Settings:
 
 ## Estado
 - [ ] Propuesto
-- [ ] Aceptado
+- [x] Aceptado
 - [ ] Rechazado
 - [ ] Reemplazado por ADR-XXX

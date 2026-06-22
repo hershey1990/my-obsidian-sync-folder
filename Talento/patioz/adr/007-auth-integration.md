@@ -3,6 +3,10 @@ tipo: adr
 fecha: 2026-06-08
 estado: aceptado
 decision: "Integración de Auth (login + permisos) en el Monolito Modular con Supabase"
+proyecto: patioz-be
+copiado_a: []
+corregido_por:
+  - ADR-010
 tags:
   - adr
 ---
@@ -22,7 +26,7 @@ Se integra toda la lógica de auth (login + permisos) directamente en el monolit
 
 - **Supabase Auth** para autenticación (login, signup, sesiones JWT).
 - **RBAC nativo en Supabase** — roles y permisos en tablas del esquema `public`, misma BD Postgres del monolite. Esto garantiza integridad referencial real mediante FKs.
-- **Sin NestJS** — la lógica de auth se implementa como un módulo de dominio (Clean Architecture) usando Supabase SDK desde la capa de infraestructura. Fastify expone los endpoints `/auth/*` y delega al módulo.
+- **NestJS como framework HTTP** — corregido por ADR-010. Este ADR originalmente asumía Fastify, pero el monolite migró a NestJS 11. La lógica de auth es un módulo NestJS con guards, decoradores y DI nativa.
 - **Flujo de desarrollo:**
   - Las migraciones (seeds) crean un usuario de prueba con roles predefinidos.
   - Los devs deben crear usuarios usando `register` (signup) para simular flujos idénticos a producción.

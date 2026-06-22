@@ -2,6 +2,8 @@
 tipo: adr
 fecha: 2026-06-22
 estado: aceptado
+proyecto: patioz-fe
+copiado_a: []
 decision: "Mapbox GL JS como renderer del mapa frontend (reemplaza Leaflet + OSM raster)"
 tags:
   - adr

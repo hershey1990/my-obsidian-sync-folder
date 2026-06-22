@@ -2,6 +2,9 @@
 tipo: adr
 fecha: 2026-02-01
 estado: aceptado
+reemplazado_por: ADR-007
+proyecto: patioz-be
+copiado_a: []
 decision: "Auth API con NestJS + Supabase + RBAC"
 tags:
   - adr

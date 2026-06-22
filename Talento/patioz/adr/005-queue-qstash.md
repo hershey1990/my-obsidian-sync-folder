@@ -3,6 +3,8 @@ tipo: adr
 fecha: 2026-03-01
 estado: reemplazado
 reemplazado_por: ADR-006
+proyecto: patioz-be
+copiado_a: []
 decision: "Orquestación asíncrona con QStash / localStash"
 tags:
   - adr
