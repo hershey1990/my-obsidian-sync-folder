@@ -1,7 +1,3 @@
----
-outline_status: no_aplica
-outline_url: null
----
 # Architecture Decision Records
 
 Origen canónico: vault Obsidian `{{PATH}}/adr/`.

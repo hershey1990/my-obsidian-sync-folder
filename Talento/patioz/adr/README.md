@@ -1,10 +1,3 @@
----
-title: "ADRs — Patioz"
-description: "Índice de Architecture Decision Records en el repositorio de código"
-actualizado: 2026-06-22
-outline_status: no_aplica
-outline_url: null
----
 # Architecture Decision Records
 
 Origen canónico: vault Obsidian `Talento/patioz/adr/`.
