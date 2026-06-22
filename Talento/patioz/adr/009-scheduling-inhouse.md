@@ -1,17 +1,14 @@
 ---
-
 tipo: adr
 fecha: 2026-06-09
 actualizado: 2026-06-22
 estado: aceptado
 proyecto: patioz-be
-sync_backend: pendiente
+sync_backend: copiado
 sync_frontend: no_aplica
-decision: "Módulo de scheduling in-house en el monolito modular NestJS (no cal.com ni herramientas externas de agenda)"
+decision: Módulo de scheduling in-house en el monolito modular NestJS (no cal.com ni herramientas externas de agenda)
 tags:
-
-- adr
-
+  - adr
 ---
 
 # ADR-009: Módulo de Scheduling In-House para Agendar Visitas

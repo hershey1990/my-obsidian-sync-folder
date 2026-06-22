@@ -2,9 +2,9 @@
 tipo: adr
 fecha: 2026-06-22
 estado: aceptado
-decision: "Almacenamiento de archivos en S3-compatible + delegación de procesamiento a imgproxy-api como servicio externo"
+decision: Almacenamiento de archivos en S3-compatible + delegación de procesamiento a imgproxy-api como servicio externo
 proyecto: patioz-be
-sync_backend: pendiente
+sync_backend: copiado
 sync_frontend: no_aplica
 tags:
   - adr

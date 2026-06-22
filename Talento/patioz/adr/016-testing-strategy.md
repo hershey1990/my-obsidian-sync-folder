@@ -2,9 +2,9 @@
 tipo: adr
 fecha: 2026-06-22
 estado: aceptado
-decision: "Estrategia de testing pragmático (TDD pragmático) con cobertura mínima del 70% statements y 60% branches, incluyendo tests unitarios y e2e HTTP"
+decision: Estrategia de testing pragmático (TDD pragmático) con cobertura mínima del 70% statements y 60% branches, incluyendo tests unitarios y e2e HTTP
 proyecto: patioz-be
-sync_backend: pendiente
+sync_backend: copiado
 sync_frontend: no_aplica
 tags:
   - adr

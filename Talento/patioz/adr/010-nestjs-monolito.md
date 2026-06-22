@@ -3,9 +3,9 @@ tipo: adr
 fecha: 2026-06-18
 estado: aceptado
 proyecto: patioz-be
-sync_backend: pendiente
+sync_backend: copiado
 sync_frontend: no_aplica
-decision: "NestJS 11 como framework del monolito modular (reemplaza Fastify como framework HTTP)"
+decision: NestJS 11 como framework del monolito modular (reemplaza Fastify como framework HTTP)
 tags:
   - adr
 ---

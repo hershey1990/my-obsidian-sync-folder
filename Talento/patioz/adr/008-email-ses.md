@@ -3,9 +3,9 @@ tipo: adr
 fecha: 2026-06-08
 estado: aceptado
 proyecto: patioz-be
-sync_backend: pendiente
+sync_backend: copiado
 sync_frontend: no_aplica
-decision: "Envío de emails transaccionales con AWS SES + recepción con Zoho Mail"
+decision: Envío de emails transaccionales con AWS SES + recepción con Zoho Mail
 tags:
   - adr
 ---
