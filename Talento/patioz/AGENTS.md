@@ -10,9 +10,8 @@
 ```
 Talento/patioz/
 ├── AGENTS.md              ← Este archivo. Guía de navegación y reglas.
+├── Patioz.md              ← Landing: resumen, navegación, stack, glosario
 ├── Tracker.md             ← Tracking de ADRs y Docs (embebe bd/*.base)
-├── 05-timeline.md         ← Roadmap y hitos del proyecto
-├── 06-glosario.md         ← Lenguaje ubicuo del dominio (actualizado 2026-06-22)
 ├── adr/                   ← Architecture Decision Records
 │   ├── 00-index.md        ← Índice de todos los ADRs
 │   ├── plantilla.md       ← Plantilla para crear nuevos ADRs
@@ -46,24 +45,24 @@ Talento/patioz/
 
 | Tópico | Ir a |
 |---|---|
+| **Resumen general y glosario** | `Patioz.md` |
 | **Arquitectura general del sistema** | `docs/Overview.md` o `docs/Arquitectura.md` |
 | **Decisiones arquitectónicas (por qué se hizo X)** | `adr/` — leer `adr/00-index.md` primero |
 | **Tracking de ADRs y Docs (qué copiar, qué publicar)** | `Tracker.md` o `bd/ADRs.base`, `bd/Docs.base` |
 | **Setup local (cómo levantar el proyecto)** | `docs/Setup Local.md` |
 | **Cómo desplegar** | `docs/Deploy.md` |
 | **Problemas conocidos** | `docs/Troubleshooting.md` |
-| **Definición de términos del dominio** | `06-glosario.md` |
+| **Definición de términos del dominio** | `Patioz.md` |
 | **Auth / login / permisos** | `docs/Auth & RBAC.md` + `adr/007-auth-integration.md` |
 | **i18n / Traducción** | `docs/i18n & Traducción.md` + `adr/014-i18n-bilingual-content.md` |
 | **Módulo de archivos / imágenes** | `docs/File Processing.md` + `adr/015-file-storage-processing.md` |
 | **Testing** | `docs/Testing.md` + `adr/016-testing-strategy.md` |
-| **Roadmap / fechas** | `05-timeline.md` |
 
 ### Convención de nombres
 
 | Prefijo | Contenido |
 |---|---|
-| `05-*`, `06-*` | Timeline y glosario del proyecto |
+| `Patioz.md` | Landing page con resumen y glosario |
 | `adr/###-*` | Decisiones arquitectónicas, numeradas secuencialmente |
 | `bd/*.base` | Bases de Obsidian para tracking interactivo |
 | `docs/*.md` | Documentación pulida para exportar a Outline |
@@ -100,7 +99,7 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 2. **Nombrar** con el formato `adr/###-titulo-descripitivo.md`
 3. **Actualizar estos archivos** siempre que corresponda:
    - `adr/00-index.md` — agregar entrada en la tabla y en la lista de ADRs existentes
-   - `06-glosario.md` — si el ADR introduce términos nuevos del dominio o técnicos
+   - `Patioz.md` — si el ADR introduce términos nuevos del dominio o técnicos
    - `docs/*` — si el ADR cambia flujos de setup, deploy o troubleshooting
     - `docs/Arquitectura.md` — si el ADR afecta la arquitectura general
 4. **Marcar ADRs reemplazados**: si un nuevo ADR invalida uno anterior, agregar `reemplazado_por: ADR-XXX` en el frontmatter del ADR viejo
@@ -146,7 +145,7 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 | `adr/00-index.md` | Se crea/modifica un ADR |
 | `bd/ADRs.base` | Los campos `sync_backend`/`sync_frontend` reflejan el estado real de copia |
 | `bd/Docs.base` | Los campos `outline_status`/`outline_url` reflejan el estado real de publicación |
-| `06-glosario.md` | Surge un término nuevo o cambia el significado de uno existente |
+| `Patioz.md` | Surge un término nuevo o cambia el significado de uno existente |
 | `docs/Setup Local.md` | Cambian dependencias, puertos, comandos de setup |
 | `docs/Deploy.md` | Cambia el pipeline CI/CD, hosting, o pasos de deploy |
 | `docs/Troubleshooting.md` | Se descubre un nuevo error recurrente o se soluciona uno existente |
