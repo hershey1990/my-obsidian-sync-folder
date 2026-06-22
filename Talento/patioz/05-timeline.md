@@ -2,47 +2,23 @@
 tags:
   - patioz/timeline
 ---
-# 🗓 Timeline de Patioz
+# Timeline de Patioz
 
-```mermaid
-gantt
-    title Roadmap de Patioz
-    dateFormat  YYYY-MM-DD
-    axisFormat  %Y-%m
-
-    section ⚙️ Fundación
-    Definición de arquitectura          :milestone, m1, 2026-01-15, 0d
-    Setup de infraestructura            :infra, 2026-01-15, 14d
-    Repositorios y CI/CD                :repos, after infra, 7d
-
-    section 🔐 Auth
-    Auth API (NestJS + Supabase)        :auth, after repos, 30d
-    RBAC + permisos                     :after auth, 14d
-
-    section 🧩 BFF
-    BFF (Fastify + Clean Arch)          :bff, after repos, 35d
-    Integración QStash                  :after bff, 10d
-
-    section 🗺 Frontend
-    MapUI (Next.js + Leaflet)           :frontend, after bff, 40d
-    Búsqueda híbrida (Google + GeoJSON) :after frontend, 14d
-
-    section 📁 Imágenes
-    imgproxy-api (S3 + CDN)             :img, after bff, 20d
-    Procesamiento de imágenes (Sharp)   :after img, 10d
-
-    section 🚀 Lanzamiento
-    MVP (funcionalidades core)          :milestone, m2, after frontend img, 0d
-    Correcciones y feedback             :after m2, 14d
-    Producción                          :milestone, m3, after m2, 0d
-```
-
-## Milestones Clave
+## Hitos
 
 | Hito | Fecha | Descripción |
 |---|---|---|
-| 🏗 Fundación | — | Definición de arquitectura, infraestructura, CI/CD |
-| ✅ MVP | — | Funcionalidades core operativas |
-| 🚀 Producción | — | Release a producción |
+| Fundación | Ene 2026 | Arquitectura inicial: microservicios + Fastify + QStash |
+| Monolito | Jun 2026 | Migración a Monolito Modular NestJS 11 + BullMQ (ADR-006, 010) |
+| Auth integrada | Jun 2026 | Auth con Supabase + JWT + RBAC integrado en el monolite (ADR-007) |
+| Mapas | Jun 2026 | Búsqueda geográfica en 2 fases: Mapbox + Google (ADR-011) |
+| i18n | Jun 2026 | Contenido bilingüe JSONB + AWS Translate (ADR-014) |
+| Docs | Jun 2026 | Documentación completa en vault + preparación para Outline |
 
-> *Las fechas son estimadas. Actualizar este archivo a medida que el proyecto avanza.*
+## Roadmap pendiente
+
+- [ ] Copiar ADRs aceptados al repositorio de código
+- [ ] Publicar docs en Outline (`wiki.gettalento.com`)
+- [ ] MVP: funcionalidades core en producción
+- [ ] Integración frontend-backend completa
+- [ ] Onboarding de devs nuevos con documentación

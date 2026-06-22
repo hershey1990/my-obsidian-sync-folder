@@ -10,11 +10,8 @@
 ```
 Talento/patioz/
 ├── AGENTS.md              ← Este archivo. Guía de navegación y reglas.
-├── 00-patioz-general.md   ← Visión general del sistema, arquitectura, enlaces a módulos
-├── 02-auth.md             ← Módulo de autenticación y autorización (Supabase Auth + RBAC)
-├── 03-mapui-frontend.md   ← Frontend principal (Next.js + Mapbox GL JS)
-├── 04-imgproxy.md         ← Módulo de archivos e imágenes (S3 + procesamiento)
-├── 05-timeline.md         ← Roadmap y timeline del proyecto
+├── Tracker.md             ← Tracking de ADRs y Docs (embebe bd/*.base)
+├── 05-timeline.md         ← Roadmap y hitos del proyecto
 ├── 06-glosario.md         ← Lenguaje ubicuo del dominio (actualizado 2026-06-22)
 ├── adr/                   ← Architecture Decision Records
 │   ├── 00-index.md        ← Índice de todos los ADRs
@@ -49,28 +46,26 @@ Talento/patioz/
 
 | Tópico | Ir a |
 |---|---|
-| **Arquitectura general del sistema** | `00-patioz-general.md` |
+| **Arquitectura general del sistema** | `docs/Overview.md` o `docs/Arquitectura.md` |
 | **Decisiones arquitectónicas (por qué se hizo X)** | `adr/` — leer `adr/00-index.md` primero |
-| **Tracking de ADRs y Docs (qué copiar, qué publicar)** | `bd/` — abrir `ADRs.base`, `Docs.base` |
+| **Tracking de ADRs y Docs (qué copiar, qué publicar)** | `Tracker.md` o `bd/ADRs.base`, `bd/Docs.base` |
 | **Setup local (cómo levantar el proyecto)** | `docs/Setup Local.md` |
 | **Cómo desplegar** | `docs/Deploy.md` |
 | **Problemas conocidos** | `docs/Troubleshooting.md` |
 | **Definición de términos del dominio** | `06-glosario.md` |
-| **Auth / login / permisos** | `02-auth.md` + `adr/007-auth-integration.md` |
-| **Frontend / MapUI** | `03-mapui-frontend.md` |
-| **Módulo de archivos / imágenes** | `04-imgproxy.md` + `adr/015-file-storage-processing.md` |
-| **i18n / Traducción** | `adr/014-i18n-bilingual-content.md` |
-| **Testing** | `adr/016-testing-strategy.md` |
+| **Auth / login / permisos** | `docs/Auth & RBAC.md` + `adr/007-auth-integration.md` |
+| **i18n / Traducción** | `docs/i18n & Traducción.md` + `adr/014-i18n-bilingual-content.md` |
+| **Módulo de archivos / imágenes** | `docs/File Processing.md` + `adr/015-file-storage-processing.md` |
+| **Testing** | `docs/Testing.md` + `adr/016-testing-strategy.md` |
 | **Roadmap / fechas** | `05-timeline.md` |
 
 ### Convención de nombres
 
 | Prefijo | Contenido |
 |---|---|
-| `00-*` | Índices y visiones generales |
-| `0x-*` (01-09) | Documentación de módulos y componentes del sistema |
+| `05-*`, `06-*` | Timeline y glosario del proyecto |
 | `adr/###-*` | Decisiones arquitectónicas, numeradas secuencialmente |
-| `bd/*.base` | Bases de Obsidian para tracking de estados |
+| `bd/*.base` | Bases de Obsidian para tracking interactivo |
 | `docs/*.md` | Documentación pulida para exportar a Outline |
 
 ---
@@ -107,7 +102,7 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
    - `adr/00-index.md` — agregar entrada en la tabla y en la lista de ADRs existentes
    - `06-glosario.md` — si el ADR introduce términos nuevos del dominio o técnicos
    - `docs/*` — si el ADR cambia flujos de setup, deploy o troubleshooting
-   - `00-patioz-general.md` — si el ADR afecta la arquitectura general
+    - `docs/Arquitectura.md` — si el ADR afecta la arquitectura general
 4. **Marcar ADRs reemplazados**: si un nuevo ADR invalida uno anterior, agregar `reemplazado_por: ADR-XXX` en el frontmatter del ADR viejo
 
 ### Al completar una copia a repo o publicación a Outline
@@ -138,9 +133,9 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 
 ### Al leer documentación existente
 
-- **Siempre verificar la fecha** `actualizado` en el frontmatter. Archivos sin `actualizado` pueden reflejar la arquitectura anterior a ADR-006 (microservicios + Fastify + QStash).
-- **Si encuentras una referencia a Fastify, QStash, localStash, BFF, Clean Architecture con domain/application/infrastructure, o Leaflet**, probablemente está desactualizada. La arquitectura actual es NestJS 11 + BullMQ + contracts/adapters.
-- **Los archivos `00-patioz-general.md`, `02-auth.md`, `03-mapui-frontend.md` y `04-imgproxy.md` aún contienen referencias a Fastify y Clean Architecture** que no se han actualizado. No tomarlas como verdad arquitectónica actual.
+- **Siempre verificar la fecha** `actualizado` en el frontmatter de los docs.
+- La arquitectura actual es NestJS 11 + BullMQ + contracts/adapters. Los ADRs 006-016 documentan el estado real.
+- Referencias a Fastify, QStash, BFF, Clean Architecture layers o Leaflet están obsoletas.
 
 ---
 
@@ -149,12 +144,13 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 | Archivo | Se actualiza cuando... |
 |---|---|
 | `adr/00-index.md` | Se crea/modifica un ADR |
-| `bd/ADRs.base` | Los campos `sync_status` reflejan el estado real de copia |
+| `bd/ADRs.base` | Los campos `sync_backend`/`sync_frontend` reflejan el estado real de copia |
+| `bd/Docs.base` | Los campos `outline_status`/`outline_url` reflejan el estado real de publicación |
 | `06-glosario.md` | Surge un término nuevo o cambia el significado de uno existente |
 | `docs/Setup Local.md` | Cambian dependencias, puertos, comandos de setup |
 | `docs/Deploy.md` | Cambia el pipeline CI/CD, hosting, o pasos de deploy |
 | `docs/Troubleshooting.md` | Se descubre un nuevo error recurrente o se soluciona uno existente |
-| `00-patioz-general.md` | Cambia la arquitectura general del sistema |
+| `docs/Arquitectura.md` | Cambia la arquitectura general del sistema |
 
 ---
 

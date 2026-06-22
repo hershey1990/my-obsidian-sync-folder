@@ -4,28 +4,16 @@ tags:
 ---
 # 📐 Architecture Decision Records
 
-> Ver [[bd/ADRs|ADRs.base]] para tracking de copia a repos.
+> Ver [[Tracker]] o [[bd/ADRs|ADRs.base]] para tracking de copia a repos.
 
 Índice de todas las decisiones arquitectónicas documentadas para Patioz.
 
-```dataview
-TABLE
-    fecha AS "Fecha",
-    decision AS "Decisión",
-    estado AS "Estado"
-FROM "patioz/adr"
-WHERE tipo = "adr"
-SORT file.name ASC
-```
-
----
-
 ## 📝 Cómo crear un nuevo ADR
 
-1. Usa la plantilla [[Plantilla de ADR]] o copia [[patioz/adr/plantilla|patioz/adr/plantilla.md]]
-2. Nómbralo con el formato `###-titulo-descripitivo.md` (ej. `006-select-database.md`)
-3. Completa todas las secciones (contexto, decisión, alternativas, consecuencias)
-4. Asigna un estado inicial: `propuesto` → `aceptado` | `rechazado` | `reemplazado`
+1. Usa la plantilla [[patioz/adr/plantilla|adr/plantilla.md]]
+2. Nómbralo con el formato `###-titulo-descripitivo.md`
+3. Completa las secciones: contexto, decisión, alternativas, consecuencias
+4. Asigna `estado: propuesto` y `sync_backend` / `sync_frontend` según corresponda
 
 ## ADRs existentes
 
