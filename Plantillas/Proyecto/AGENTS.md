@@ -57,6 +57,13 @@
    - `docs/*` — si el ADR cambia flujos de setup, deploy o troubleshooting
 4. **Marcar ADRs reemplazados**: agregar `reemplazado_por: ADR-XXX` en el frontmatter del ADR viejo
 
+### Al copiar un ADR al repositorio
+
+1. **Quitar el bloque YAML** del inicio (`---` ... `---`)
+2. **Reemplazar wikilinks**: `[[archivo|texto]]` → `texto`, `[[archivo]]` → nombre del archivo
+3. **Agregar al pie**: `> Origen vault: {{PATH}}/adr/###-*.md`
+4. **Mantener** Mermaid, tablas, código, secciones
+
 ### Flujo vault → repo → Outline
 
 1. **Vault:** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.

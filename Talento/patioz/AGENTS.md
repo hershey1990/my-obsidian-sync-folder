@@ -110,6 +110,15 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 2. **Publicar doc en Outline** → cambiar `outline_status` de `pendiente` a `publicado` y llenar `outline_url`
 3. Verificar que `bd/ADRs.base` y `bd/Docs.base` reflejen los cambios
 
+### Al copiar un ADR al repositorio
+
+Cuando se pida copiar un ADR al repo de código, aplicar estas reglas:
+
+1. **Quitar el bloque YAML** del inicio (`---` ... `---`)
+2. **Reemplazar wikilinks**: `[[archivo|texto]]` → `texto`, `[[archivo]]` → nombre del archivo
+3. **Agregar al pie**: `> Origen vault: Talento/patioz/adr/###-*.md`
+4. **Mantener** Mermaid, tablas, código, secciones
+
 ### Flujo vault → repo → Outline
 
 1. **Vault (este espacio):** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.
