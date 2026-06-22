@@ -27,19 +27,15 @@ Patioz se ejecuta como un solo proceso Node.js (monolite) que agrupa toda la ló
 ## 📐 Architecture Decision Records (ADRs)
 
 Toda decisión arquitectónica importante se documenta como un ADR en [[adr/00-index|patioz/adr/]].
-
-```dataview
-TABLE fecha AS "Fecha", decision AS "Decisión", estado AS "Estado"
-FROM "patioz/adr"
-WHERE tipo = "adr"
-SORT file.name ASC
-```
+Hacer tracking de copia a repos en [[Tracker]] o [[bd/ADRs]].
 
 ---
 
-## 📘 Runbooks
+## 📘 Documentación operativa
 
-Procedimientos operativos y operaciones del día a día en [[runbooks/00-index|patioz/runbooks/]].
+- [[docs/Setup Local|Setup Local]] — Levantar el entorno de desarrollo
+- [[docs/Deploy|Deploy]] — Pipeline CI/CD y despliegue
+- [[docs/Troubleshooting|Troubleshooting]] — Problemas comunes y soluciones
 
 ---
 
