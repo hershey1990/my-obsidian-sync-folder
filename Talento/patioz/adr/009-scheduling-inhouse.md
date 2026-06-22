@@ -2,7 +2,7 @@
 
 tipo: adr
 fecha: 2026-06-09
-actualizado: 2026-06-18
+actualizado: 2026-06-22
 estado: aceptado
 decision: "Módulo de scheduling in-house en el monolito modular NestJS (no cal.com ni herramientas externas de agenda)"
 tags:
@@ -82,6 +82,103 @@ modules/scheduling/
 - **TemplateNotificationService** (Twilio) — Para SMS de recordatorio.
 - **QueueService** (infrastructure) — Para publicar eventos de dominio en la cola `events`.
 
+### Integración con calendarios externos vía OAuth
+
+La arquitectura del módulo incluye la capacidad de sincronizar disponibilidad y visitas con calendarios externos (Google Calendar, Zoho Calendar, Outlook) mediante un flujo OAuth donde el agente autoriza la conexión con su cuenta.
+
+#### Arquitectura de sincronización
+
+Se introduce un nuevo contrato `CalendarSyncAdapter` en la capa de `contracts/`, con implementaciones específicas por proveedor:
+
+```
+modules/scheduling/contracts/
+├── calendar-sync.interface.ts   ← Interfaz CalendarSyncAdapter
+├── visit.interface.ts           (existente)
+└── agent-availability.interface.ts (existente)
+
+modules/scheduling/adapters/
+├── supabase-visit.repository.ts            (existente)
+├── supabase-availability.repository.ts     (existente)
+├── availability-cache.adapter.ts           (existente)
+├── reminder-job.processor.ts               (existente)
+├── google-calendar.adapter.ts              ← Google Calendar API v3
+├── zoho-calendar.adapter.ts                ← Zoho Calendar API
+└── outlook-calendar.adapter.ts             ← Outlook Calendar API
+```
+
+**Contrato `CalendarSyncAdapter`:**
+
+```typescript
+interface CalendarSyncAdapter {
+  connect(authCode: string, redirectUri: string): Promise<ConnectionResult>;
+  disconnect(accountId: string): Promise<void>;
+  syncDownAvailability(accountId: string, from: Date, to: Date): Promise<ExternalEvent[]>;
+  syncUpVisit(visit: Visit, accountId: string): Promise<string>;   // returns external event ID
+  updateExternalEvent(visit: Visit, externalEventId: string): Promise<void>;
+  deleteExternalEvent(externalEventId: string): Promise<void>;
+  refreshToken(accountId: string): Promise<void>;
+}
+```
+
+La inyección del adapter se resuelve en runtime según el proveedor que cada agente haya conectado, usando un provider dinámico con `@Inject(CALENDAR_SYNC_ADAPTER)`.
+
+#### Flujo OAuth
+
+```
+1. Agent → Settings → "Conectar Google Calendar"
+   GET /scheduling/calendar/connect/:provider
+   → Backend redirect a Google OAuth consent screen
+   → Scopes: https://www.googleapis.com/auth/calendar.events
+
+2. User autoriza en la pantalla de Google
+
+3. Google → callback a /scheduling/calendar/callback?code=xxx&state=yyy
+   → Backend canjea auth code por access + refresh tokens
+   → Almacena en tabla calendar_connections (token encriptado vía Crypt)
+   → Crea job BullMQ RefreshCalendarTokens (se ejecuta antes de expirar)
+
+4. Agent → "Desconectar"
+   POST /scheduling/calendar/disconnect/:accountId
+   → Revoca tokens en el proveedor
+   → Elimina registro de calendar_connections
+```
+
+#### Modelo de datos
+
+Tabla `calendar_connections` (datos geográficos en JSONB, tokens encriptados):
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `id` | UUID | PK |
+| `agent_id` | UUID | FK → agents |
+| `provider` | enum | `google` \| `zoho` \| `outlook` |
+| `account_email` | string | Email de la cuenta conectada |
+| `tokens` | JSONB (encriptado) | `{ accessToken, refreshToken, expiresAt }` |
+| `sync_config` | JSONB | `{ syncAvailability, syncVisits, direction }` |
+| `last_synced_at` | timestamptz | Última sincronización exitosa |
+| `connected_at` | timestamptz | Cuándo se conectó |
+| `status` | enum | `active` \| `expired` \| `revoked` |
+
+Los tokens se almacenan encriptados con `Crypt.encryptString()` (AES-256-CBC con APP_KEY), similar al manejo de PEMs en el módulo de infraestructura.
+
+#### Estrategia de sincronización
+
+| Dirección | Origen → Destino | Cuándo | Mecanismo |
+|---|---|---|---|
+| Disponibilidad | Calendar externo → Patioz | Pull cada 15 min | BullMQ job `SyncCalendarAvailability` lee eventos del calendar externo y marca slots ocupados en Redis |
+| Visitas (booked) | Patioz → Calendar externo | Inmediato | Event-driven: cuando `visit.status` cambia a `confirmed`, `CalendarSyncService.syncUpVisit()` |
+| Visitas (cancelled) | Patioz → Calendar externo | Inmediato | Event-driven: cuando `visit.status` cambia a `cancelled`, `CalendarSyncService.deleteExternalEvent()` |
+| Visitas (rescheduled) | Patioz → Calendar externo | Inmediato | Event-driven: `CalendarSyncService.updateExternalEvent()` |
+
+**Patioz siempre es la fuente de verdad para visitas.** El calendario externo es un reflejo. Para disponibilidad, se lee el calendario externo para detectar conflictos con eventos existentes del agente (reuniones personales, bloques ocupados).
+
+#### Consideraciones de seguridad
+
+- Tokens almacenados encriptados en BD, nunca en texto plano
+- Refresh automático vía BullMQ job antes de expiración
+- Revocación de tokens al desconectar
+- Rate limiting por proveedor para evitar bloqueos por abuso de API
+
 ## Alternativas Consideradas
 
 
@@ -90,7 +187,8 @@ modules/scheduling/
 | **Módulo in-house (elegido)**   | Control total del dominio, sin infraestructura duplicada, mismo runtime, mismo deploy, misma base de datos, misma cola de jobs. El equipo ya conoce los patrones (NestJS + contracts/adapters + class-validator + BullMQ). | Hay que escribirlo. Mantenimiento propio del código de fechas y disponibilidad.                                                                                                                                                                                                                                                                                                               |
 | **cal.com (open source)**       | "Llave en mano" para booking genérico. Manejo de disponibilidad, re-agendamiento, cancelaciones, notificaciones, sincronización de calendarios. Comunidad activa.                                                          | **Su propia base de datos** (Prisma + PostgreSQL separada), **su propio Redis**, **su propio servidor Next.js**. Duplica la infraestructura. Modelo de datos genérico (no entiende de listings, agentes, propiedades). Para integrarlo con Patioz hay que escribir un BFF que traduzca entre ambos dominios. Fork y mantenimiento del código ajeno. Curva de aprendizaje alta para el equipo. |
 | **Calendly API (SaaS)**         | Cero mantenimiento de infraestructura. Integración vía webhooks.                                                                                                                                                           | Vendor lock-in. Costo recurrente por agente. Límites de API. Datos del cliente en servidor externo (privacidad). Sin control sobre la experiencia de usuario.                                                                                                                                                                                                                                 |
-| **Google Calendar API directa** | Sin base de datos propia. Los agentes ya usan Google Calendar.                                                                                                                                                             | No hay concepto de "listing" ni "visita inmobiliaria". No hay workflow de confirmación. Sin notificaciones integradas al sistema. Rompe el principio de que Patioz sea el sistema de registro.                                                                                                                                                                                                |
+| **Google Calendar API directa** | Sin base de datos propia. Los agentes ya usan Google Calendar. | No hay concepto de "listing" ni "visita inmobiliaria". No hay workflow de confirmación. Sin notificaciones integradas al sistema. Rompe el principio de que Patioz sea el sistema de registro. |
+| **In-house + OAuth multi-calendar (decisión actualizada)** | Disponibilidad real del agente sin doble entrada de datos. Patioz sigue siendo fuente de verdad para visitas. UX fluida: el agente conecta con un login. | Complejidad OAuth (manejo de refresh tokens, rate limits de APIs externas). Mantenimiento de adapters por proveedor. |
 
 
 ## Consecuencias
@@ -104,18 +202,22 @@ modules/scheduling/
 - **La lógica de negocio vive en un solo lugar.** Reglas como "un agente no puede tener dos visitas en el mismo horario" o "una propiedad ocupada no puede agendarse" se implementan en el servicio, no en reglas de disponibilidad genéricas de cal.com.
 - **Reutilización de infraestructura existente.** Notificaciones (SES), SMS (Twilio), cola de jobs (BullMQ), Redis, guards de auth — todo está listo.
 - **Integración con Leads.** El scheduling es la continuación natural del flujo de leads (solicitud de agente → agendamiento de visita).
+- **Sincronización con calendarios externos vía OAuth.** Los agentes conectan su calendario (Google, Zoho, Outlook) con un solo login y su disponibilidad real se sincroniza automáticamente.
 
 ### Negativas / Riesgos
 
 - **Hay que construir lo básico:** manejo de disponibilidad, detección de conflictos de horario, re-agendamiento.
-- **Sincronización con calendarios externos (Google, Outlook)** queda para una fase posterior. Inicialmente los agentes gestionan su disponibilidad dentro de Patioz.
+- **Mantenimiento de adapters por proveedor de calendario.** Cada API tiene su propio SDK, rate limits y particularidades OAuth.
+- **Manejo de refresh tokens.** Los tokens expiran y requieren renovación automática vía BullMQ. Un fallo en el refresh puede dejar al agente sin conexión.
+- **Rate limits de APIs externas.** Google Calendar tiene cuotas por usuario y por proyecto. Sincronizaciones masivas o mal diseñadas pueden resultar en bloqueos temporales.
 - **No se obtienen features "gratis"** como enlaces públicos de booking, integración con Zoom/Meet, o páginas de disponibilidad embeddables.
 
 ### Mitigaciones
 
 - El módulo de scheduling es **acotado en complejidad** comparado con cal.com: no maneja equipos, ni múltiples temporalidades, ni recurrencias complejas. Es un CRUD con validación de conflictos y notificaciones.
 - El equipo ya ha implementado múltiples módulos NestJS con el mismo patrón — el enfoque está probado.
-- Si en el futuro se necesita sincronización con calendarios externos, se agrega como un adapter (`CalendarSyncAdapter`) sin cambiar la lógica de dominio.
+- La sincronización con calendarios externos se implementa como un adapter (`CalendarSyncAdapter`) sin cambiar la lógica de dominio. Agregar un nuevo proveedor = nuevo adapter + config OAuth, sin tocar el core del módulo.
+- Los tokens se encriptan con `Crypt.encryptString()` (AES-256-CBC) al almacenarse, y un job BullMQ `RefreshCalendarTokens` los renueva automáticamente antes de expirar, evitando desconexiones.
 - `date-fns` es suficiente para el manejo de fechas; no se necesita una librería de scheduling compleja.
 
 ## Estado

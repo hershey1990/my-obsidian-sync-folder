@@ -52,6 +52,8 @@ actualizado: 2026-06-22
 | **Geocoding inverso** | Dado un punto (lat, lng), determinar en qué zona(s) de la jerarquía se encuentra usando turf.booleanPointInPolygon. Endpoint: `GET /locations/containing`. |
 | **Reconciliación batch** | Job administrativo que detecta y fusiona duplicados geográficos: Tipo A (mismo google_place_id) y Tipo B (fragmentos espaciales contiguos fusionables vía turf.union). |
 | **google_viewport** | Rectángulo de encuadre devuelto por Google Place Details (north, south, east, west). Se almacena solo como referencia, nunca como geometría de pintado. |
+| **CalendarSyncAdapter** | Contrato (interface) del módulo scheduling para sincronizar disponibilidad y visitas con calendarios externos (Google, Zoho, Outlook) vía OAuth. Implementaciones específicas por proveedor en `scheduling/adapters/`. |
+| **calendar_connections** | Tabla que almacena la conexión OAuth de un agente con su calendario externo. Campos: `agent_id`, `provider`, `account_email`, `tokens` (encriptado), `sync_config` (JSONB), `last_synced_at`, `status`. |
 | **DTO** | Data Transfer Object. Clase con decoradores `class-validator` que define y valida la estructura de entrada de cada endpoint. |
 | **LocalizedString** | Tipo `{ es?: string; en?: string }` usado para todos los campos multilingüe (títulos, descripciones). Almacenado como JSONB en PostgreSQL. |
 
