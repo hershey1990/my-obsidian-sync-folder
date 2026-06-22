@@ -36,12 +36,12 @@ Se integra toda la lógica de auth (login + permisos) directamente en el monolit
 
 ## Alternativas Consideradas
 
-| Alternativa | Pros | Contras |
-|---|---|---|
-| **Monolito + Supabase Auth + RBAC (elegida)** | Un solo schema de BD, integridad referencial real, simplicidad operativa, flujos dev idénticos a prod | Vendor lock-in parcial con Supabase Auth |
-| **Mantener NestJS como módulo auth** | Bajo costo de migración inmediato | NestJS + Express conviviendo con Fastify, integridad referencial débil, complejidad heredada |
-| **Auth0 / Clerk** | Zero maintenance, sesiones avanzadas | Costo recurrente, datos fuera del monolite, mismo problema de integridad referencial |
-| **JWT manual + PostgreSQL** | Control total, sin dependencias externas | Mayor trabajo operativo, riesgo de seguridad si no se implementa correctamente |
+| Alternativa                                   | Pros                                                                                                  | Contras                                                                                      |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Monolito + Supabase Auth + RBAC (elegida)** | Un solo schema de BD, integridad referencial real, simplicidad operativa, flujos dev idénticos a prod | Vendor lock-in parcial con Supabase Auth                                                     |
+| **Mantener NestJS como módulo auth**          | Bajo costo de migración inmediato                                                                     | NestJS + Express conviviendo con Fastify, integridad referencial débil, complejidad heredada |
+| **Auth0 / Clerk**                             | Zero maintenance, sesiones avanzadas                                                                  | Costo recurrente, datos fuera del monolite, mismo problema de integridad referencial         |
+| **JWT manual + PostgreSQL**                   | Control total, sin dependencias externas                                                              | Mayor trabajo operativo, riesgo de seguridad si no se implementa correctamente               |
 
 ## Consecuencias
 - **Positivo:** Integridad referencial real (usuarios ↔ roles ↔ permisos). Un solo framework HTTP (Fastify). Los devs prueban flujos completos localmente con `register`. Se elimina NestJS + Express del stack.
