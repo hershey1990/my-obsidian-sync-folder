@@ -113,7 +113,7 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 ### Flujo vault → repo → Outline
 
 1. **Vault (este espacio):** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.
-2. **Repo de código:** cuando `sync_backend: pendiente`, copiar el ADR al repo. Al copiar, cambiar a `copiado`.
+2. **Repo de código:** cuando `sync_backend: pendiente`, copiar el ADR al repo junto con `docs/adr/README.md` (índice y saltos de numeración). Al copiar, cambiar a `copiado`.
 3. **Outline:** cuando `outline_status: pendiente`, publicar el doc manualmente. Al publicar, cambiar a `publicado` y llenar `outline_url`.
 
 ### Qué va en cada zona
