@@ -1,0 +1,26 @@
+filters:
+  and:
+    - or:
+        - file.inFolder("{{PATH}}/adr")
+        - file.inFolder("{{PATH}}/docs")
+    - file.ext == "md"
+    - file.name != "00-index"
+    - file.name != "plantilla"
+views:
+  - type: table
+    name: Decisiones
+    order:
+      - file.folder
+      - file.name
+      - decision
+      - proyecto
+      - estado
+      - sync_backend
+      - sync_frontend
+      - outline_status
+    sort:
+      - property: file.folder
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    limit: 100

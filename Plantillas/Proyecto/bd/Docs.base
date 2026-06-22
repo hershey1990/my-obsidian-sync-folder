@@ -1,0 +1,18 @@
+filters:
+  and:
+    - file.inFolder("{{PATH}}/docs")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Docs
+    order:
+      - file.name
+      - title
+      - outline_status
+      - outline_url
+    sort:
+      - property: outline_status
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    limit: 50
