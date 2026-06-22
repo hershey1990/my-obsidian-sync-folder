@@ -112,14 +112,14 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 
 ### Al completar una copia a repo o publicación a Outline
 
-1. **Copiar ADR al repo** → cambiar `sync_status.backend` o `sync_status.frontend` de `pendiente` a `copiado` en el frontmatter del ADR
+1. **Copiar ADR al repo** → cambiar `sync_backend` o `sync_frontend` de `pendiente` a `copiado` en el frontmatter del ADR
 2. **Publicar doc en Outline** → cambiar `outline_status` de `pendiente` a `publicado` y llenar `outline_url`
 3. Verificar que `bd/ADRs.base` y `bd/Docs.base` reflejen los cambios
 
 ### Flujo vault → repo → Outline
 
 1. **Vault (este espacio):** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.
-2. **Repo de código:** cuando `sync_status.backend: pendiente`, copiar el ADR al repo. Al copiar, cambiar a `copiado`.
+2. **Repo de código:** cuando `sync_backend: pendiente`, copiar el ADR al repo. Al copiar, cambiar a `copiado`.
 3. **Outline:** cuando `outline_status: pendiente`, publicar el doc manualmente. Al publicar, cambiar a `publicado` y llenar `outline_url`.
 
 ### Qué va en cada zona

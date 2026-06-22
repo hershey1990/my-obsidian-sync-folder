@@ -4,9 +4,8 @@ fecha: 2026-03-01
 estado: reemplazado
 reemplazado_por: ADR-006
 proyecto: patioz-be
-sync_status:
-  backend: no_aplica
-  frontend: no_aplica
+sync_backend: no_aplica
+sync_frontend: no_aplica
 decision: "Orquestación asíncrona con QStash / localStash"
 tags:
   - adr

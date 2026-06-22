@@ -4,9 +4,8 @@ fecha: 2026-06-07
 estado: aceptado
 decision: "Migración a Monolito Modular + BullMQ"
 proyecto: patioz-be
-sync_status:
-  backend: pendiente
-  frontend: no_aplica
+sync_backend: pendiente
+sync_frontend: no_aplica
 corregido_por:
   - ADR-012
 tags:

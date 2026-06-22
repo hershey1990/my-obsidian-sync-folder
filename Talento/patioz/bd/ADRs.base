@@ -10,9 +10,10 @@ views:
     order:
       - file.name
       - decision
+      - proyecto
       - estado
-      - sync_status.backend
-      - sync_status.frontend
+      - sync_backend
+      - sync_frontend
     sort:
       - property: file.name
         direction: ASC

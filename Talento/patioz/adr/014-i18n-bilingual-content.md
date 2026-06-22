@@ -4,9 +4,8 @@ fecha: 2026-06-22
 estado: aceptado
 decision: "Contenido multilingüe con campos JSONB bilingües (es/en) y traducción automática vía AWS Translate"
 proyecto: patioz-be
-sync_status:
-  backend: pendiente
-  frontend: no_aplica
+sync_backend: pendiente
+sync_frontend: no_aplica
 tags:
   - adr
 ---

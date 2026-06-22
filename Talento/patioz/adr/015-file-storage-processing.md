@@ -4,9 +4,8 @@ fecha: 2026-06-22
 estado: aceptado
 decision: "Almacenamiento de archivos en S3-compatible + delegación de procesamiento a imgproxy-api como servicio externo"
 proyecto: patioz-be
-sync_status:
-  backend: pendiente
-  frontend: no_aplica
+sync_backend: pendiente
+sync_frontend: no_aplica
 tags:
   - adr
 ---

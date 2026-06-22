@@ -13,9 +13,10 @@ views:
       - file.folder
       - file.name
       - decision
+      - proyecto
       - estado
-      - sync_status.backend
-      - sync_status.frontend
+      - sync_backend
+      - sync_frontend
       - outline_status
     sort:
       - property: file.folder
