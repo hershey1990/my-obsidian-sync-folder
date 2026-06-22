@@ -4,58 +4,19 @@ tags:
 ---
 # Tracker — Patioz
 
-> Abrir `bd/ADRs.base` y `bd/Docs.base` para la vista interactiva con filtros y cards.
+## ADRs
 
-## ADRs pendientes de copiar
+![[bd/ADRs.base]]
 
-```dataview
-TABLE WITHOUT ID
-  file.link AS ADR,
-  decision AS Decisión,
-  sync_status.backend AS Backend,
-  sync_status.frontend AS Frontend
-FROM "Talento/patioz/adr"
-WHERE tipo = "adr" AND estado = "aceptado"
-  AND (sync_status.backend = "pendiente" OR sync_status.frontend = "pendiente")
-SORT file.name ASC
-```
+Al copiar un ADR al repo, cambiar `sync_status.backend` o `.frontend` de `pendiente` a `copiado` directamente en la tabla.
 
-## ADRs ya copiados
+---
 
-```dataview
-TABLE WITHOUT ID
-  file.link AS ADR,
-  decision AS Decisión,
-  sync_status.backend AS Backend,
-  sync_status.frontend AS Frontend
-FROM "Talento/patioz/adr"
-WHERE tipo = "adr" AND estado = "aceptado"
-  AND (sync_status.backend = "copiado" OR sync_status.frontend = "copiado")
-SORT file.name ASC
-```
+## Docs
 
-## Docs pendientes de publicar en Outline
+![[bd/Docs.base]]
 
-```dataview
-TABLE WITHOUT ID
-  file.link AS Documento,
-  title AS Título,
-  outline_status AS Estado
-FROM "Talento/patioz/docs"
-WHERE outline_status = "pendiente"
-SORT file.name ASC
-```
-
-## Docs ya publicados
-
-```dataview
-TABLE WITHOUT ID
-  file.link AS Documento,
-  outline_url AS "URL en Outline"
-FROM "Talento/patioz/docs"
-WHERE outline_status = "publicado"
-SORT file.name ASC
-```
+Al publicar un doc en Outline, cambiar `outline_status` a `publicado` y llenar `outline_url` directamente en la tabla.
 
 ---
 
@@ -94,8 +55,3 @@ SORT file.name ASC
 - [ ] Troubleshooting
 - [ ] Coding Conventions
 - [ ] Decision Log
-
----
-
-> Al copiar un ADR al repo, cambiar `sync_status.backend` o `.frontend` de `pendiente` a `copiado`.  
-> Al publicar un doc en Outline, cambiar `outline_status` a `publicado` y llenar `outline_url`.
