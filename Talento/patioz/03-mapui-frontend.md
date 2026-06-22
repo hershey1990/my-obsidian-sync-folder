@@ -7,12 +7,12 @@ Esta es la interfaz de usuario principal de Patioz para la navegación y búsque
 - **Framework:** Next.js 16 (App Router)
 - **Lenguaje:** TypeScript
 - **Estilos:** Tailwind CSS
-- **Mapa:** Leaflet con React Leaflet
+- **Mapa:** Mapbox GL JS con react-map-gl
 - **Tooling:** Biome (linting) y Prettier (formateo)
 
 ## Arquitectura de Búsqueda en Dos Fases
 
-> **Definido por ADR-011.** Este ADR reemplazó a ADR-004 como la arquitectura oficial de búsqueda y verificación de ubicaciones.
+> **Definido por ADR-011.** Este ADR reemplazó a ADR-004 como la arquitectura oficial de búsqueda y verificación de ubicaciones. El renderer del mapa es **Mapbox GL JS** (definido en [[patioz/adr/maps/001-mapbox-renderer|maps/001]]) y el provider de datos de lugares es **Google Places** (definido en [[patioz/adr/maps/002-google-places-provider|maps/002]]).
 
 La búsqueda de ubicaciones sigue una **arquitectura en dos fases** para optimizar costos, latencia y precisión:
 
@@ -65,7 +65,7 @@ Respuesta:
 
 ### Estados del Location y Pintado Sugerido
 
-| `verified` | `confidence` | Pintado en Leaflet |
+| `verified` | `confidence` | Pintado en Mapbox GL JS |
 |:---:|:---:|---|---|
 | true | high | borde sólido, opacidad normal |
 | true | medium | borde sólido + ícono "?" |
@@ -74,7 +74,7 @@ Respuesta:
 
 ### Variables de Entorno Clave
 
-- `NEXT_PUBLIC_OPENSTREETMAP_URL`: URL del proveedor de teselas para el mapa base de Leaflet.
+- `NEXT_PUBLIC_MAPBOX_TOKEN`: Token de Mapbox para el mapa base (vector tiles).
 - `NEXT_PUBLIC_BROKER_API_URL` (Opcional): Activa el modo en que el backend proxy sea el destino de `/locations/search`.
 - `GOOGLE_MAPS_API_KEY`: Clave de API para Google Places Autocomplete (frontend) y Place Details (backend).
 

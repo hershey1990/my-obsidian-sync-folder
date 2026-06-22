@@ -38,3 +38,6 @@ SORT file.name ASC
 - [[patioz/adr/008-email-ses|008 — Envío de Emails con AWS SES + Zoho Mail]]
 - [[patioz/adr/009-scheduling-inhouse|009 — Módulo de Scheduling In-House (no cal.com)]]
 - [[patioz/adr/010-nestjs-monolito|010 — NestJS 11 como Framework del Monolito Modular]]
+- [[patioz/adr/011-mapas-ubicaciones|011 — Búsqueda y Verificación de Ubicaciones Geográficas]]
+- [[patioz/adr/maps/001-mapbox-renderer|maps/001 — Mapbox GL JS como Renderer del Mapa]]
+- [[patioz/adr/maps/002-google-places-provider|maps/002 — Google Places como Provider de Datos]]

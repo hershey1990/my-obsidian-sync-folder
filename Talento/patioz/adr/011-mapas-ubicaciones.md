@@ -41,7 +41,7 @@ Se adopta una **arquitectura en dos fases** que separa el autocompletado (fronte
 ```mermaid
 sequenceDiagram
     participant User as Usuario
-    participant Frontend as Frontend (Leaflet + Next.js)
+    participant Frontend as Frontend (Mapbox GL JS + Next.js)
     participant GoogleJS as Google Maps JS API
     participant Backend as Backend NestJS (monolite)
     participant DB as PostgreSQL (JSONB)
@@ -64,7 +64,7 @@ sequenceDiagram
         Backend->>DB: Update verified_at, confidence
     end
     Backend-->>Frontend: { geojson, centroid, bbox, verified, confidence, source }
-    Frontend->>Frontend: Renderiza polígono en Leaflet
+    Frontend->>Frontend: Renderiza polígono con Mapbox GL JS
 ```
 
 #### Fase 1 — Autocomplete (Frontend → Google Maps JS API)
@@ -146,7 +146,7 @@ GEO_VERIFICATION_TTL_DAYS=90
 
 ### Matriz de estados del Location
 
-| `verified` | `source` | `confidence` | Significado | Pintado sugerido en Leaflet |
+| `verified` | `source` | `confidence` | Significado | Pintado sugerido en Mapbox GL JS |
 |:---:|:---:|:---:|---|---|
 | true | local | high | Polígono local validado contra Google | borde sólido, opacidad normal |
 | true | local | medium | Validado con dudas de área | borde sólido + ícono "?" |
@@ -224,8 +224,8 @@ Además del flujo de búsqueda en tiempo real, existe un job administrativo que 
 | Alternativa | Vs decisión | Decisión |
 |---|---|---|
 | **PostGIS** | Consultas espaciales nativas SQL, índices R-Tree, ST_Within, ST_DWithin | Se elige JSONB + Turf.js — evita extensión de BD, operaciones geo en runtime, mismo stack que el resto del monolite |
-| **Google Maps SDK (frontend)** | Mayor calidad visual, autocompletado nativo | Se mantiene Leaflet + OSM — costo $0, sin API key, open-source |
-| **Mapbox tiles** | Mejor calidad visual y personalización | Se mantiene OSM — costo $0, suficiente para el perfil de uso |
+| **Google Maps SDK (frontend)** | Mayor calidad visual, autocompletado nativo | Se elige Mapbox GL JS — vector tiles, mejor rendimiento, free hasta 50K map loads/mes (ver maps-001) |
+| **Leaflet + OSM** | Gratuito, sin API key, open-source, probado | Se reemplaza por Mapbox GL JS — raster tiles, sin rotación, menor calidad visual LatAm (ver maps-001) |
 | **Geocoding 100% backend** | Control total de costos, caché centralizado | Se elige híbrido — autocomplete frontend (latencia, $0) + verificación backend (bajo demanda) |
 | **Polígonos en archivos estáticos** | Simplicidad, sin BD | Se elige JSONB en BD — consultables, actualizables vía API, relacionables con otras entidades |
 | **Nominatim/OSM como fallback** | Gratuito, datos abiertos | Se elige Google (mismo proveedor) — consistencia de datos entre autocomplete y place details |
@@ -270,6 +270,8 @@ Además del flujo de búsqueda en tiempo real, existe un job administrativo que 
 
 - Reemplaza a ADR-004 (Frontend con Next.js + Leaflet + Búsqueda Híbrida)
 - Complementa ADR-010 (documenta formalmente los módulos `maps` y `locations`)
+- Depende de [[patioz/adr/maps/001-mapbox-renderer|maps/001]] (Mapbox GL JS como renderer del mapa)
+- Depende de [[patioz/adr/maps/002-google-places-provider|maps/002]] (Google Places como provider de datos)
 - Ver Apéndice A para el detalle completo del flujo de búsqueda y verificación
 
 ---
@@ -606,7 +608,7 @@ Esto resuelve el problema de datos fragmentados donde una misma zona real tiene 
        verified: true,
        confidence: "high"
      }
-   → Frontend renderiza L.geoJSON(polygon) en Leaflet + encuadra con bbox
+   → Frontend renderiza el GeoJSON con Mapbox GL JS (map.addSource geojson + addLayer fill/line) y encuadra con bbox
    → El estilo de pintado (borde/opacidad/ícono) depende de confidence
 
 3. Usuario hace clic en el mapa (lat=12.13, lng=-86.25)
@@ -619,7 +621,7 @@ Esto resuelve el problema de datos fragmentados donde una misma zona real tiene 
 
 Vocabulario compartido entre backend y frontend para interpretar el resultado de `/locations/search`:
 
-| `verified` | `source` | `confidence` | Significado | Pintado sugerido en OSM |
+| `verified` | `source` | `confidence` | Significado | Pintado sugerido en Mapbox GL JS |
 |:---:|:---:|:---:|---|---|
 | true  | local  | high   | Polígono local validado contra Google | borde sólido, opacidad normal |
 | true  | local  | medium | Validado con dudas de área | borde sólido + ícono "?" |
