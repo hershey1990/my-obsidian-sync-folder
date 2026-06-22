@@ -2,6 +2,8 @@
 title: "Testing — Patioz"
 description: "Estrategia de testing: TDD pragmático, tests unitarios y e2e, coverage thresholds"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Testing
 

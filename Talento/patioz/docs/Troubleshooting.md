@@ -2,6 +2,8 @@
 title: "Troubleshooting — Patioz"
 description: "Problemas comunes y soluciones del monolito NestJS"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Troubleshooting
 

@@ -2,6 +2,8 @@
 title: "Auth & RBAC — Patioz"
 description: "Autenticación y autorización: flujo de login, JWT, roles y permisos"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Auth & RBAC
 

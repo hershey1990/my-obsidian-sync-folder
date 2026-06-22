@@ -12,7 +12,7 @@ Talento/patioz/
 ├── AGENTS.md              ← Este archivo. Guía de navegación y reglas.
 ├── 00-patioz-general.md   ← Visión general del sistema, arquitectura, enlaces a módulos
 ├── 02-auth.md             ← Módulo de autenticación y autorización (Supabase Auth + RBAC)
-├── 03-mapui-frontend.md   ← Frontend principal (Next.js + Leaflet)
+├── 03-mapui-frontend.md   ← Frontend principal (Next.js + Mapbox GL JS)
 ├── 04-imgproxy.md         ← Módulo de archivos e imágenes (S3 + procesamiento)
 ├── 05-timeline.md         ← Roadmap y timeline del proyecto
 ├── 06-glosario.md         ← Lenguaje ubicuo del dominio (actualizado 2026-06-22)
@@ -22,15 +22,23 @@ Talento/patioz/
 │   ├── 001-005 ...        ← (reemplazados)
 │   ├── 006-016 ...        ← ADRs activos
 │   └── maps/              ← Sub-ADRs de mapas
-├── docs/                  ← Documentación pulida para exportar a Outline
-│   ├── Arquitectura.md
-│   ├── API Reference.md
-│   ├── Setup Local.md
-│   └── Deploy.md
-└── runbooks/              ← Guías operativas
-    ├── 01-setup-local.md       ← Setup del entorno de desarrollo
-    ├── 02-deploy.md            ← Pipeline de despliegue (Bitbucket → Railway)
-    └── 03-troubleshooting.md   ← Problemas comunes y soluciones
+├── bd/                    ← Bases de datos (tracking sync + Outline)
+│   ├── ADRs.base          ← ADRs: qué copiar a BE/FE, estado de copia
+│   ├── Docs.base          ← Docs: qué publicar en Outline, estado
+│   └── Decisiones.base    ← Vista combinada ADRs + Docs
+└── docs/                  ← Documentación pulida para exportar a Outline
+    ├── Overview.md
+    ├── Arquitectura.md
+    ├── API Reference.md
+    ├── Setup Local.md
+    ├── Deploy.md
+    ├── Auth & RBAC.md
+    ├── i18n & Traducción.md
+    ├── File Processing.md
+    ├── Testing.md
+    ├── Troubleshooting.md
+    ├── Coding Conventions.md
+    └── Decision Log.md
 ```
 
 ---
@@ -43,9 +51,10 @@ Talento/patioz/
 |---|---|
 | **Arquitectura general del sistema** | `00-patioz-general.md` |
 | **Decisiones arquitectónicas (por qué se hizo X)** | `adr/` — leer `adr/00-index.md` primero |
-| **Setup local (cómo levantar el proyecto)** | `runbooks/01-setup-local.md` |
-| **Cómo desplegar** | `runbooks/02-deploy.md` |
-| **Problemas conocidos** | `runbooks/03-troubleshooting.md` |
+| **Tracking de ADRs y Docs (qué copiar, qué publicar)** | `bd/` — abrir `ADRs.base`, `Docs.base` |
+| **Setup local (cómo levantar el proyecto)** | `docs/Setup Local.md` |
+| **Cómo desplegar** | `docs/Deploy.md` |
+| **Problemas conocidos** | `docs/Troubleshooting.md` |
 | **Definición de términos del dominio** | `06-glosario.md` |
 | **Auth / login / permisos** | `02-auth.md` + `adr/007-auth-integration.md` |
 | **Frontend / MapUI** | `03-mapui-frontend.md` |
@@ -61,7 +70,8 @@ Talento/patioz/
 | `00-*` | Índices y visiones generales |
 | `0x-*` (01-09) | Documentación de módulos y componentes del sistema |
 | `adr/###-*` | Decisiones arquitectónicas, numeradas secuencialmente |
-| `runbooks/0x-*` | Guías operativas paso a paso |
+| `bd/*.base` | Bases de Obsidian para tracking de estados |
+| `docs/*.md` | Documentación pulida para exportar a Outline |
 
 ---
 
@@ -96,46 +106,35 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 3. **Actualizar estos archivos** siempre que corresponda:
    - `adr/00-index.md` — agregar entrada en la tabla y en la lista de ADRs existentes
    - `06-glosario.md` — si el ADR introduce términos nuevos del dominio o técnicos
-   - `runbooks/*` — si el ADR cambia flujos de setup, deploy o troubleshooting
+   - `docs/*` — si el ADR cambia flujos de setup, deploy o troubleshooting
    - `00-patioz-general.md` — si el ADR afecta la arquitectura general
 4. **Marcar ADRs reemplazados**: si un nuevo ADR invalida uno anterior, agregar `reemplazado_por: ADR-XXX` en el frontmatter del ADR viejo
+
+### Al completar una copia a repo o publicación a Outline
+
+1. **Copiar ADR al repo** → cambiar `sync_status.backend` o `sync_status.frontend` de `pendiente` a `copiado` en el frontmatter del ADR
+2. **Publicar doc en Outline** → cambiar `outline_status` de `pendiente` a `publicado` y llenar `outline_url`
+3. Verificar que `bd/ADRs.base` y `bd/Docs.base` reflejen los cambios
 
 ### Flujo vault → repo → Outline
 
 1. **Vault (este espacio):** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.
-2. **Repo de código:** cuando un ADR está `aceptado`, se copia al repo correspondiente (`patioz-api-monolith/docs/adr/`) con la numeración propia del repo. El campo `copiado_a` en el frontmatter registra dónde se copió.
-3. **Outline (wiki.gettalento.com):** el contenido de `docs/` se exporta manualmente a Outline como documentación pulida para el equipo. Los ADRs crudos no van a Outline.
-
-### Reglas del flujo
-
-| Regla | Detalle |
-|---|---|
-| Solo ADRs `aceptado` se copian a repos | `propuesto`, `rechazado`, `reemplazado` se quedan en el vault |
-| El vault mantiene su numeración | Cada proyecto tiene secuencia independiente (001-0xx) |
-| El repo asigna su propia numeración | Al copiar, se usa el siguiente número secuencial del repo |
-| Referencia bidireccional | El ADR en vault lleva `copiado_a: [repo-path]`. El ADR en repo lleva `origen_vault: Talento/patioz/adr/###-*.md` |
-| Actualización | Si un ADR cambia en el vault, se re-copia al repo |
-| Outline solo docs pulidos | `docs/` tiene contenido redactado para consumo externo. No ADRs crudos |
+2. **Repo de código:** cuando `sync_status.backend: pendiente`, copiar el ADR al repo. Al copiar, cambiar a `copiado`.
+3. **Outline:** cuando `outline_status: pendiente`, publicar el doc manualmente. Al publicar, cambiar a `publicado` y llenar `outline_url`.
 
 ### Qué va en cada zona
 
-| ¿Qué? | Vault (`Talento/patioz/`) | Code Repo (`patioz-api-monolith/`) | Outline (`wiki.gettalento.com`) |
+| ¿Qué? | Vault | Code Repo | Outline |
 |---|---|---|---|
-| ADR aceptado | Queda (frontmatter, wikilinks) | **Copia** (numeración repo, sin wikilinks) | No va |
+| ADR aceptado | Queda (frontmatter, wikilinks) | Copia (sin wikilinks) | No va |
 | ADR propuesto/rechazado/reemplazado | Queda | No va | No va |
-| Doc técnico (setup, deploy, API ref, auth, files, i18n, testing) | Borrador en `docs/` | No va (repo tiene README) | **Versión pulida** desde `docs/` |
-| Decision Log (tabla curada) | No va | No va | **Acá va** (`docs/Decision Log.md`) |
-| Coding Conventions | No va (está en AGENTS.md del repo) | En AGENTS.md del repo | **Versión pulida** (`docs/Coding Conventions.md`) |
+| Doc técnico | Borrador en `docs/` | No va | Versión pulida |
+| Decision Log (tabla curada PM/PO) | `docs/Decision Log.md` | No va | Versión pulida |
 | Glosario | `06-glosario.md` | No va | No va |
-| Runbooks operativos | `runbooks/` | `runbooks/` (si aplica) | Solo troubleshooting común (`docs/Troubleshooting.md`) |
-| Wikilinks de Obsidian (`[[]]`) | Quedan | Se traducen a texto o links relativos | No existen |
-| Frontmatter (`tipo`, `estado`, `fecha`) | Queda | Se elimina | Se usa `title`/`description` |
-
-### Al modificar un runbook
-
-1. Verificar que los comandos, puertos, URLs y servicios coinciden con el código real
-2. Actualizar el campo `actualizado` en el frontmatter con la fecha del cambio
-3. Si el cambio afecta el glosario (ej. nuevo servicio), actualizar `06-glosario.md`
+| Tracking de estados | `bd/*.base` | No va | No va |
+| Guías operativas | `docs/` (Setup, Deploy, Troubleshooting) | No va | Versión pulida |
+| Wikilinks de Obsidian (`[[]]`) | Quedan | Se traducen a texto | No existen |
+| Frontmatter (`tipo`, `estado`, `sync_status`) | Queda | Se elimina | Se usa `title`/`description` |
 
 ### Al leer documentación existente
 
@@ -150,10 +149,11 @@ La arquitectura activa está definida por estos ADRs (el resto están reemplazad
 | Archivo | Se actualiza cuando... |
 |---|---|
 | `adr/00-index.md` | Se crea/modifica un ADR |
+| `bd/ADRs.base` | Los campos `sync_status` reflejan el estado real de copia |
 | `06-glosario.md` | Surge un término nuevo o cambia el significado de uno existente |
-| `runbooks/01-setup-local.md` | Cambian dependencias, puertos, comandos de setup |
-| `runbooks/02-deploy.md` | Cambia el pipeline CI/CD, hosting, o pasos de deploy |
-| `runbooks/03-troubleshooting.md` | Se descubre un nuevo error recurrente o se soluciona uno existente |
+| `docs/Setup Local.md` | Cambian dependencias, puertos, comandos de setup |
+| `docs/Deploy.md` | Cambia el pipeline CI/CD, hosting, o pasos de deploy |
+| `docs/Troubleshooting.md` | Se descubre un nuevo error recurrente o se soluciona uno existente |
 | `00-patioz-general.md` | Cambia la arquitectura general del sistema |
 
 ---

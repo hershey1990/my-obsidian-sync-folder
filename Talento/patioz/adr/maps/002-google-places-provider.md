@@ -3,7 +3,9 @@ tipo: adr
 fecha: 2026-06-22
 estado: aceptado
 proyecto: patioz-be
-copiado_a: []
+sync_status:
+  backend: pendiente
+  frontend: no_aplica
 decision: "Google Places como provider de datos de lugares (Autocomplete + Place Details + Geocoding)"
 tags:
   - adr

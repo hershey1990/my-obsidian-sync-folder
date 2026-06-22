@@ -2,6 +2,8 @@
 title: "Setup Local — Patioz"
 description: "Guía de setup del entorno de desarrollo local para el monolito Patioz"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Setup Local — Patioz
 

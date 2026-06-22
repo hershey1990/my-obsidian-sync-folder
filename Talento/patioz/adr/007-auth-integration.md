@@ -4,7 +4,9 @@ fecha: 2026-06-08
 estado: aceptado
 decision: "Integración de Auth (login + permisos) en el Monolito Modular con Supabase"
 proyecto: patioz-be
-copiado_a: []
+sync_status:
+  backend: pendiente
+  frontend: no_aplica
 corregido_por:
   - ADR-010
 tags:

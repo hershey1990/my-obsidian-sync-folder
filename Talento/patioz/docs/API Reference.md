@@ -2,6 +2,8 @@
 title: "API Reference — Patioz"
 description: "Referencia de endpoints de la API REST de Patioz (api/v1)"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # API Reference — Patioz
 

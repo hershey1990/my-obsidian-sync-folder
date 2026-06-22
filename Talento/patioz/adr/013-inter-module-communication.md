@@ -4,7 +4,9 @@ fecha: 2026-06-22
 estado: aceptado
 decision: "Estrategia dual de comunicación entre módulos: DI síncrona para consultas + BullMQ asíncrono para side effects"
 proyecto: patioz-be
-copiado_a: []
+sync_status:
+  backend: pendiente
+  frontend: no_aplica
 tags:
   - adr
 ---

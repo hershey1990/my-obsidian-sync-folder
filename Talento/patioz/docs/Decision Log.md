@@ -2,6 +2,8 @@
 title: "Decision Log — Patioz"
 description: "Historial de decisiones técnicas y su impacto en el producto (para PM, PO y stakeholders)"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Decision Log
 

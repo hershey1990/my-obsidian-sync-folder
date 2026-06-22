@@ -3,7 +3,9 @@ tipo: adr
 fecha: {{date:YYYY-MM-DD}}
 estado: propuesto # propuesto | aceptado | rechazado | reemplazado
 proyecto: patioz-be # patioz-be | patioz-fe | control
-copiado_a: [] # lista de paths en repos de código donde se copió este ADR
+sync_status:
+  backend: pendiente # pendiente | copiado | no_aplica
+  frontend: no_aplica # pendiente | copiado | no_aplica
 tags:
   - adr
 # Opcionales:

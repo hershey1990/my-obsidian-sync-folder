@@ -4,6 +4,8 @@ tags:
 ---
 # 📐 Architecture Decision Records
 
+> Ver [[bd/ADRs|ADRs.base]] para tracking de copia a repos.
+
 Índice de todas las decisiones arquitectónicas documentadas para Patioz.
 
 ```dataview

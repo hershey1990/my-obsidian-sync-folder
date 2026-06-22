@@ -4,7 +4,9 @@ fecha: 2026-06-22
 estado: aceptado
 decision: "Estructura plana de módulo con contracts/adapters (Repository Pattern) en lugar de capas Clean Architecture (domain/application/infrastructure)"
 proyecto: patioz-be
-copiado_a: []
+sync_status:
+  backend: pendiente
+  frontend: no_aplica
 tags:
   - adr
 corrige:

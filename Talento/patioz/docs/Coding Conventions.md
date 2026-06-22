@@ -2,6 +2,8 @@
 title: "Coding Conventions — Patioz"
 description: "Convenciones de código del monolito NestJS: estructura de módulos, naming, testing, inter-module communication"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Coding Conventions
 

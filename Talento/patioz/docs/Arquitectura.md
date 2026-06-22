@@ -2,6 +2,8 @@
 title: "Arquitectura de Patioz"
 description: "Arquitectura general del sistema Patioz: Monolito Modular NestJS 11 + Supabase + BullMQ + S3"
 actualizado: 2026-06-22
+outline_status: pendiente
+outline_url: null
 ---
 # Arquitectura de Patioz
 
