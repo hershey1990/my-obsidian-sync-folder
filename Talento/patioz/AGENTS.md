@@ -76,6 +76,7 @@ Talento/patioz/
 | 022 | si | @mapui/ui-core (35 componentes) |
 | 023 | si | Tailwind CSS v4 única fuente de estilos |
 | 024 | si | Wizard create-property de 14 pasos |
+| 025 | si | Biome como linter y formatter único |
 
 ---
 

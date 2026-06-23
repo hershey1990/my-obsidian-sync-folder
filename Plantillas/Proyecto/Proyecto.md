@@ -10,7 +10,7 @@ tags:
 
 | Sección | Archivo | Contenido |
 |---|---|---|
-| Tracking | [[Tracker]] | ADRs pendientes de copiar, Docs pendientes de publicar |
+| Tracking | [[Tracker]] | ADRs pendientes de implementar, Docs pendientes de publicar |
 | ADRs | [[adr/00-index\|adr/]] | Architecture Decision Records |
 | Docs | [[docs/Overview\|docs/]] | Documentación técnica para Outline |
 | Bases | [[bd/ADRs\|bd/]] | Tablas interactivas |

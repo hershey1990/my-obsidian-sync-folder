@@ -46,3 +46,4 @@ tags:
 - [[patioz/adr/022-ui-core-library|022 — @mapui/ui-core: 35 Componentes Presentacionales]]
 - [[patioz/adr/023-tailwind-v4|023 — Tailwind CSS v4 como Única Fuente de Estilos]]
 - [[patioz/adr/024-create-property-wizard|024 — Wizard Create-Property de 14 Pasos]]
+- [[patioz/adr/025-biome-linter-formatter|025 — Biome como Linter y Formatter Único]]

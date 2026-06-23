@@ -14,7 +14,7 @@ Plataforma de gestión inmobiliaria para Nicaragua.
 | Sección | Archivo | Contenido |
 |---|---|---|
 | Tracking | [[Tracker]] | Docs pendientes de publicar en Outline |
-| ADRs | [[adr/00-index\|adr/]] | 24 Architecture Decision Records (001-024) |
+| ADRs | [[adr/00-index\|adr/]] | 25 Architecture Decision Records (001-025) |
 | Docs BE | [[docs/Overview\|docs/]] | Documentación técnica backend |
 | Docs FE | [[docs/FE Overview\|docs/FE]] | Documentación técnica frontend |
 | Bases | [[bd/ADRs\|bd/]] | Tablas interactivas |
@@ -46,6 +46,7 @@ Plataforma de gestión inmobiliaria para Nicaragua.
 | Frameworks | Next.js 16, Vite 6 |
 | UI | React 19 |
 | Styling | Tailwind CSS v4 |
+| Lint / Format | Biome |
 | Server state | TanStack React Query |
 | Client state | Zustand |
 | Forms | React Hook Form + Zod |
