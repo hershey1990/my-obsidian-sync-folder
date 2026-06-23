@@ -1,9 +1,9 @@
 ---
-title: "Overview — Patioz"
+title: Overview — Patioz
 description: "Visión general de Patioz: plataforma de gestión inmobiliaria para Nicaragua"
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # Patioz — Plataforma de Gestión Inmobiliaria
 

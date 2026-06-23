@@ -1,9 +1,9 @@
 ---
-title: "i18n & Traducción — Patioz"
+title: i18n & Traducción — Patioz
 description: "Estrategia de contenido bilingüe: JSONB, AWS Translate y cómo usar LocalizedString"
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # i18n — Contenido Bilingüe
 

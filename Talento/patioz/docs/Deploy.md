@@ -1,9 +1,9 @@
 ---
-title: "Deploy — Patioz"
-description: "Pipeline de despliegue del monolito Patioz a Railway via Bitbucket Pipelines"
+title: Deploy — Patioz
+description: Pipeline de despliegue del monolito Patioz a Railway via Bitbucket Pipelines
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # Deploy — Patioz
 
