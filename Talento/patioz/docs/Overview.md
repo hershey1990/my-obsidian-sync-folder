@@ -57,7 +57,20 @@ Todos los contenidos se almacenan en español e inglés (JSONB bilingüe). AWS T
 
 ## Documentación relacionada
 
+### Backend
 - [Arquitectura](Arquitectura.md) — detalle técnico de módulos y patrones
 - [API Reference](API%20Reference.md) — endpoints y autenticación
 - [Setup Local](Setup%20Local.md) — cómo levantar el entorno de desarrollo
-- [Decision Log](Decision%20Log.md) — historial de decisiones técnicas (para PM/PO)
+- [Auth & RBAC](Auth%20%26%20RBAC.md) — autenticación y permisos
+- [i18n & Traducción](i18n%20%26%20Traducción.md) — contenido bilingüe
+- [File Processing](File%20Processing.md) — archivos e imágenes
+
+### Frontend
+- [FE Overview](FE%20Overview.md) — monorepo, apps, packages
+- [FE Arquitectura](FE%20Arquitectura.md) — state management, data fetching
+- [FE Setup Local](FE%20Setup%20Local.md) — levantar las 4 apps
+- [FE Auth & RBAC](FE%20Auth%20%26%20RBAC.md) — auth isolation por app
+- [FE Coding Conventions](FE%20Coding%20Conventions.md) — Tailwind, Biome, naming
+
+### Global
+- [Decision Log](Decision%20Log.md) — historial de decisiones (PM/PO)

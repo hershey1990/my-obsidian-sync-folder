@@ -4,8 +4,7 @@ fecha: 2026-01-15
 estado: reemplazado
 reemplazado_por: ADR-006
 proyecto: patioz-be
-sync_backend: no_aplica
-sync_frontend: no_aplica
+implementado: no_aplica
 decision: "Adopción de arquitectura de microservicios"
 tags:
   - adr

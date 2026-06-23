@@ -4,8 +4,7 @@ fecha: 2026-02-01
 estado: aceptado
 reemplazado_por: ADR-007
 proyecto: patioz-be
-sync_backend: no_aplica
-sync_frontend: no_aplica
+implementado: no_aplica
 decision: "Auth API con NestJS + Supabase + RBAC"
 tags:
   - adr

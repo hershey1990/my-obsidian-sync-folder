@@ -4,14 +4,6 @@ tags:
 ---
 # Tracker — {{NOMBRE}}
 
-## ADRs
-
-![[bd/ADRs.base]]
-
-Al copiar un ADR al repo, cambiar `sync_backend` o `sync_frontend` de `pendiente` a `copiado` directamente en la tabla.
-
----
-
 ## Docs
 
 ![[bd/Docs.base]]

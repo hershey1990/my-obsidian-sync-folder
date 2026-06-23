@@ -3,8 +3,7 @@ tipo: adr
 fecha: 2026-06-22
 estado: aceptado
 proyecto: patioz-be
-sync_backend: copiado
-sync_frontend: no_aplica
+implementado: si
 decision: Arquitectura de búsqueda y verificación de ubicaciones geográficas en dos fases con preservación de geometría local
 tags:
   - adr

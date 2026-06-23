@@ -4,6 +4,7 @@ filters:
     - file.ext == "md"
     - file.name != "00-index"
     - file.name != "plantilla"
+    - file.name != "README"
 views:
   - type: table
     name: ADRs
@@ -12,8 +13,7 @@ views:
       - decision
       - proyecto
       - estado
-      - sync_backend
-      - sync_frontend
+      - implementado
     sort:
       - property: file.name
         direction: ASC

@@ -2,9 +2,8 @@
 tipo: adr
 fecha: {{date:YYYY-MM-DD}}
 estado: propuesto # propuesto | aceptado | rechazado | reemplazado
-proyecto: {{NOMBRE}}
-sync_backend: pendiente # pendiente | copiado | no_aplica
-sync_frontend: no_aplica # pendiente | copiado | no_aplica
+proyecto: {{proyecto}} # proyecto-be | proyecto-fe | control
+implementado: pendiente # si | pendiente | no_aplica
 tags:
   - adr
 # Opcionales:

@@ -4,8 +4,7 @@ fecha: 2026-01-20
 estado: aceptado
 reemplazado_por: ADR-010
 proyecto: patioz-be
-sync_backend: no_aplica
-sync_frontend: no_aplica
+implementado: no_aplica
 decision: "BFF con Fastify + TypeScript + Clean Architecture"
 tags:
   - adr

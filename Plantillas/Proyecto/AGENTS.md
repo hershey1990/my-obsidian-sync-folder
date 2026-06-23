@@ -32,7 +32,7 @@
 |---|---|
 | **Resumen general y glosario** | `Proyecto.md` |
 | **Decisiones arquitectónicas (por qué se hizo X)** | `adr/` — leer `adr/00-index.md` primero |
-| **Tracking (qué copiar, qué publicar)** | `Tracker.md` o `bd/ADRs.base`, `bd/Docs.base` |
+| **Tracking (qué publicar en Outline)** | `Tracker.md` o `bd/Docs.base` |
 | **Documentación técnica** | `docs/` |
 
 ---
@@ -64,17 +64,26 @@
 3. **Agregar al pie**: `> Origen vault: {{PATH}}/adr/###-*.md`
 4. **Mantener** Mermaid, tablas, código, secciones
 
-### Flujo vault → repo → Outline
+### Flujo de trabajo
 
-1. **Vault:** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.
-2. **Repo de código:** cuando `sync_backend: pendiente`, copiar el ADR al repo. Cambiar a `copiado`.
-3. **Outline:** cuando `outline_status: pendiente`, publicar el doc. Cambiar a `publicado` y llenar `outline_url`.
+1. **Vault:** crear ADR con `estado: propuesto`, refinar, aceptar → `estado: aceptado`
+2. **Código:** implementar la decisión → cambiar `implementado: si`
+3. **Outline:** publicar doc → `outline_status: publicado` + `outline_url`
+
+Los ADRs se quedan en el vault como documentación de decisiones. Al implementar un ADR, actualizar el `AGENTS.md` del repositorio con sus reglas.
+
+### Al copiar un ADR al repositorio (solo si es necesario)
+
+1. **Quitar el bloque YAML** del inicio (`---` ... `---`)
+2. **Reemplazar wikilinks**: `[[archivo|texto]]` → `texto`, `[[archivo]]` → nombre del archivo
+3. **Agregar al pie**: `> Origen vault: {{PATH}}/adr/###-*.md`
+4. **Mantener** Mermaid, tablas, código, secciones
 
 ### Qué va en cada zona
 
 | ¿Qué? | Vault | Code Repo | Outline |
 |---|---|---|---|
-| ADR aceptado | Queda (frontmatter, wikilinks) | Copia (sin wikilinks) | No va |
+| ADR aceptado | Queda (frontmatter, wikilinks) | No se copia (AGENTS.md se actualiza con sus reglas) | No va |
 | ADR propuesto/rechazado/reemplazado | Queda | No va | No va |
 | Doc técnico | Borrador en `docs/` | No va | Versión pulida |
 | Glosario | `Proyecto.md` | No va | No va |

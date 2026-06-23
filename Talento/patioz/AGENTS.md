@@ -1,6 +1,6 @@
 # AGENTS.md — Guía de navegación para Patioz
 
-> Contexto para asistentes de IA (Claude, Cline, etc.) y desarrolladores humanos.
+> Contexto para asistentes de IA y desarrolladores humanos.
 > Este archivo describe la estructura, convenciones y reglas del vault `Talento/patioz/`.
 
 ---
@@ -11,139 +11,112 @@
 Talento/patioz/
 ├── AGENTS.md              ← Este archivo. Guía de navegación y reglas.
 ├── Patioz.md              ← Landing: resumen, navegación, stack, glosario
-├── Tracker.md             ← Tracking de ADRs y Docs (embebe bd/*.base)
+├── Tracker.md             ← Tracking de Docs (embebe bd/Docs.base)
 ├── adr/                   ← Architecture Decision Records
-│   ├── 00-index.md        ← Índice de todos los ADRs
+│   ├── README.md          ← Índice y saltos de numeración para el repo
+│   ├── 00-index.md        ← Índice completo con wikilinks
 │   ├── plantilla.md       ← Plantilla para crear nuevos ADRs
-│   ├── 001-005 ...        ← (reemplazados)
-│   ├── 006-016 ...        ← ADRs activos
+│   ├── 001-005 ...        ← Reemplazados (históricos)
+│   ├── 006-016 ...        ← Backend activos
+│   ├── 017-024 ...        ← Frontend activos
 │   └── maps/              ← Sub-ADRs de mapas
-├── bd/                    ← Bases de datos (tracking sync + Outline)
-│   ├── ADRs.base          ← ADRs: qué copiar a BE/FE, estado de copia
-│   ├── Docs.base          ← Docs: qué publicar en Outline, estado
+├── bd/                    ← Bases de Obsidian (tablas interactivas)
+│   ├── ADRs.base          ← ADRs: decisión, proyecto, estado, implementado
+│   ├── Docs.base          ← Docs: título, outline_status, outline_url
 │   └── Decisiones.base    ← Vista combinada ADRs + Docs
 └── docs/                  ← Documentación pulida para exportar a Outline
-    ├── Overview.md
-    ├── Arquitectura.md
-    ├── API Reference.md
-    ├── Setup Local.md
-    ├── Deploy.md
-    ├── Auth & RBAC.md
-    ├── i18n & Traducción.md
-    ├── File Processing.md
-    ├── Testing.md
-    ├── Troubleshooting.md
-    ├── Coding Conventions.md
-    └── Decision Log.md
+    ├── Overview.md, Arquitectura.md, API Reference.md ... (BE)
+    ├── FE Overview.md, FE Arquitectura.md, FE Setup Local.md ... (FE)
+    └── Decision Log.md    ← Tabla curada BE + FE para PM/PO
 ```
 
 ---
 
 ## 🧭 Cómo navegar
 
-### Si buscas...
-
 | Tópico | Ir a |
 |---|---|
 | **Resumen general y glosario** | `Patioz.md` |
-| **Arquitectura general del sistema** | `docs/Overview.md` o `docs/Arquitectura.md` |
-| **Decisiones arquitectónicas (por qué se hizo X)** | `adr/` — leer `adr/00-index.md` primero |
-| **Tracking de ADRs y Docs (qué copiar, qué publicar)** | `Tracker.md` o `bd/ADRs.base`, `bd/Docs.base` |
-| **Setup local (cómo levantar el proyecto)** | `docs/Setup Local.md` |
-| **Cómo desplegar** | `docs/Deploy.md` |
-| **Problemas conocidos** | `docs/Troubleshooting.md` |
-| **Definición de términos del dominio** | `Patioz.md` |
-| **Auth / login / permisos** | `docs/Auth & RBAC.md` + `adr/007-auth-integration.md` |
-| **i18n / Traducción** | `docs/i18n & Traducción.md` + `adr/014-i18n-bilingual-content.md` |
-| **Módulo de archivos / imágenes** | `docs/File Processing.md` + `adr/015-file-storage-processing.md` |
-| **Testing** | `docs/Testing.md` + `adr/016-testing-strategy.md` |
-
-### Convención de nombres
-
-| Prefijo | Contenido |
-|---|---|
-| `Patioz.md` | Landing page con resumen y glosario |
-| `adr/###-*` | Decisiones arquitectónicas, numeradas secuencialmente |
-| `bd/*.base` | Bases de Obsidian para tracking interactivo |
-| `docs/*.md` | Documentación pulida para exportar a Outline |
+| **Decisiones arquitectónicas BE** | `adr/` (006-016) |
+| **Decisiones arquitectónicas FE** | `adr/` (017-024) |
+| **Tracking de Docs (Outline)** | `Tracker.md` o `bd/Docs.base` |
+| **Documentación técnica BE** | `docs/` |
+| **Documentación técnica FE** | `docs/FE Overview.md` |
+| **Decision Log (PM/PO)** | `docs/Decision Log.md` |
 
 ---
 
-## 📐 Estado arquitectónico actual
+## 📐 ADRs activos
 
-La arquitectura activa está definida por estos ADRs (el resto están reemplazados o son históricos):
+### Backend (patioz-be)
 
-| ADR | Estado | Qué establece |
+| ADR | Implementado | Qué establece |
 |---|---|---|
-| **ADR-006** | ✅ Aceptado | Monolito Modular + BullMQ (reemplaza ADR-001, ADR-005) — corregido por ADR-012 |
-| **ADR-007** | ✅ Aceptado | Auth integrado en el monolite con Supabase — corregido por ADR-010 |
-| **ADR-008** | ✅ Aceptado | Emails con AWS SES |
-| **ADR-009** | ✅ Aceptado | Scheduling in-house (actualizado a NestJS 2026-06-18) |
-| **ADR-010** | ✅ Aceptado | NestJS 11 como framework del monolite (reemplaza ADR-002) |
-| **ADR-011** | ✅ Aceptado | Búsqueda y verificación de ubicaciones geográficas (reemplaza ADR-004) |
-| **ADR-012** | ✅ Aceptado | Estructura de módulo: Repository Pattern con contracts/adapters (corrige ADR-006) |
-| **ADR-013** | ✅ Aceptado | Comunicación entre módulos: Sync DI + Async BullMQ |
-| **ADR-014** | ✅ Aceptado | Contenido bilingüe: JSONB + AWS Translate |
-| **ADR-015** | ✅ Aceptado | Almacenamiento y procesamiento de archivos: S3 + imgproxy-api |
-| **ADR-016** | ✅ Aceptado | Estrategia de testing: TDD pragmático |
+| 006 | si | Monolito Modular + BullMQ |
+| 007 | si | Auth integrada con Supabase |
+| 008 | si | Emails con AWS SES |
+| 009 | si | Scheduling in-house |
+| 010 | si | NestJS 11 como framework |
+| 011 | si | Mapas y ubicaciones en 2 fases |
+| 012 | si | Repository Pattern (contracts/adapters) |
+| 013 | si | Comunicación: Sync DI + Async BullMQ |
+| 014 | si | i18n: JSONB + AWS Translate |
+| 015 | si | Archivos: S3 + imgproxy-api |
+| 016 | si | Testing: TDD pragmático |
 
-> ⚠️ ADR-002 (Fastify) y ADR-003 (NestJS como servicio separado) están reemplazados. No usar como referencia para decisiones actuales.
+### Frontend (patioz-fe)
+
+| ADR | Implementado | Qué establece |
+|---|---|---|
+| 017 | si | Monorepo pnpm + Turborepo |
+| 018 | si | 3 apps para 3 grupos de usuarios |
+| 019 | si | Next.js 16 (mapui) + Vite (operations/admin) |
+| 020 | si | Contract implicit pattern |
+| 021 | si | State: React Query + Zustand |
+| 022 | si | @mapui/ui-core (35 componentes) |
+| 023 | si | Tailwind CSS v4 única fuente de estilos |
+| 024 | si | Wizard create-property de 14 pasos |
 
 ---
 
-## 📋 Reglas para asistentes de IA (y humanos)
+## 📋 Reglas para asistentes de IA
 
 ### Al crear o modificar un ADR
 
 1. **Usar la plantilla** `adr/plantilla.md`
 2. **Nombrar** con el formato `adr/###-titulo-descripitivo.md`
-3. **Actualizar estos archivos** siempre que corresponda:
-   - `adr/00-index.md` — agregar entrada en la tabla y en la lista de ADRs existentes
-   - `Patioz.md` — si el ADR introduce términos nuevos del dominio o técnicos
-   - `docs/*` — si el ADR cambia flujos de setup, deploy o troubleshooting
-    - `docs/Arquitectura.md` — si el ADR afecta la arquitectura general
-4. **Marcar ADRs reemplazados**: si un nuevo ADR invalida uno anterior, agregar `reemplazado_por: ADR-XXX` en el frontmatter del ADR viejo
+3. **Asignar** `proyecto: patioz-be` o `patioz-fe` según corresponda
+4. **Actualizar** `adr/00-index.md` con la nueva entrada
+5. **Actualizar** `Patioz.md` si introduce términos nuevos al glosario
+6. **Actualizar** `docs/*` si el ADR afecta docs existentes
 
-### Al completar una copia a repo o publicación a Outline
+### Flujo de trabajo
 
-1. **Copiar ADR al repo** → cambiar `sync_backend` o `sync_frontend` de `pendiente` a `copiado` en el frontmatter del ADR
-2. **Publicar doc en Outline** → cambiar `outline_status` de `pendiente` a `publicado` y llenar `outline_url`
-3. Verificar que `bd/ADRs.base` y `bd/Docs.base` reflejen los cambios
+1. **Vault:** crear ADR con `estado: propuesto`, refinar, aceptar → `estado: aceptado`
+2. **Código:** implementar la decisión → cambiar `implementado: si`
+3. **Outline:** publicar doc → `outline_status: publicado` + `outline_url`
 
-### Al copiar un ADR al repositorio
+Los ADRs se quedan en el vault como documentación de decisiones. No se copian al repositorio de código. En su lugar, al implementar un ADR, actualizar el `AGENTS.md` del repositorio con las reglas y convenciones derivadas.
 
-Cuando se pida copiar un ADR al repo de código, aplicar estas reglas:
+### Al copiar un ADR al repositorio (solo si es necesario)
 
 1. **Quitar el bloque YAML** del inicio (`---` ... `---`)
 2. **Reemplazar wikilinks**: `[[archivo|texto]]` → `texto`, `[[archivo]]` → nombre del archivo
 3. **Agregar al pie**: `> Origen vault: Talento/patioz/adr/###-*.md`
 4. **Mantener** Mermaid, tablas, código, secciones
 
-### Flujo vault → repo → Outline
-
-1. **Vault (este espacio):** fuente de verdad inicial. Los ADRs se crean, discuten y refinan acá.
-2. **Repo de código:** cuando `sync_backend: pendiente`, copiar el ADR al repo junto con `adr/README.md` (índice y saltos de numeración). Al copiar, cambiar a `copiado`.
-3. **Outline:** cuando `outline_status: pendiente`, publicar el doc manualmente. Al publicar, cambiar a `publicado` y llenar `outline_url`.
-
 ### Qué va en cada zona
 
 | ¿Qué? | Vault | Code Repo | Outline |
 |---|---|---|---|
-| ADR aceptado | Queda (frontmatter, wikilinks) | Copia (sin wikilinks) | No va |
+| ADR aceptado | Queda (frontmatter, wikilinks) | No se copia (AGENTS.md del repo se actualiza con sus reglas) | No va |
 | ADR propuesto/rechazado/reemplazado | Queda | No va | No va |
 | Doc técnico | Borrador en `docs/` | No va | Versión pulida |
-| Decision Log (tabla curada PM/PO) | `docs/Decision Log.md` | No va | Versión pulida |
-| Glosario | `06-glosario.md` | No va | No va |
+| Decision Log (PM/PO) | `docs/Decision Log.md` | No va | Versión pulida |
+| Glosario | `Patioz.md` | No va | No va |
 | Tracking de estados | `bd/*.base` | No va | No va |
-| Guías operativas | `docs/` (Setup, Deploy, Troubleshooting) | No va | Versión pulida |
-| Wikilinks de Obsidian (`[[]]`) | Quedan | Se traducen a texto | No existen |
-| Frontmatter (`tipo`, `estado`, `sync_status`) | Queda | Se elimina | Se usa `title`/`description` |
-
-### Al leer documentación existente
-
-- **Siempre verificar la fecha** `actualizado` en el frontmatter de los docs.
-- La arquitectura actual es NestJS 11 + BullMQ + contracts/adapters. Los ADRs 006-016 documentan el estado real.
-- Referencias a Fastify, QStash, BFF, Clean Architecture layers o Leaflet están obsoletas.
+| Wikilinks de Obsidian | Quedan | Se traducen a texto | No existen |
+| Frontmatter | Queda | Se elimina | Se usa `title`/`description` |
 
 ---
 
@@ -152,37 +125,45 @@ Cuando se pida copiar un ADR al repo de código, aplicar estas reglas:
 | Archivo | Se actualiza cuando... |
 |---|---|
 | `adr/00-index.md` | Se crea/modifica un ADR |
-| `bd/ADRs.base` | Los campos `sync_backend`/`sync_frontend` reflejan el estado real de copia |
-| `bd/Docs.base` | Los campos `outline_status`/`outline_url` reflejan el estado real de publicación |
-| `Patioz.md` | Surge un término nuevo o cambia el significado de uno existente |
-| `docs/Setup Local.md` | Cambian dependencias, puertos, comandos de setup |
-| `docs/Deploy.md` | Cambia el pipeline CI/CD, hosting, o pasos de deploy |
-| `docs/Troubleshooting.md` | Se descubre un nuevo error recurrente o se soluciona uno existente |
-| `docs/Arquitectura.md` | Cambia la arquitectura general del sistema |
+| `Patioz.md` | Surge un término nuevo en el glosario |
+| `bd/Docs.base` | Un doc cambia de estado en Outline |
+| `docs/Setup Local.md` | Cambian dependencias o comandos de setup |
+| `docs/Deploy.md` | Cambia CI/CD o hosting |
+| `docs/Troubleshooting.md` | Se descubre/soluciona un error recurrente |
 
 ---
 
-## 🛠 Stack actual (post-ADR-016)
+## 🛠 Stack
+
+### Backend
 
 | Capa | Tecnología |
 |---|---|
-| Framework | NestJS 11 (`@nestjs/core`) |
-| HTTP | Express (`@nestjs/platform-express`) |
-| Base de datos | PostgreSQL (Supabase) |
-| Auth | Supabase Auth + JWT (Passport) + RBAC |
-| Cola de trabajos | BullMQ (`@nestjs/bullmq`) |
-| Cache | Redis (ioredis) |
-| File storage | S3-compatible (MinIO local / R2 producción) |
-| Procesamiento de imágenes | imgproxy-api (Go, servicio externo) |
+| Framework | NestJS 11 |
+| HTTP | Express |
+| DB | PostgreSQL (Supabase) |
+| Auth | Supabase Auth + JWT + RBAC |
+| Cola | BullMQ + Redis |
+| Archivos | S3 + imgproxy-api |
 | Traducción | AWS Translate |
-| Emails | AWS SES |
+| Email | AWS SES |
 | SMS | Twilio |
-| Mapas | Google Maps API + Turf.js + Mapbox GL JS |
 | CI/CD | Bitbucket Pipelines |
 | Hosting | Railway |
-| Frontend | Next.js 16 + Mapbox GL JS (repositorio separado) |
-| Testing | Jest + Supertest + `@nestjs/testing` |
+
+### Frontend
+
+| Capa | Tecnología |
+|---|---|
+| Monorepo | pnpm + Turborepo |
+| Frameworks | Next.js 16, Vite 6 |
+| UI | React 19, Tailwind CSS v4 |
+| State | TanStack React Query, Zustand |
+| Forms | React Hook Form + Zod |
+| i18n | next-intl, @mapui/i18n |
+| Testing | Playwright (e2e), Vitest |
+| Auth | Supabase Auth (aislado por app) |
 
 ---
 
-> *Mantener este archivo actualizado a medida que evoluciona el vault. La regla de oro: si un humano o IA necesita saber algo para navegar correctamente, debe estar acá.*
+> *Mantener este archivo actualizado. La regla de oro: si un humano o IA necesita saber algo para navegar correctamente, debe estar acá.*

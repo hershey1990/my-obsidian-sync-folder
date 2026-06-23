@@ -4,8 +4,7 @@ fecha: 2026-02-15
 estado: reemplazado
 reemplazado_por: ADR-011
 proyecto: patioz-fe
-sync_backend: no_aplica
-sync_frontend: no_aplica
+implementado: no_aplica
 decision: "Frontend con Next.js + Leaflet + búsqueda híbrida"
 tags:
   - adr

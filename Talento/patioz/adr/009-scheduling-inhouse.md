@@ -4,8 +4,7 @@ fecha: 2026-06-09
 actualizado: 2026-06-22
 estado: aceptado
 proyecto: patioz-be
-sync_backend: copiado
-sync_frontend: no_aplica
+implementado: si
 decision: Módulo de scheduling in-house en el monolito modular NestJS (no cal.com ni herramientas externas de agenda)
 tags:
   - adr

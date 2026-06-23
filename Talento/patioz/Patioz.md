@@ -4,19 +4,24 @@ tags:
 ---
 # Patioz
 
-Plataforma de gestión inmobiliaria para Nicaragua. Monolito Modular NestJS 11 + Supabase + BullMQ + S3.
+Plataforma de gestión inmobiliaria para Nicaragua.
+
+- **Backend:** Monolito Modular NestJS 11 + Supabase + BullMQ + S3
+- **Frontend:** Monorepo con 4 apps (Next.js + Vite) + 6 packages
 
 ## Navegación
 
 | Sección | Archivo | Contenido |
 |---|---|---|
-| Tracking | [[Tracker]] | ADRs pendientes de copiar, Docs pendientes de publicar |
-| ADRs | [[adr/00-index\|adr/]] | 17 Architecture Decision Records (001-016) |
-| Docs | [[docs/Overview\|docs/]] | Documentación técnica para exportar a Outline |
-| Bases | [[bd/ADRs\|bd/]] | Tablas interactivas (ADRs.base, Docs.base) |
-| IA | [[AGENTS.md]] | Guía de navegación para asistentes |
+| Tracking | [[Tracker]] | Docs pendientes de publicar en Outline |
+| ADRs | [[adr/00-index\|adr/]] | 24 Architecture Decision Records (001-024) |
+| Docs BE | [[docs/Overview\|docs/]] | Documentación técnica backend |
+| Docs FE | [[docs/FE Overview\|docs/FE]] | Documentación técnica frontend |
+| Bases | [[bd/ADRs\|bd/]] | Tablas interactivas |
 
 ## Stack
+
+### Backend
 
 | Capa | Tecnología |
 |---|---|
@@ -32,6 +37,21 @@ Plataforma de gestión inmobiliaria para Nicaragua. Monolito Modular NestJS 11 +
 | Mapas | Google Maps + Turf.js + Mapbox GL JS |
 | CI/CD | Bitbucket Pipelines |
 | Hosting | Railway |
+
+### Frontend
+
+| Capa | Tecnología |
+|---|---|
+| Monorepo | pnpm workspaces + Turborepo |
+| Frameworks | Next.js 16, Vite 6 |
+| UI | React 19 |
+| Styling | Tailwind CSS v4 |
+| Server state | TanStack React Query |
+| Client state | Zustand |
+| Forms | React Hook Form + Zod |
+| i18n | next-intl, @mapui/i18n |
+| Testing | Playwright, Vitest |
+| Auth | Supabase Auth (aislado por app) |
 
 ---
 
@@ -50,54 +70,54 @@ Plataforma de gestión inmobiliaria para Nicaragua. Monolito Modular NestJS 11 +
 | **Zona / Barrio** | Área geográfica dentro de una ciudad |
 | **Polígono** | Delimitación geográfica (GeoJSON) de una zona en el mapa |
 | **Listing / Publicación** | Anuncio de una propiedad disponible en la plataforma. Contiene precio, fotos, descripción, tipo de operación. |
-| **Lead** | Solicitud de un cliente para contactar a un agente o dueño. Estado: new → assigned → contacted → closed. |
+| **Lead** | Solicitud de un cliente para contactar a un agente o dueño. Estados: new → assigned → contacted → closed. |
 | **Visita / Showing** | Cita programada para mostrar una propiedad a un cliente potencial. |
 | **Agente** | Usuario con permisos para gestionar propiedades, leads y visitas. Rol del sistema. |
+| **Tenant / Agencia** | Entidad multi-tenant. Los agentes pertenecen a una agencia. Login requiere `tenantSlug`. |
 
-### ⚙️ Dominio Técnico
+### ⚙️ Dominio Técnico — Backend
 
 | Término | Definición |
 |---|---|
 | **Monolito Modular** | Aplicación NestJS 11 única con todos los módulos de dominio. Un solo deploy, una sola BD. |
 | **Módulo NestJS** | Unidad organizativa: `module.ts` + `controller.ts` + `service.ts` + `contracts/` + `adapters/` + `dto/`. |
-| **Contracts / Adapters** | `contracts/` define interfaces y DI tokens; `adapters/` implementa infraestructura concreta (Supabase, Redis, SES). |
+| **Contracts / Adapters** | `contracts/` define interfaces y DI tokens; `adapters/` implementa infraestructura concreta. |
 | **Repository Pattern** | Estructura plana de módulo. Reemplazó Clean Architecture layers en ADR-012. |
 | **DI Token** | Constante string (`PROPERTY_REPOSITORY`) para inyección de dependencias vía `@Inject(TOKEN)`. |
-| **Adapter naming** | Convención `{implementación}-{rol}.ts`: `supabase-property.repository.ts`, `google-geocoding.provider.ts`. |
-| **Supabase Auth** | Servicio de autenticación (GoTrue). Login, signup, sesiones JWT. |
 | **RBAC** | Role-Based Access Control vía `@Permission(resource, action)` + `AuthorizeGuard`. |
 | **JwtAuthGuard** | Guard global de NestJS que valida JWT. Endpoints públicos con `@Public()`. |
 | **BullMQ** | Cola asíncrona sobre Redis. Eventos de dominio y jobs programados. |
-| **Redis** | Cache + backend de BullMQ. Misma instancia para ambos usos. |
 | **Sync DI** | Comunicación síncrona entre módulos: inyectar repositorio vía DI token para consultas. |
 | **QueueService** | Servicio `@Global()` que publica jobs BullMQ con 3 reintentos y backoff exponencial. |
-| **S3 / MinIO** | Almacenamiento compatible. MinIO en desarrollo local, Cloudflare R2 en producción. |
-| **StorageModule** | Módulo `@Global()` para operaciones S3 (upload, download, delete). |
+| **S3 / MinIO** | Almacenamiento compatible. MinIO local, Cloudflare R2 producción. |
 | **imgproxy-api** | Microservicio Go de procesamiento de imágenes. Redimensionado, WebP, variantes. |
-| **IFileApi** | Interfaz en `files/contracts/` que abstrae operaciones de archivos. Implementación: `RemoteFileApi`. |
-| **Variantes de imagen** | Resoluciones: `original`, `thumbnail`, `medium`, `full`. |
 | **SES** | AWS Simple Email Service. Emails transaccionales. |
-| **Twilio** | SMS y WhatsApp para notificaciones. |
 | **AWS Translate** | Traducción automática ES↔EN para campos bilingües. |
 | **TranslationModule** | Módulo `@Global()` con `TranslationService` y `AwsTranslateProvider`. |
-| **TranslationProvider** | Interfaz `ITranslationProvider`. Permite cambiar de proveedor de traducción. |
 | **LocalizedString** | Tipo `{ es?: string; en?: string }` en JSONB para campos multilingüe. |
 | **fillMissing** | Auto-traduce campos `LocalizedString` cuando falta un idioma vía AWS Translate. |
-| **DTO** | Data Transfer Object con decoradores `class-validator` para validación de entrada. |
 | **GeoJSON** | Formato estándar para datos geográficos. Usado por `maps` con Turf.js. |
-| **Jerarquía de zonas** | 5 niveles: País → Depto → Municipio → Distrito → Zona/Barrio. `parent_id` referencia al nivel superior. |
-| **Preservación de geometría** | El polígono catastral local es fuente de verdad. Google nunca reemplaza el `geojson` local. |
-| **Verificación espacial** | 3 chequeos: contención de centroid, ratio de áreas, solape. Determina si un polígono local matchea un place_id. |
-| **Confidence (geográfico)** | high (0.4-0.95), medium (0.2-0.4\|0.95-1.3), low (fuera de rango). |
-| **Geocoding inverso** | Dado un punto (lat, lng), determinar zonas contenedoras vía `turf.booleanPointInPolygon`. |
-| **Reconciliación batch** | Job que fusiona duplicados geográficos: Tipo A (mismo place_id) y Tipo B (fragmentos espaciales). |
-| **google_viewport** | Rectángulo de Google Place Details. Solo referencia, nunca geometría de pintado. |
-| **CalendarSyncAdapter** | Contrato para sincronizar disponibilidad con calendarios externos (Google, Zoho, Outlook) vía OAuth. |
-| **TDD pragmático** | Test primero cuando clarifica el contrato, después cuando es obvio. Reglas explícitas de qué testear. |
-| **Coverage threshold** | ≥70% statements, ≥60% branches. Services y adapters → 100% branch coverage. |
-| **createTestApp** | Factory en `test/helpers/` que botea la app NestJS con mocks de infraestructura externa. |
-| **e2e HTTP tests** | Supertest contra la app completa. Validan Guards → Pipes → Controller → Response. |
-| **Railway** | Plataforma de hosting. Deploy via Bitbucket Pipelines → `railway up`. |
-| **Bitbucket Pipelines** | CI/CD: tests, migraciones Supabase, deploy a Railway. |
+| **Jerarquía de zonas** | 5 niveles: País → Depto → Municipio → Distrito → Zona/Barrio. |
+| **Preservación de geometría** | El polígono catastral local es fuente de verdad. Google nunca reemplaza el `geojson`. |
+| **Verificación espacial** | 3 chequeos: contención de centroid, ratio de áreas, solape. |
+| **Confidence (geográfico)** | high (0.4-0.95), medium (0.2-0.4\|0.95-1.3), low. |
+| **TDD pragmático** | Test primero cuando clarifica el contrato, después cuando es obvio. |
+| **Coverage threshold** | ≥70% statements, ≥60% branches. |
 
-> *Actualizar este glosario cuando surja un término nuevo o quede obsoleto.*
+### ⚙️ Dominio Técnico — Frontend
+
+| Término | Definición |
+|---|---|
+| **Monorepo** | Un solo repositorio con 4 apps y 6 packages. pnpm workspaces + Turborepo. |
+| **mapui** | App pública Next.js 16. Usuarios finales y propietarios. |
+| **operations** | App Vite para agentes de agencia. Wizard create-property de 14 pasos. |
+| **admin** | App Vite para staff administrativo de Patioz. |
+| **basement** | App Vite de showcase del design system. |
+| **@mapui/ui-core** | 35 componentes presentacionales compartidos. Cero lógica de negocio. |
+| **@mapui/auth** | Lógica de autenticación transversal con aislamiento por app. |
+| **Contract implicit** | `services.ts` devuelve mocks hoy → `api.get()` mañana con misma firma. |
+| **TanStack React Query** | Server state: caché, re-fetch, deduplicación de requests. |
+| **Zustand** | Client state: stores livianas separadas por dominio. |
+| **Tailwind CSS v4** | Única fuente de estilos en todas las apps. |
+| **Biome** | Lint y format para JS/TS/CSS/JSON. |
+| **Wizard** | Flujo guiado de 14 pasos para crear propiedades. Zustand + Zod. |
