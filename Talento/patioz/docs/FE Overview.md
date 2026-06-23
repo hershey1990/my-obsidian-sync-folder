@@ -1,9 +1,9 @@
 ---
-title: "Frontend Overview — Patioz"
+title: Frontend Overview — Patioz
 description: "Visión general del frontend: monorepo con 4 apps, 6 packages, Next.js + Vite"
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # Frontend — MapUI Monorepo
 

@@ -1,9 +1,9 @@
 ---
-title: "Frontend Auth & RBAC — Patioz"
+title: Frontend Auth & RBAC — Patioz
 description: "Autenticación en el frontend: 3 grupos de usuarios, auth isolation, multi-tenant"
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # Frontend — Auth & RBAC
 

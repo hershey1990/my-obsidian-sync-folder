@@ -1,9 +1,9 @@
 ---
-title: "Frontend Coding Conventions — Patioz"
+title: Frontend Coding Conventions — Patioz
 description: "Convenciones de código del monorepo: Tailwind, Biome, naming, imports, commits"
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # Frontend — Coding Conventions
 

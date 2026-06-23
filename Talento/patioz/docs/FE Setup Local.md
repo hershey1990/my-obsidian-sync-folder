@@ -1,9 +1,9 @@
 ---
-title: "Frontend Setup Local — Patioz"
-description: "Cómo levantar el monorepo MapUI en desarrollo local"
+title: Frontend Setup Local — Patioz
+description: Cómo levantar el monorepo MapUI en desarrollo local
 actualizado: 2026-06-22
-outline_status: pendiente
-outline_url: null
+outline_status: publicado
+outline_url:
 ---
 # Frontend — Setup Local
 
