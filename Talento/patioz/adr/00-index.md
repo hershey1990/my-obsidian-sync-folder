@@ -33,6 +33,7 @@ tags:
 - [[patioz/adr/014-i18n-bilingual-content|014 — Estrategia de Contenido Bilingüe (JSONB + AWS Translate)]]
 - [[patioz/adr/015-file-storage-processing|015 — Arquitectura de Almacenamiento y Procesamiento de Archivos]]
 - [[patioz/adr/016-testing-strategy|016 — Estrategia de Testing: TDD Pragmático]]
+- [[patioz/adr/026-vonage-messages-api|026 — Vonage Messages API para Notificaciones SMS + WhatsApp]]
 - [[patioz/adr/maps/001-mapbox-renderer|maps/001 — Mapbox GL JS como Renderer del Mapa]]
 - [[patioz/adr/maps/002-google-places-provider|maps/002 — Google Places como Provider de Datos]]
 
