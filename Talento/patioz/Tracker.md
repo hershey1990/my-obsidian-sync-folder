@@ -4,6 +4,14 @@ tags:
 ---
 # Tracker — Patioz
 
+## ADRs
+
+![[bd/ADRs.base]]
+
+Columna `implementado`: `si` = ya está en código. `pendiente` = aceptado pero no implementado aún.
+
+---
+
 ## Docs
 
 ![[bd/Docs.base]]
