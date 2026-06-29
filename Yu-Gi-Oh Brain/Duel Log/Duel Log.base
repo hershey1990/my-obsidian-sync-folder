@@ -1,0 +1,19 @@
+filters:
+  and:
+    - file.inFolder("Yu-Gi-Oh Brain/Duel Log")
+    - file.ext == "md"
+    - file.name != "Duel Log.base"
+views:
+  - type: table
+    name: Duel Sessions
+    order:
+      - file.name
+      - fecha
+      - deck_usado
+      - wins
+      - losses
+      - file.tags
+    sort:
+      - property: fecha
+        direction: DESC
+    limit: 200
