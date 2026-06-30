@@ -10,11 +10,14 @@
 
 | Carpeta | Propósito |
 |---------|-----------|
+| `adr/` | Architecture Decision Records (4 ADRs) |
+| `bd/` | Bases de Obsidian (tablas interactivas) |
+| `docs/` | Documentación técnica |
 | `Ideas/` | Las 3 ideas formuladas (+ descartadas) |
-| `Decisiones/` | ADRs y acuerdos clave del proyecto |
 | `Research/` | Investigación de mercado con fuentes citadas (✅ 5 docs) |
 | `Business Plan/` | 14 documentos del plan de negocios |
 | `Technical/` | Arquitectura, stack tecnológico, wireframes (✅ 4 screenshots) |
+| `Board/` | Kanban de desarrollo (9 fases) |
 | `Sessions/` | Registro de sesiones con OpenCode (✅ 4 sesiones) |
 
 ## Estado del plan de negocios

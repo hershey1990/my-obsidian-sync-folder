@@ -1,0 +1,15 @@
+filters:
+  and:
+    - file.inFolder("proyectos personales/estela/docs")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Docs
+    order:
+      - file.name
+      - outline_status
+      - outline_url
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 50

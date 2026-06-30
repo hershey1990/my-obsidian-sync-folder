@@ -1,0 +1,26 @@
+filters:
+  and:
+    - file.inFolder("proyectos personales/bb/adr")
+    - file.ext == "md"
+    - file.name != "00-index"
+    - file.name != "plantilla"
+views:
+  - type: table
+    name: ADRs
+    order:
+      - file.name
+      - decision
+      - proyecto
+      - estado
+      - implementado
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: Docs
+    order:
+      - file.name
+      - outline_status
+    sort:
+      - property: file.name
+        direction: ASC
